@@ -26,5 +26,10 @@ namespace ChineseCheckers
         {
             this.InitializeComponent();
         }
+
+        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
     }
 }
