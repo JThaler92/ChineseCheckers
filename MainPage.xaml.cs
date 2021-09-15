@@ -32,10 +32,9 @@ namespace ChineseCheckers
     {
         public static CanvasBitmap MenuScreen;
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
-        public static float DesignWidth = 1920;
-        public static float DesignHeight = 1080;
+        public static float DesignWidth = 2440;
+        public static float DesignHeight = 1220;
         public static float scaleWidth, scaleHeight;
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -57,7 +56,7 @@ namespace ChineseCheckers
 
         async Task CreateResourceAsync(CanvasControl sender)
         {
-            MenuScreen = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/blabla.jpg"));
+            MenuScreen = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/swamp.jpg"));
         }
 
         private void GameCanvas_Draw(CanvasControl sender, CanvasDrawEventArgs args)
