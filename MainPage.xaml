@@ -9,13 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Viewbox>
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="1920" Width="3410">
-            <canvas:CanvasControl x:Name="GameCanvas" CreateResources="GameCanvas_CreateResources" Draw="GameCanvas_Draw" IsTapEnabled="True" Tapped="GameCanvas_Tapped"/>
-            <Image Source="Assets/Images/swamp2.jpg"/>
-            <Button x:Name="Button_Play" Content="Play" Margin="0,731,0,0" VerticalAlignment="Top" Height="150" Width="350" HorizontalAlignment="Center" FontSize="80" FontFamily="Algerian" FontWeight="Bold" CornerRadius="80"></Button>
-            <Button x:Name="Button_Rules" Content="Rules" Margin="0,1163,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="150" Width="350" FontFamily="Algerian" FontSize="80" FontWeight="Normal" CornerRadius="80"/>
-            <Button x:Name="Button_Quit" Content="Quit" Margin="0,1438,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="150" Width="350" FontFamily="Algerian" FontSize="80" FontWeight="Bold" CornerRadius="80"/>
-        </Grid>
-    </Viewbox>
+    <Grid>
+        <canvas:CanvasControl x:Name="GameCanvas" CreateResources="GameCanvas_CreateResources" Draw="GameCanvas_Draw" IsTapEnabled="True" Tapped="GameCanvas_Tapped"/>
+    </Grid>
 </Page>

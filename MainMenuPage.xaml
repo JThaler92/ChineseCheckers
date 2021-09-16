@@ -5,10 +5,17 @@
     xmlns:local="using:ChineseCheckers"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <HyperlinkButton Content="TO GAME" Click="HyperlinkButton_Click" HorizontalAlignment="Center" Margin="0,468,0,0" VerticalAlignment="Top" Height="117" Width="258"/>
-    </Grid>
+    <Viewbox>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="1920" Width="3410">
+            <canvas:CanvasControl x:Name="GameCanvas"/>
+            <Image Source="Assets/Images/swamp2.jpg"/>
+            <Button x:Name="Button_Play" Content="Play" Margin="0,731,0,0" VerticalAlignment="Top" Height="150" Width="350" HorizontalAlignment="Center" FontSize="80" FontFamily="Algerian" FontWeight="Bold" CornerRadius="80" Click="HyperlinkButton_Click"> </Button>
+            <Button x:Name="Button_Rules" Content="Rules" Margin="0,1163,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="150" Width="350" FontFamily="Algerian" FontSize="80" FontWeight="Normal" CornerRadius="80"/>
+            <Button x:Name="Button_Quit" Content="Quit" Margin="0,1438,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="150" Width="350" FontFamily="Algerian" FontSize="80" FontWeight="Bold" CornerRadius="80"/>
+        </Grid>
+    </Viewbox>
 </Page>

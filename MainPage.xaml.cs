@@ -56,12 +56,12 @@ namespace ChineseCheckers
 
         async Task CreateResourceAsync(CanvasControl sender)
         {
-            //MenuScreen = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/swamp.jpg"));
+            MenuScreen = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/swamp.jpg"));
         }
 
         private void GameCanvas_Draw(CanvasControl sender, CanvasDrawEventArgs args)
         {
-            //args.DrawingSession.DrawImage(Scaler.Img(MenuScreen));
+            args.DrawingSession.DrawImage(Scaler.Img(MenuScreen));
 
             GameCanvas.Invalidate();
         }
