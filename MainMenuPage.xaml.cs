@@ -32,11 +32,6 @@ namespace ChineseCheckers
             RulesSettings();
         }
 
-        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
-        }
-
         /// <summary>
         /// If the buttons are enable disable them, if buttons are disabled, enable them.
         /// </summary>
@@ -54,6 +49,16 @@ namespace ChineseCheckers
         {
             RulesWindow.IsHitTestVisible = false;
             RulesWindow.Text = Rule.RuleText;
+        }
+
+        /// <summary>
+        /// Starts the game when play is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Play_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
         }
 
         /// <summary>
@@ -82,6 +87,11 @@ namespace ChineseCheckers
             RulesWindowClose.Visibility = Visibility.Collapsed;
 
             ReverseButtons();
+        }
+
+        private void Button_Quit_Click(object sender, RoutedEventArgs e)
+        {
+            System.Environment.Exit(0);
         }
     }
 }
