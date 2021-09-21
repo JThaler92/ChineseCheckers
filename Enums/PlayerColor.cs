@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ChineseCheckers.Enums
+{
+    public enum PlayerColor
+    {
+        Green,
+        Red,
+        Yellow,
+        Pink,
+        Purple,
+        Blue
+    }
+}

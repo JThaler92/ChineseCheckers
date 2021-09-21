@@ -32,9 +32,8 @@ namespace ChineseCheckers
     {
         public static CanvasBitmap MenuScreen;
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
-        public static float DesignWidth = 2440;
-        public static float DesignHeight = 1220;
-        public static float scaleWidth, scaleHeight;
+
+ 
         public MainPage()
         {
             this.InitializeComponent();
