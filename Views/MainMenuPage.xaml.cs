@@ -4,6 +4,7 @@ using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Threading.Tasks;
+using Windows.Media.Playback;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -16,18 +17,17 @@ namespace ChineseCheckers
     /// </summary>
     public sealed partial class MainMenu : Page
     {
+        MediaPlayer player;
+
 
         public static CanvasBitmap MenuScreen;
         public MainMenu()
         {
             this.InitializeComponent();
-
             RulesSettings();
-        }
 
-        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(GameBoard));
+            player = new MediaPlayer();
+            BackgroundSound.PlayBackgroundSound(player);
         }
 
         /// <summary>
@@ -64,7 +64,6 @@ namespace ChineseCheckers
             }
         }
         
-
         /// <summary>
         /// Closes the Rules window when pressed
         /// </summary>
@@ -76,6 +75,26 @@ namespace ChineseCheckers
             RulesWindowClose.Visibility = Visibility.Collapsed;
 
             ReverseButtons();
+        }
+
+        /// <summary>
+        /// Send player to gaming board when play is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Play_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(GameBoard));
+        }
+
+        /// <summary>
+        /// Quits the game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Quit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
