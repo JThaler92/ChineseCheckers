@@ -100,9 +100,16 @@ namespace ChineseCheckers
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
             {
-                var x = (N.Pointer.X + 4) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2));
-                var y = (N.Pointer.Y + 4) * Scaler.ScalingValue;
-                if (currentpos.X >= x && currentpos.X <= x + 55 && currentpos.Y >= y && currentpos.Y <= y + 55)
+                int x = (int)Scaler.Xpos((float)(N.Pointer.X + 4) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2)));
+                int y = (int)Scaler.Ypos((float)(N.Pointer.Y + 4) * Scaler.ScalingValue);
+
+                float xScale = Scaler.GetScale()[0];
+                float yScale = Scaler.GetScale()[1];
+
+                int clickX = (int)(Scaler.GetScale()[0]*55);
+                int clickY = (int)(Scaler.GetScale()[1]*55);
+
+                if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY)
                 {
                     Debug.WriteLine(N.MarbleID);
                     if (currentlySelected != null)

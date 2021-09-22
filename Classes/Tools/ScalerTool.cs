@@ -22,6 +22,16 @@ namespace ChineseCheckers.Classes
             scaleHeight = (float)(ApplicationView.GetForCurrentView().VisibleBounds.Height / DesignHeight);
         }
 
+        public static float[] GetScale()
+        {
+            float[] scaleVect = new float[2];
+
+            scaleVect[0] = (float)(ApplicationView.GetForCurrentView().VisibleBounds.Width / DesignWidth);
+            scaleVect[1] = (float)(ApplicationView.GetForCurrentView().VisibleBounds.Height / DesignHeight);
+            
+            return scaleVect;
+        }
+
         public static Transform2DEffect Img(CanvasBitmap source)
         {
             Transform2DEffect image;

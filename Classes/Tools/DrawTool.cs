@@ -20,8 +20,8 @@ namespace ChineseCheckers.Classes.Tools
            
             foreach (var N in board.Nodes)
             {
-                var x = (N.Pointer.X + 4) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2));
-                var y = (N.Pointer.Y + 4) * Scaler.ScalingValue;
+                int x = (int)Scaler.Xpos((float)(N.Pointer.X + 4) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2)));
+                int y = (int)Scaler.Ypos((float)(N.Pointer.Y + 4) * Scaler.ScalingValue);
 
                 switch (N.CampColorId)
                 {
@@ -57,8 +57,8 @@ namespace ChineseCheckers.Classes.Tools
         {
             foreach (var M in board.Marbles)
             {
-                var x = (M.Pointer.X + 4) * Scaler.ScalingValue + (M.Pointer.Y * (Scaler.ScalingValue / 2));
-                var y = (M.Pointer.Y + 4) * Scaler.ScalingValue;
+                int x = (int)Scaler.Xpos((float)(M.Pointer.X + 4) * Scaler.ScalingValue + (M.Pointer.Y * (Scaler.ScalingValue / 2)));
+                int y = (int)Scaler.Ypos((float)(M.Pointer.Y + 4) * Scaler.ScalingValue);
                 switch (M.MarbleColor)
                 {
                     case PlayerColor.Blue:
