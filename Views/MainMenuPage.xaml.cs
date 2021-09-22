@@ -37,9 +37,22 @@ namespace ChineseCheckers
         /// </summary>
         public void ReverseButtons() 
         {
-            Button_Play.IsEnabled = !Button_Play.IsEnabled;
-            Button_Rules.IsEnabled = !Button_Rules.IsEnabled;
-            Button_Quit.IsEnabled = !Button_Quit.IsEnabled;
+            //Button_Play.IsEnabled = !Button_Play.IsEnabled;    /// LÅT STÅ!!!!!
+            //Button_Rules.IsEnabled = !Button_Rules.IsEnabled;
+            //Button_Quit.IsEnabled = !Button_Quit.IsEnabled;
+
+            if (Button_Play.Visibility == Visibility.Collapsed)
+            {
+                Button_Play.Visibility = Visibility.Visible;
+                Button_Rules.Visibility = Visibility.Visible;
+                Button_Quit.Visibility = Visibility.Visible;
+            }
+            else if (Button_Play.Visibility == Visibility.Visible) 
+            {
+                Button_Play.Visibility = Visibility.Collapsed;
+                Button_Rules.Visibility = Visibility.Collapsed;
+                Button_Quit.Visibility = Visibility.Collapsed;
+            }
         }
 
         /// <summary>
