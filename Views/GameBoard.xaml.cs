@@ -106,8 +106,8 @@ namespace ChineseCheckers
                 float xScale = Scaler.GetScale()[0];
                 float yScale = Scaler.GetScale()[1];
 
-                int clickX = (int)(Scaler.GetScale()[0]*55);
-                int clickY = (int)(Scaler.GetScale()[1]*55);
+                int clickX = (int)(xScale*55);
+                int clickY = (int)(yScale*55);
 
                 if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY)
                 {
