@@ -1,20 +1,12 @@
-﻿using System;
-using ChineseCheckers.Classes;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI;
+﻿using ChineseCheckers.Classes;
+using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.UI;
+using Microsoft.Graphics.Canvas.UI.Xaml;
+using System;
+using System.Threading.Tasks;
+using Windows.Media.Playback;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.UI.Xaml.Shapes;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,16 +17,17 @@ namespace ChineseCheckers
     /// </summary>
     public sealed partial class MainMenu : Page
     {
+        MediaPlayer player;
+
+
+        public static CanvasBitmap MenuScreen;
         public MainMenu()
         {
             this.InitializeComponent();
-
             RulesSettings();
-        }
 
-        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
+            player = new MediaPlayer();
+            BackgroundSound.PlayBackgroundSound(player);
         }
 
         /// <summary>
@@ -70,7 +63,7 @@ namespace ChineseCheckers
                 RulesWindowClose.Visibility = Visibility.Visible;
             }
         }
-
+        
         /// <summary>
         /// Closes the Rules window when pressed
         /// </summary>
@@ -82,6 +75,26 @@ namespace ChineseCheckers
             RulesWindowClose.Visibility = Visibility.Collapsed;
 
             ReverseButtons();
+        }
+
+        /// <summary>
+        /// Send player to gaming board when play is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Play_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(GameBoard));
+        }
+
+        /// <summary>
+        /// Quits the game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Quit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

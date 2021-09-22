@@ -119,15 +119,24 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\BackgroundSound.cs" />
+    <Compile Include="Classes\GameBoard.cs" />
+    <Compile Include="Classes\Node.cs" />
+    <Compile Include="Classes\Marble.cs" />
+    <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Rule.cs" />
-    <Compile Include="Classes\Scaler.cs" />
-    <Compile Include="GameBoard.xaml.cs">
+    <Compile Include="Classes\Tools\ScalerTool.cs" />
+    <Compile Include="Classes\Session.cs" />
+    <Compile Include="Classes\Tools\DrawTool.cs" />
+    <Compile Include="Classes\Tools\NodeTool.cs" />
+    <Compile Include="Enums\PlayerColor.cs" />
+    <Compile Include="Views\GameBoard.xaml.cs">
       <DependentUpon>GameBoard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainMenuPage.xaml.cs">
+    <Compile Include="Views\MainMenuPage.xaml.cs">
       <DependentUpon>MainMenuPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -138,9 +147,25 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\Frogs\grongrod.png" />
+    <Content Include="Assets\Images\Leafs\50x50\blue.png" />
+    <Content Include="Assets\Images\Leafs\50x50\Default.png" />
+    <Content Include="Assets\Images\Leafs\50x50\green.png" />
+    <Content Include="Assets\Images\Leafs\50x50\magenta.png" />
+    <Content Include="Assets\Images\Leafs\50x50\purple.png" />
+    <Content Include="Assets\Images\Leafs\50x50\red.png" />
+    <Content Include="Assets\Images\Leafs\50x50\yellow.png" />
+    <Content Include="Assets\Images\Leafs\blue.png" />
+    <Content Include="Assets\Images\Leafs\Default.png" />
+    <Content Include="Assets\Images\Leafs\green.png" />
+    <Content Include="Assets\Images\Leafs\magenta.png" />
+    <Content Include="Assets\Images\Leafs\purple.png" />
+    <Content Include="Assets\Images\Leafs\red.png" />
     <Content Include="Assets\Images\swamp2.jpg" />
     <Content Include="Assets\Images\blabla.jpg" />
     <Content Include="Assets\Images\swamp.jpg" />
+    <Content Include="Assets\Images\Leafs\yellow.png" />
+    <Content Include="Assets\Sound\frog.mp3" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -155,15 +180,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="GameBoard.xaml">
+    <Page Include="Views\GameBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainMenuPage.xaml">
+    <Page Include="Views\MainMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -179,6 +204,7 @@
       <Version>1.26.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
