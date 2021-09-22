@@ -35,7 +35,7 @@ namespace ChineseCheckers
         /// </summary>
         public void ReverseButtons() 
         {
-            //Button_Play.IsEnabled = !Button_Play.IsEnabled;   /// LÅT STÅ!!!!!
+            //Button_Play.IsEnabled = !Button_Play.IsEnabled;    /// LÅT STÅ!!!!!
             //Button_Rules.IsEnabled = !Button_Rules.IsEnabled;
             //Button_Quit.IsEnabled = !Button_Quit.IsEnabled;
 
