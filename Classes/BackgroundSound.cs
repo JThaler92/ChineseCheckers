@@ -20,7 +20,7 @@ namespace ChineseCheckers.Classes
 
             player.AutoPlay = true;
             player.Source = MediaSource.CreateFromStorageFile(file);
-            player.Volume = 0; // 0-1  (0.05 current value)
+            player.Volume = 0.015; // 0-1  (0.015 current value)
             player.Play();
         }
     }
