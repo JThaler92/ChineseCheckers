@@ -9,19 +9,20 @@ using Windows.Storage;
 
 namespace ChineseCheckers.Classes
 {
-    class BackgroundSound
+    class ButtonclickSounds
     {
-        public static async void PlayBackgroundSound(MediaPlayer player)
+        public static async void PlayButtonClickSounds(MediaPlayer buttonPlayer)
         {
             StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
             folder = await folder.GetFolderAsync(@"Sound");
 
-            StorageFile file = await folder.GetFileAsync("frog.mp3");
+            StorageFile file = await folder.GetFileAsync("icecube.mp3");
 
-            player.AutoPlay = true;
-            player.Source = MediaSource.CreateFromStorageFile(file);
-            player.Volume = 0.007; // 0-1  (0.05 current value)
-            player.Play();
+            buttonPlayer.AutoPlay = true;
+            buttonPlayer.Source = MediaSource.CreateFromStorageFile(file);
+            buttonPlayer.Volume = 0.010; // 0-1  (0.05 current value)
+            buttonPlayer.Play();
         }
+
     }
-}    
+}
