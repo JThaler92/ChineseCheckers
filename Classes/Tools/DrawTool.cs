@@ -53,14 +53,37 @@ namespace ChineseCheckers.Classes.Tools
 
            
         }
-        public static void DrawMarbles(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, GameBoard board, CanvasBitmap marble)
+        public static void DrawMarbles(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, GameBoard board, CanvasBitmap marbleGreen, CanvasBitmap marblePurple, CanvasBitmap marbleRed, CanvasBitmap marbleBlue, CanvasBitmap marbleYellow, CanvasBitmap marblePink)
         {
             foreach (var M in board.Marbles)
             {
                 var x = (M.Pointer.X + 4) * Scaler.ScalingValue + (M.Pointer.Y * (Scaler.ScalingValue / 2));
                 var y = (M.Pointer.Y + 4) * Scaler.ScalingValue;
+                switch (M.MarbleColor)
+                {
+                    case PlayerColor.Blue:
+                        args.DrawingSession.DrawImage(Scaler.Img(marbleBlue), x + 3, y + 3);
+                        break;
+                    case PlayerColor.Green:
+                        args.DrawingSession.DrawImage(Scaler.Img(marbleGreen), x + 3, y + 3);
+                        break;
+                    case PlayerColor.Yellow:
+                        args.DrawingSession.DrawImage(Scaler.Img(marbleYellow), x + 3, y + 3);
+                        break;
+                    case PlayerColor.Pink:
+                        args.DrawingSession.DrawImage(Scaler.Img(marblePink), x + 3, y + 3);
+                        break;
+                    case PlayerColor.Purple:
+                        args.DrawingSession.DrawImage(Scaler.Img(marblePurple), x + 3, y + 3);
+                        break;
+                    case PlayerColor.Red:
+                        args.DrawingSession.DrawImage(Scaler.Img(marbleRed), x + 3, y + 3);
+                        break;
+                    default:
+                        break;
+
+                }
                 args.DrawingSession.DrawText(M.Id.ToString(), x, y, Colors.Black);
-                args.DrawingSession.DrawImage(Scaler.Img(marble), x + 5, y + 5);
             }
         }
     }

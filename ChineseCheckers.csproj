@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\BackgroundSound.cs" />
+    <Compile Include="Classes\ButtonclickSounds.cs" />
     <Compile Include="Classes\GameBoard.cs" />
     <Compile Include="Classes\Node.cs" />
     <Compile Include="Classes\Marble.cs" />
@@ -147,7 +148,12 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\Frogs\blagrod.png" />
     <Content Include="Assets\Images\Frogs\grongrod.png" />
+    <Content Include="Assets\Images\Frogs\gulgrod.png" />
+    <Content Include="Assets\Images\Frogs\lilagrod.png" />
+    <Content Include="Assets\Images\Frogs\rodgrod.png" />
+    <Content Include="Assets\Images\Frogs\rosagrod.png" />
     <Content Include="Assets\Images\Leafs\50x50\blue.png" />
     <Content Include="Assets\Images\Leafs\50x50\Default.png" />
     <Content Include="Assets\Images\Leafs\50x50\green.png" />
@@ -166,6 +172,7 @@
     <Content Include="Assets\Images\swamp.jpg" />
     <Content Include="Assets\Images\Leafs\yellow.png" />
     <Content Include="Assets\Sound\frog.mp3" />
+    <Content Include="Assets\Sound\icecube.mp3" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

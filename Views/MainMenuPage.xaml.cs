@@ -18,13 +18,15 @@ namespace ChineseCheckers
     public sealed partial class MainMenu : Page
     {
         MediaPlayer player;
-
+        MediaPlayer buttonPlayer;
 
         public static CanvasBitmap MenuScreen;
         public MainMenu()
         {
             this.InitializeComponent();
             RulesSettings();
+
+            buttonPlayer = new MediaPlayer();
 
             player = new MediaPlayer();
             BackgroundSound.PlayBackgroundSound(player);
@@ -69,6 +71,7 @@ namespace ChineseCheckers
         /// <param name="e"></param>
         private void Button_Rules_Click(object sender, RoutedEventArgs e)
         {
+            ButtonclickSounds.PlayButtonClickSounds(buttonPlayer);
             ReverseButtons();
             if (RulesWindow.Visibility != Visibility.Visible)
             {
@@ -97,6 +100,7 @@ namespace ChineseCheckers
         /// <param name="e"></param>
         private void Button_Play_Click(object sender, RoutedEventArgs e)
         {
+            ButtonclickSounds.PlayButtonClickSounds(buttonPlayer);
             this.Frame.Navigate(typeof(GameBoard));
         }
 
@@ -106,7 +110,7 @@ namespace ChineseCheckers
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Button_Quit_Click(object sender, RoutedEventArgs e)
-        {
+        {          
             Environment.Exit(0);
         }
     }
