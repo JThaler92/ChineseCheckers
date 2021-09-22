@@ -13,13 +13,14 @@ namespace ChineseCheckers.Classes
         public bool IsAI { get; set; }
         public PlayerColor ColorId;
 
-        public Player()
+        public Player(PlayerColor colorId)
         {
-
+            this.ColorId = colorId;
         }
 
-        public Player(int id)
+        public Player(int id, PlayerColor colorID)
         {
+            this.ColorId = colorID;
             this.Id = id;
             this.IsAI = true;
         }
