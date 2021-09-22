@@ -21,13 +21,22 @@ namespace ChineseCheckers.Classes
             PopulateNodes(players);
         }
 
+        private void GeneratePlayers(List<Player> players)
+        {
+            foreach (var g in players)
+            {
+                Debug.WriteLine(g);
+            }
+            
+        }
+        
         private void PopulateNodes(List<Player> players)
         {
             //Sets marbles in all colored nodes
 
             foreach (var L in Nodes)
             {
-                if (L.CampColorId != null)
+                if (L.CampColorId != null && players.Contains(players.Find(x => x.ColorId == L.CampColorId)))
                 {
                     var P = new Marble(Marbles.Count, L.Pointer, L.CampColorId.Value);
                     Marbles.Add(P);

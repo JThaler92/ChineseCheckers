@@ -44,20 +44,20 @@ namespace ChineseCheckers
         CanvasBitmap MarbleImgGreen;
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
-       
+
         public GameBoard()
         {
-            InitializeComponent();            
+            InitializeComponent();
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
-            GameSession = new Session(nodes);
+            GameSession = new Session(nodes, 2);
         }
-        
+
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             Scaler.SetScale();
         }
-        
+
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
@@ -89,23 +89,23 @@ namespace ChineseCheckers
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
             {
-                //Debug.WriteLine("Collision");
                 var x = (N.Pointer.X + 4) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2));
                 var y = (N.Pointer.Y + 4) * Scaler.ScalingValue;
                 if (currentpos.X >= x && currentpos.X <= x + 55 && currentpos.Y >= y && currentpos.Y <= y + 55)
                 {
-                    Debug.WriteLine(N.Pointer);
+                    Debug.WriteLine(N.MarbleID);
                     if (currentlySelected != null)
                     {
                         currentlySelected.Pointer = N.Pointer;
                         N.MarbleID = currentlySelected.Id;
                         currentlySelected = null;
                     }
-                    else
+                    else if (N.MarbleID != null)
                     {
                         currentlySelected = GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID.Value);
                         break;
                     }
+
                 }
             }
 
