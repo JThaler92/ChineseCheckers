@@ -42,6 +42,12 @@ namespace ChineseCheckers
         CanvasBitmap NodeImgPink;
         CanvasBitmap NodeImgPurple;
         CanvasBitmap MarbleImgGreen;
+        CanvasBitmap MarbleImgBlue;
+        CanvasBitmap MarbleImgRed;
+        CanvasBitmap MarbleImgPink;
+        CanvasBitmap MarbleImgPurple;
+        CanvasBitmap MarbleImgYellow;
+
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
 
@@ -61,7 +67,7 @@ namespace ChineseCheckers
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
-            DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen);
+            DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
         }
 
         private void canvas_CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
@@ -80,6 +86,11 @@ namespace ChineseCheckers
             NodeImgPurple = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/purple.png"));
             NodeImgYellow = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/yellow.png"));
             MarbleImgGreen = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/grongrod.png"));
+            MarbleImgBlue = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/blagrod.png"));
+            MarbleImgPink = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/rosagrod.png"));
+            MarbleImgPurple = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/lilagrod.png"));
+            MarbleImgYellow= await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/gulgrod.png"));
+            MarbleImgRed = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/rodgrod.png"));
         }
 
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
