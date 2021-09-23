@@ -29,7 +29,7 @@ namespace ChineseCheckers
             buttonPlayer = new MediaPlayer();
 
             player = new MediaPlayer();
-            BackgroundSound.PlayBackgroundSound(player);
+            Sound.PlayBackgroundSound(player);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace ChineseCheckers
         /// <param name="e"></param>
         private void Button_Rules_Click(object sender, RoutedEventArgs e)
         {
-            ButtonclickSounds.PlayButtonClickSounds(buttonPlayer);
+            Sound.PlayCickbuttonSound(buttonPlayer);
             ReverseButtons();
             if (RulesWindow.Visibility != Visibility.Visible)
             {
@@ -100,7 +100,7 @@ namespace ChineseCheckers
         /// <param name="e"></param>
         private void Button_Play_Click(object sender, RoutedEventArgs e)
         {
-            ButtonclickSounds.PlayButtonClickSounds(buttonPlayer);
+            Sound.PlayCickbuttonSound(buttonPlayer);
             this.Frame.Navigate(typeof(GameBoard));
         }
 
