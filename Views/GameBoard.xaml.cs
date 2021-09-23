@@ -117,6 +117,7 @@ namespace ChineseCheckers
                         currentlySelected.Pointer = N.Pointer;
                         N.MarbleID = currentlySelected.Id;
                         currentlySelected = null;
+                        break;
                     }
                     else if (N.MarbleID != null)
                     {
