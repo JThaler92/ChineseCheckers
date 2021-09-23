@@ -6,6 +6,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.UI.ViewManagement;
 
 namespace ChineseCheckers.Classes
@@ -21,6 +22,7 @@ namespace ChineseCheckers.Classes
             scaleWidth = (float)(ApplicationView.GetForCurrentView().VisibleBounds.Width / DesignWidth);
             scaleHeight = (float)(ApplicationView.GetForCurrentView().VisibleBounds.Height / DesignHeight);
         }
+
         public static float[] GetScale()
         {
             float[] scaleVect = new float[2];
@@ -30,6 +32,7 @@ namespace ChineseCheckers.Classes
             
             return scaleVect;
         }
+
         public static Transform2DEffect Img(CanvasBitmap source)
         {
             Transform2DEffect image;
@@ -37,16 +40,31 @@ namespace ChineseCheckers.Classes
             image.TransformMatrix = Matrix3x2.CreateScale(scaleWidth, scaleHeight);
             return image;
         }
-      
-        public static double Xpos(double x)
 
+        public static Transform2DEffect RotImg(CanvasBitmap source, float angle)
         {
-            return (double)(x * scaleWidth);
+            Transform2DEffect image;
+            angle = angle*(float)Math.PI/180;
+            image = new Transform2DEffect() { Source = source };
+            Rect bds = image.GetBounds(source);
+            Vector2 center;
+            center.X = (int)((float)bds.Width / 2);
+            center.Y = (int)((float)bds.Height / 2);
+            image.TransformMatrix = Matrix3x2.CreateRotation(angle, center);
+            return image;
+        }
+
+
+        public static float Xpos(float x)
+        {
+            return (float)(x * scaleWidth);
 
         }
-        public static double Ypos(double y)
+        public static float Ypos(float y)
         {
-            return (double)(y * scaleHeight);
+            return (float)(y * scaleHeight);
+
         }
+
     }
 }
