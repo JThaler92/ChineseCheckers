@@ -119,8 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\BackgroundSound.cs" />
-    <Compile Include="Classes\ButtonclickSounds.cs" />
+    <Compile Include="Classes\Sound.cs" />
     <Compile Include="Classes\GameBoard.cs" />
     <Compile Include="Classes\Node.cs" />
     <Compile Include="Classes\Marble.cs" />
