@@ -19,8 +19,14 @@
                     <Button x:Name="Button_Play" Content="Play" Margin="0,25,0,25" Height="80" Width="300" HorizontalAlignment="Center" FontSize="50" FontFamily="Algerian" FontWeight="Bold" CornerRadius="80" Click="Button_Play_Click"></Button>
                     <Button x:Name="Button_Rules" Content="Rules" Margin="0,25,0,25" HorizontalAlignment="Center" Height="80" Width="300" FontFamily="Algerian" FontSize="50" FontWeight="Normal" CornerRadius="80" Click="Button_Rules_Click"/>
                     <Button x:Name="Button_Quit" Content="Quit" Margin="0,25,0,25" HorizontalAlignment="Center" Height="80" Width="300" FontFamily="Algerian" FontSize="50" CornerRadius="80"/>
-                    <TextBox x:Name="RulesWindow" HorizontalAlignment="Center" Margin="0,307,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Height="1186" Width="2070" Visibility="Collapsed" IsReadOnly="True" Opacity="0.90" Background="BurlyWood" BorderBrush="Black" BorderThickness="5" FontSize="40" Padding="100" AllowFocusOnInteraction="False" />
-                    <Button x:Name="RulesWindowClose" Content="X" Margin="2020,-1175,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.292,0.572" FontWeight="Bold" FontSize="20" Height="39" Width="36" Visibility="Collapsed" Click="RulesWindowClose_Click"/>
+                    
+                </StackPanel>
+                    <TextBox x:Name="RulesWindow" HorizontalAlignment="Center" Margin="100,100,100,100" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Height="1186" Width="2070" Visibility="Collapsed" IsReadOnly="True" Opacity="0.90" Background="BurlyWood" BorderBrush="Black" BorderThickness="5" FontSize="40" Padding="80,100,50,100" AllowFocusOnInteraction="False" />
+                    <Button x:Name="RulesWindowClose" Content="X" Margin="2090,120,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.292,0.572" FontWeight="Bold" FontSize="30" Height="60" Width="60" Visibility="Collapsed" Click="RulesWindowClose_Click"/>
+                    <Image x:Name="RulesPicture" Source="ms-appx:///Assets/Images/GameRules.png" Width="500" Height="500" Margin="1400,-100,0,0" Visibility="Collapsed"></Image>
+                <StackPanel>
+                    
+                    
                 </StackPanel>
             </Grid>
         </Viewbox>

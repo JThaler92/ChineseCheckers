@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Media.Playback;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -77,7 +78,9 @@ namespace ChineseCheckers
             {
                 RulesWindow.Visibility = Visibility.Visible;
                 RulesWindowClose.Visibility = Visibility.Visible;
+                RulesPicture.Visibility = Visibility.Visible;
             }
+
         }
         
         /// <summary>
@@ -89,6 +92,7 @@ namespace ChineseCheckers
         {
             RulesWindow.Visibility = Visibility.Collapsed;
             RulesWindowClose.Visibility = Visibility.Collapsed;
+            RulesPicture.Visibility = Visibility.Collapsed;
 
             ReverseButtons();
         }

@@ -153,6 +153,7 @@
     <Content Include="Assets\Images\Frogs\lilagrod.png" />
     <Content Include="Assets\Images\Frogs\rodgrod.png" />
     <Content Include="Assets\Images\Frogs\rosagrod.png" />
+    <Content Include="Assets\Images\GameRules.png" />
     <Content Include="Assets\Images\Leafs\50x50\blue.png" />
     <Content Include="Assets\Images\Leafs\50x50\Default.png" />
     <Content Include="Assets\Images\Leafs\50x50\green.png" />
