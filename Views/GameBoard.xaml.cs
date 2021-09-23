@@ -89,7 +89,7 @@ namespace ChineseCheckers
             MarbleImgBlue = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/blagrod.png"));
             MarbleImgPink = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/rosagrod.png"));
             MarbleImgPurple = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/lilagrod.png"));
-            MarbleImgYellow= await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/gulgrod.png"));
+            MarbleImgYellow = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/gulgrod.png"));
             MarbleImgRed = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/rodgrod.png"));
         }
 
@@ -106,14 +106,15 @@ namespace ChineseCheckers
                 float xScale = Scaler.GetScale()[0];
                 float yScale = Scaler.GetScale()[1];
 
-                int clickX = (int)(xScale*55);
-                int clickY = (int)(yScale*55);
+                int clickX = (int)(xScale * 55);
+                int clickY = (int)(yScale * 55);
 
                 if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY)
                 {
                     Debug.WriteLine(N.MarbleID);
-                    if (currentlySelected != null)
+                    if (currentlySelected != null && N.MarbleID == null)
                     {
+                        nodes.Find(Node => currentlySelected.Id == Node.MarbleID).MarbleID = null;
                         currentlySelected.Pointer = N.Pointer;
                         N.MarbleID = currentlySelected.Id;
                         currentlySelected = null;
