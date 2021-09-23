@@ -75,6 +75,7 @@ namespace ChineseCheckers
             {
                 RulesWindow.Visibility = Visibility.Visible;
                 RulesWindowClose.Visibility = Visibility.Visible;
+                RulesPicture.Visibility = Visibility.Visible;
             }
         }
 
@@ -87,7 +88,7 @@ namespace ChineseCheckers
         {
             RulesWindow.Visibility = Visibility.Collapsed;
             RulesWindowClose.Visibility = Visibility.Collapsed;
-
+            RulesPicture.Visibility = Visibility.Collapsed;
             ReverseButtons();
         }
 
