@@ -11,22 +11,19 @@ namespace ChineseCheckers.Classes
 {
     class Sound
     {
-        public static async void PlayBackgroundSound(MediaPlayer player)
+        public static async void PlaySound(MediaPlayer player, string source, float volume)
         {
             StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
             folder = await folder.GetFolderAsync(@"Sound");
 
-            StorageFile backgroundsoundFile = await folder.GetFileAsync("frog.mp3");
-            
+            StorageFile sound = await folder.GetFileAsync(source);
 
             player.AutoPlay = true;
-            player.Source = MediaSource.CreateFromStorageFile(backgroundsoundFile);
-            player.Volume = 0.02; // 0-1  (0.05 current value)
+            player.Source = MediaSource.CreateFromStorageFile(sound);
+            player.Volume = volume; // 0-1  (0.05 current value)
             player.Play();
-
-            
         }
-        public static async void PlayCickbuttonSound(MediaPlayer buttonPlayer)
+        /*public static async void PlayCickbuttonSound(MediaPlayer buttonPlayer)
         {
             StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
             folder = await folder.GetFolderAsync(@"Sound");
@@ -37,6 +34,6 @@ namespace ChineseCheckers.Classes
             buttonPlayer.Source = MediaSource.CreateFromStorageFile(clicksoundFile);
             buttonPlayer.Volume = 0.05; // 0-1  (0.05 current value)
             buttonPlayer.Play();
-        }
+        }*/
     }
-}   
+}

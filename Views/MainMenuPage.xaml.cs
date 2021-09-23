@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Windows.Media.Playback;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -18,25 +17,23 @@ namespace ChineseCheckers
     /// </summary>
     public sealed partial class MainMenu : Page
     {
-        MediaPlayer player;
-        MediaPlayer buttonPlayer;
+        MediaPlayer BGsound;
+        MediaPlayer ClickSound;
 
         public static CanvasBitmap MenuScreen;
         public MainMenu()
         {
             this.InitializeComponent();
             RulesSettings();
-
-            buttonPlayer = new MediaPlayer();
-
-            player = new MediaPlayer();
-            Sound.PlayBackgroundSound(player);
+            ClickSound = new MediaPlayer();
+            BGsound = new MediaPlayer();
+            Sound.PlaySound(BGsound, "frog.mp3", 0.02f);
         }
 
         /// <summary>
         /// If the buttons are enable disable them, if buttons are disabled, enable them.
         /// </summary>
-        public void ReverseButtons() 
+        public void ReverseButtons()
         {
             //Button_Play.IsEnabled = !Button_Play.IsEnabled;    /// LÅT STÅ!!!!!
             //Button_Rules.IsEnabled = !Button_Rules.IsEnabled;
@@ -48,7 +45,7 @@ namespace ChineseCheckers
                 Button_Rules.Visibility = Visibility.Visible;
                 Button_Quit.Visibility = Visibility.Visible;
             }
-            else if (Button_Play.Visibility == Visibility.Visible) 
+            else if (Button_Play.Visibility == Visibility.Visible)
             {
                 Button_Play.Visibility = Visibility.Collapsed;
                 Button_Rules.Visibility = Visibility.Collapsed;
@@ -59,7 +56,7 @@ namespace ChineseCheckers
         /// <summary>
         /// Settings for RulesWindow
         /// </summary>
-        public void RulesSettings() 
+        public void RulesSettings()
         {
             RulesWindow.IsHitTestVisible = false;
             RulesWindow.Text = Rule.RuleText;
@@ -72,17 +69,15 @@ namespace ChineseCheckers
         /// <param name="e"></param>
         private void Button_Rules_Click(object sender, RoutedEventArgs e)
         {
-            Sound.PlayCickbuttonSound(buttonPlayer);
+            Sound.PlaySound(ClickSound, "icecube.mp3", 0.05f);
             ReverseButtons();
             if (RulesWindow.Visibility != Visibility.Visible)
             {
                 RulesWindow.Visibility = Visibility.Visible;
                 RulesWindowClose.Visibility = Visibility.Visible;
-                RulesPicture.Visibility = Visibility.Visible;
             }
-
         }
-        
+
         /// <summary>
         /// Closes the Rules window when pressed
         /// </summary>
@@ -92,7 +87,6 @@ namespace ChineseCheckers
         {
             RulesWindow.Visibility = Visibility.Collapsed;
             RulesWindowClose.Visibility = Visibility.Collapsed;
-            RulesPicture.Visibility = Visibility.Collapsed;
 
             ReverseButtons();
         }
@@ -104,7 +98,7 @@ namespace ChineseCheckers
         /// <param name="e"></param>
         private void Button_Play_Click(object sender, RoutedEventArgs e)
         {
-            Sound.PlayCickbuttonSound(buttonPlayer);
+            Sound.PlaySound(ClickSound, "icecube.mp3", 0.05f);
             this.Frame.Navigate(typeof(GameBoard));
         }
 
@@ -114,7 +108,7 @@ namespace ChineseCheckers
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Button_Quit_Click(object sender, RoutedEventArgs e)
-        {          
+        {
             Environment.Exit(0);
         }
     }
