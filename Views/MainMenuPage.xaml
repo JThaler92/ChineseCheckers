@@ -18,7 +18,7 @@
                 <StackPanel Margin="0,150,0,150">
                     <Button x:Name="Button_Play" Content="Play" Margin="0,25,0,25" Height="80" Width="300" HorizontalAlignment="Center" FontSize="50" FontFamily="Algerian" FontWeight="Bold" CornerRadius="80" Click="Button_Play_Click"></Button>
                     <Button x:Name="Button_Rules" Content="Rules" Margin="0,25,0,25" HorizontalAlignment="Center" Height="80" Width="300" FontFamily="Algerian" FontSize="50" FontWeight="Normal" CornerRadius="80" Click="Button_Rules_Click"/>
-                    <Button x:Name="Button_Quit" Content="Quit" Margin="0,25,0,25" HorizontalAlignment="Center" Height="80" Width="300" FontFamily="Algerian" FontSize="50" CornerRadius="80"/>
+                    <Button x:Name="Button_Quit" Content="Quit" Margin="0,25,0,25" HorizontalAlignment="Center" Height="80" Width="300" FontFamily="Algerian" FontSize="50" CornerRadius="80" Click="Button_Quit_Click"/>
                     
                 </StackPanel>
                     <TextBox x:Name="RulesWindow" HorizontalAlignment="Center" Margin="100,100,100,100" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Height="1186" Width="2070" Visibility="Collapsed" IsReadOnly="True" Opacity="0.90" Background="BurlyWood" BorderBrush="Black" BorderThickness="5" FontSize="40" Padding="80,100,50,100" AllowFocusOnInteraction="False" />

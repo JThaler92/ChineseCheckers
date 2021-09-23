@@ -18,7 +18,7 @@ namespace ChineseCheckers.Classes
             "A hop consists of jumping over a single adjacent frog,\neither one's own or an opponent's, to the empty lily pad directly beyond it in \nthe same " +
             "line of direction. Blue might advance the indicated frog by a chain of three hops in a single move. \nIt is not mandatory to make the most hops possible. " +
             "(In some instances a player may choose to stop the jumping sequence part way in order to impede the opponent's progress, " +
-            "or to align pieces for planned future moves.)";
+            "or to align frogs for planned future moves.)";
 
 
     }
