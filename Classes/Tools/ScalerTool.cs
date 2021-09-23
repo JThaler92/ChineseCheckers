@@ -6,6 +6,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.UI.ViewManagement;
 
 namespace ChineseCheckers.Classes
@@ -40,8 +41,20 @@ namespace ChineseCheckers.Classes
             return image;
         }
 
-        
-        
+        public static Transform2DEffect RotImg(CanvasBitmap source, float angle)
+        {
+            Transform2DEffect image;
+            angle = angle*(float)Math.PI/180;
+            image = new Transform2DEffect() { Source = source };
+            Rect bds = image.GetBounds(source);
+            Vector2 center;
+            center.X = (int)((float)bds.Width / 2);
+            center.Y = (int)((float)bds.Height / 2);
+            image.TransformMatrix = Matrix3x2.CreateRotation(angle, center);
+            return image;
+        }
+
+
         public static float Xpos(float x)
         {
             return (float)(x * scaleWidth);
