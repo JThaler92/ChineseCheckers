@@ -13,11 +13,11 @@ namespace ChineseCheckers.Classes.Tools
 {
     class DrawTool
     {
- 
+
         public static void DrawBoard(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, GameBoard board, CanvasBitmap nodeCommon, CanvasBitmap nodeRed, CanvasBitmap nodeGreen, CanvasBitmap nodeBlue, CanvasBitmap nodePink, CanvasBitmap nodePurple, CanvasBitmap nodeYellow)
         {
             //temp
-           
+
             foreach (var N in board.Nodes)
             {
                 int x = (int)Scaler.Xpos((float)(N.Pointer.X + 4) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2)));
@@ -51,7 +51,7 @@ namespace ChineseCheckers.Classes.Tools
 
             }
 
-           
+
         }
         public static void DrawMarbles(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, GameBoard board, CanvasBitmap marbleGreen, CanvasBitmap marblePurple, CanvasBitmap marbleRed, CanvasBitmap marbleBlue, CanvasBitmap marbleYellow, CanvasBitmap marblePink)
         {
@@ -59,6 +59,7 @@ namespace ChineseCheckers.Classes.Tools
             {
                 int x = (int)Scaler.Xpos((float)(M.Pointer.X + 4) * Scaler.ScalingValue + (M.Pointer.Y * (Scaler.ScalingValue / 2)));
                 int y = (int)Scaler.Ypos((float)(M.Pointer.Y + 4) * Scaler.ScalingValue);
+                
                 switch (M.MarbleColor)
                 {
                     case PlayerColor.Blue:
@@ -81,7 +82,6 @@ namespace ChineseCheckers.Classes.Tools
                         break;
                     default:
                         break;
-
                 }
                 args.DrawingSession.DrawText(M.Id.ToString(), x, y, Colors.Black);
             }

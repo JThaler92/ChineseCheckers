@@ -20,15 +20,6 @@ namespace ChineseCheckers.Classes
             this.Marbles = new List<Marble>();
             PopulateNodes(players);
         }
-
-        private void GeneratePlayers(List<Player> players)
-        {
-            foreach (var g in players)
-            {
-                Debug.WriteLine(g);
-            }
-            
-        }
         
         private void PopulateNodes(List<Player> players)
         {
@@ -44,6 +35,7 @@ namespace ChineseCheckers.Classes
                 }
             }
         }
-       
+        
+
     }
 }
