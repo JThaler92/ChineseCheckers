@@ -50,14 +50,14 @@ namespace ChineseCheckers
 
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
-
         public GameBoard()
         {
             InitializeComponent();
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
-            GameSession = new Session(nodes, 2);
+            GameSession = new Session(nodes, 1);
         }
+
 
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
@@ -70,10 +70,10 @@ namespace ChineseCheckers
             DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
         }
 
+
         private void canvas_CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
         {
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
-
         }
 
         async Task CreateResourcesAsync(CanvasAnimatedControl sender)
@@ -95,7 +95,6 @@ namespace ChineseCheckers
 
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
         {
-
             //Debug.WriteLine(e.GetCurrentPoint(canvas).Position);
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
@@ -118,17 +117,24 @@ namespace ChineseCheckers
                         currentlySelected.Pointer = N.Pointer;
                         N.MarbleID = currentlySelected.Id;
                         currentlySelected = null;
+                        GameSession.Turn();
                         break;
                     }
-                    else if (N.MarbleID != null)
+                    else
                     {
-                        currentlySelected = GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID.Value);
+                        if (N.MarbleID != null)
+                        {
+                            if (GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID).MarbleColor == GameSession.CurrentPlayer.ColorId)
+                            {
+                                currentlySelected = GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID.Value);
+                                break;
+                            }
+                        }
                         break;
                     }
 
                 }
             }
-
         }
     }
 }
