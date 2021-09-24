@@ -11,7 +11,7 @@ namespace ChineseCheckers.Classes
 {
     class Sound
     {
-        public static async void PlaySound(MediaPlayer player, string source, float volume)
+        public static async void PlaySound(MediaPlayer player, string source, float volume, bool loop)
         {
             StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
             folder = await folder.GetFolderAsync(@"Sound");
@@ -20,20 +20,16 @@ namespace ChineseCheckers.Classes
 
             player.AutoPlay = true;
             player.Source = MediaSource.CreateFromStorageFile(sound);
+            player.IsLoopingEnabled = loop;
             player.Volume = volume; // 0-1  (0.05 current value)
             player.Play();
         }
-        /*public static async void PlayCickbuttonSound(MediaPlayer buttonPlayer)
+
+        public static async void StopSound(MediaPlayer player)
         {
-            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Assets");
-            folder = await folder.GetFolderAsync(@"Sound");
+            player.Pause();
+        }
 
-            StorageFile clicksoundFile = await folder.GetFileAsync("icecube.mp3");
 
-            buttonPlayer.AutoPlay = true;
-            buttonPlayer.Source = MediaSource.CreateFromStorageFile(clicksoundFile);
-            buttonPlayer.Volume = 0.05; // 0-1  (0.05 current value)
-            buttonPlayer.Play();
-        }*/
     }
 }

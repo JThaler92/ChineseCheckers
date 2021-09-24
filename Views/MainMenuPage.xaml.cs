@@ -27,7 +27,15 @@ namespace ChineseCheckers
             RulesSettings();
             ClickSound = new MediaPlayer();
             BGsound = new MediaPlayer();
-            Sound.PlaySound(BGsound, "frog.mp3", 0.02f);
+            Sound.PlaySound(BGsound, "frog.mp3", 0.01f, true);
+        }
+
+        /// <summary>
+        /// Settings for clicksound
+        /// </summary>
+        public void ClickingSound()
+        {
+            Sound.PlaySound(ClickSound, "icecube.mp3", 0.05f, false);
         }
 
         /// <summary>
@@ -53,6 +61,22 @@ namespace ChineseCheckers
             }
         }
 
+        public void ShowRules()
+        {
+            if (RulesWindow.Visibility != Visibility.Visible)
+            {
+                RulesWindow.Visibility = Visibility.Visible;
+                RulesWindowClose.Visibility = Visibility.Visible;
+                RulesPicture.Visibility = Visibility.Visible;
+            }
+            else if (RulesWindow.Visibility == Visibility.Visible)
+            {
+                RulesWindow.Visibility = Visibility.Collapsed;
+                RulesWindowClose.Visibility = Visibility.Collapsed;
+                RulesPicture.Visibility = Visibility.Collapsed;
+            }
+        }
+
         /// <summary>
         /// Settings for RulesWindow
         /// </summary>
@@ -69,14 +93,9 @@ namespace ChineseCheckers
         /// <param name="e"></param>
         private void Button_Rules_Click(object sender, RoutedEventArgs e)
         {
-            Sound.PlaySound(ClickSound, "icecube.mp3", 0.05f);
+            ClickingSound();
             ReverseButtons();
-            if (RulesWindow.Visibility != Visibility.Visible)
-            {
-                RulesWindow.Visibility = Visibility.Visible;
-                RulesWindowClose.Visibility = Visibility.Visible;
-                RulesPicture.Visibility = Visibility.Visible;
-            }
+            ShowRules();
         }
 
         /// <summary>
@@ -86,9 +105,8 @@ namespace ChineseCheckers
         /// <param name="e"></param>
         private void RulesWindowClose_Click(object sender, RoutedEventArgs e)
         {
-            RulesWindow.Visibility = Visibility.Collapsed;
-            RulesWindowClose.Visibility = Visibility.Collapsed;
-            RulesPicture.Visibility = Visibility.Collapsed;
+            ClickingSound();
+            ShowRules();
             ReverseButtons();
         }
 
@@ -99,7 +117,8 @@ namespace ChineseCheckers
         /// <param name="e"></param>
         private void Button_Play_Click(object sender, RoutedEventArgs e)
         {
-            Sound.PlaySound(ClickSound, "icecube.mp3", 0.05f);
+            ClickingSound();
+            Sound.StopSound(BGsound);
             this.Frame.Navigate(typeof(GameBoard));
         }
 
