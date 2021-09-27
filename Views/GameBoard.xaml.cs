@@ -31,7 +31,6 @@ namespace ChineseCheckers
     /// </summary>
     public sealed partial class GameBoard : Page
     {
-
         Session GameSession;
         Marble currentlySelected;
         CanvasBitmap NodeImgDefault;
@@ -55,9 +54,8 @@ namespace ChineseCheckers
             InitializeComponent();
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
-            GameSession = new Session(nodes, 1);
+            GameSession = new Session(nodes, 1);          
         }
-
 
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
@@ -65,11 +63,11 @@ namespace ChineseCheckers
         }
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
-        {
+        {  
             DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
             DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
+            DrawTool.DrawPlayersTurn(sender, args, GameSession);
         }
-
 
         private void canvas_CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
         {
@@ -96,6 +94,9 @@ namespace ChineseCheckers
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
         {
             //Debug.WriteLine(e.GetCurrentPoint(canvas).Position);
+
+            //PlayerTurn.Text = GameSession.CurrentPlayer.ColorId.ToString();
+            
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
             {
@@ -135,6 +136,8 @@ namespace ChineseCheckers
 
                 }
             }
-        }
+            //PlayerTurn.Text = GameSession.CurrentPlayer.ColorId.ToString();
+        }      
+       
     }
 }
