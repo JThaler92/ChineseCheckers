@@ -7,9 +7,10 @@
     xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     mc:Ignorable="d">
     <Grid x:Name="ContentArea" >
-        <Grid
-            Grid.Row="1" 
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Assets/Images/swamp.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid Grid.Row="1">
             <canvas:CanvasAnimatedControl x:Name="canvas" Draw="canvas_Draw" CreateResources="canvas_CreateResources" PointerPressed="canvas_Click"/>
         </Grid>
     </Grid>

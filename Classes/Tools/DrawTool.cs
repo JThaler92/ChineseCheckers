@@ -88,5 +88,10 @@ namespace ChineseCheckers.Classes.Tools
                 args.DrawingSession.FillRectangle(x + 19, y + 19, 10, 10, Colors.Azure);
             }
         }
+        public static void DrawPlayersTurn(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)
+        {
+            string text = $"Player {gameSession.CurrentPlayer.ColorId}'s turn";
+            args.DrawingSession.DrawText(text, Scaler.Xpos(Scaler.DesignWidth / 2), 25, Colors.AliceBlue);
+        }
     }
 }
