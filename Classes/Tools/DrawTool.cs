@@ -46,7 +46,6 @@ namespace ChineseCheckers.Classes.Tools
                     default:
                         args.DrawingSession.DrawImage(Scaler.Img(nodeCommon), x, y);
                         break;
-
                 }
 
             }
@@ -85,6 +84,11 @@ namespace ChineseCheckers.Classes.Tools
                 }
                 args.DrawingSession.DrawText(M.Id.ToString(), x, y, Colors.Black);
             }
+        }
+        public static void DrawPlayersTurn(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)
+        {
+            string text = $"Player {gameSession.CurrentPlayer.ColorId}'s turn";
+            args.DrawingSession.DrawText(text, Scaler.Xpos(Scaler.DesignWidth / 2), 25, Colors.AliceBlue);
         }
     }
 }
