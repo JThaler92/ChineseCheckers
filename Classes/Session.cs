@@ -17,10 +17,20 @@ namespace ChineseCheckers.Classes
         public Player CurrentPlayer { get; set; }
         public Session(List<Node> Nodes, int opponents)
         {
-            Players = new List<Player>
+            if (opponents == 3)
             {
+                Players = new List<Player>
+                {
+                new Player(PlayerColor.Green)
+                };
+            }
+            else
+            {
+                Players = new List<Player>
+                {
                 new Player(PlayerColor.Blue)
-            };
+                };
+            }
 
             if (opponents == 1)
             {
@@ -31,20 +41,20 @@ namespace ChineseCheckers.Classes
                 Players.Add(new Player(1, PlayerColor.Pink));
                 Players.Add(new Player(2, PlayerColor.Yellow));
             }
-            //if (opponents == 3)
-            //{
-            //    //this.Players.Add(new Player(1));
-            //    //this.Players.Add(new Player(2));
-            //    //this.Players.Add(new Player(3));
-            //}
-            //if (opponents == 4)
-            //{
-            //    this.Players.Add(new Player(1));
-            //}
-            //if (opponents == 5)
-            //{
-            //    this.Players.Add(new Player(1));
-            //}
+            if (opponents == 3)
+            {
+                Players.Add(new Player(1, PlayerColor.Red));
+                Players.Add(new Player(2, PlayerColor.Pink));
+                Players.Add(new Player(3, PlayerColor.Yellow));
+            }
+            if (opponents == 5)
+            {
+                Players.Add(new Player(1, PlayerColor.Red));
+                Players.Add(new Player(2, PlayerColor.Pink));
+                Players.Add(new Player(3, PlayerColor.Purple));
+                Players.Add(new Player(4, PlayerColor.Yellow));
+                Players.Add(new Player(5, PlayerColor.Green));
+            }
             Board = new GameBoard(Nodes, Players);
             CurrentPlayer = Players.First();
         }

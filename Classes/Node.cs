@@ -17,9 +17,9 @@ namespace ChineseCheckers.Classes
 
         public Node(int x, int y, PlayerColor? campColorID = null, int? pieceId = null)
         {
-            this.Pointer = new Point(x, y);
-            this.CampColorId = campColorID;
-            this.MarbleID = pieceId;
+            Pointer = new Point(x, y);
+            CampColorId = campColorID;
+            MarbleID = pieceId;
         }
 
         public bool IsAvalible()
