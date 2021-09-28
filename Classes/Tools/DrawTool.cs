@@ -91,7 +91,7 @@ namespace ChineseCheckers.Classes.Tools
         public static void DrawPlayersTurn(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)
         {
             string text = $"Player {gameSession.CurrentPlayer.ColorId}'s turn";
-            args.DrawingSession.DrawText(text, Scaler.Xpos(Scaler.DesignWidth / 2), 25, Colors.AliceBlue);
+            args.DrawingSession.DrawText(text, (int)Scaler.Xpos(Scaler.DesignWidth / 2), 25, Colors.AliceBlue);
         }
     }
 }
