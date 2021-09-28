@@ -55,7 +55,7 @@ namespace ChineseCheckers
             InitializeComponent();
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
-            GameSession = new Session(nodes, 1);
+            GameSession = new Session(nodes, 2);
         }
 
 
@@ -68,6 +68,13 @@ namespace ChineseCheckers
         {
             DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
             DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
+            if (currentlySelected != null)
+            {
+                var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
+                //args.DrawingSession.DrawText(currentlySelected.Id.ToString(), 0, 40, Colors.Black);
+                DrawTool.DrawAvailableMoves(sender, args, availableMoves);
+
+            }
         }
 
 
@@ -82,8 +89,8 @@ namespace ChineseCheckers
             NodeImgRed = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/red.png"));
             NodeImgGreen = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/green.png"));
             NodeImgBlue = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/blue.png"));
-            NodeImgPink = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/magenta.png"));
-            NodeImgPurple = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/purple.png"));
+            NodeImgPink = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/purple.png"));
+            NodeImgPurple = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/magenta.png"));
             NodeImgYellow = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/yellow.png"));
             MarbleImgGreen = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/grongrod.png"));
             MarbleImgBlue = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/blagrod.png"));
@@ -110,13 +117,26 @@ namespace ChineseCheckers
 
                 if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY)
                 {
-                    Debug.WriteLine(N.MarbleID);
                     if (currentlySelected != null && N.MarbleID == null)
-                    {
-                        nodes.Find(Node => currentlySelected.Id == Node.MarbleID).MarbleID = null;
-                        currentlySelected.Pointer = N.Pointer;
-                        N.MarbleID = currentlySelected.Id;
-                        currentlySelected = null;
+                    { 
+                        var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
+                        foreach (var n in possibleJumps)
+                        {
+                            Debug.WriteLine(n.Pointer);
+                        }
+                           
+                        if (possibleJumps.Contains(N))
+                        {
+                            // Removes piece(id) from old location
+                            nodes.Find(Loc => currentlySelected.Id == Loc.MarbleID).MarbleID = null;
+                            currentlySelected.Pointer = N.Pointer;
+                            N.MarbleID = currentlySelected.Id;
+                            currentlySelected = null;
+                        }
+                        else
+                        {
+                            currentlySelected = null;
+                        }
                         GameSession.Turn();
                         break;
                     }
