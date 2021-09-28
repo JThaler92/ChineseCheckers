@@ -42,14 +42,14 @@ namespace ChineseCheckers.Classes
 
         
         
-        public static float Xpos(float x)
+        public static double Xpos(double x)
         {
-            return (float)(x * scaleWidth);
+            return (double)(x * scaleWidth);
 
         }
-        public static float Ypos(float y)
+        public static double Ypos(double y)
         {
-            return (float)(y * scaleHeight);
+            return (double)(y * scaleHeight);
 
         }
 

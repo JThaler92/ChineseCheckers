@@ -31,6 +31,7 @@ namespace ChineseCheckers
     /// </summary>
     public sealed partial class GameBoard : Page
     {
+        Moving MoveMarble;
         Session GameSession;
         Marble currentlySelected;
         CanvasBitmap NodeImgDefault;
@@ -54,7 +55,8 @@ namespace ChineseCheckers
             InitializeComponent();
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
-            GameSession = new Session(nodes, 1);          
+            GameSession = new Session(nodes, 1);
+            MoveMarble = new Moving(25, false);
         }
 
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
@@ -93,9 +95,6 @@ namespace ChineseCheckers
 
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
         {
-            //Debug.WriteLine(e.GetCurrentPoint(canvas).Position);
-
-            //PlayerTurn.Text = GameSession.CurrentPlayer.ColorId.ToString();
             
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
@@ -109,13 +108,17 @@ namespace ChineseCheckers
                 int clickX = (int)(xScale * 55);
                 int clickY = (int)(yScale * 55);
 
-                if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY)
+                if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY && MoveMarble.move == false)
                 {
                     Debug.WriteLine(N.MarbleID);
                     if (currentlySelected != null && N.MarbleID == null)
                     {
                         nodes.Find(Node => currentlySelected.Id == Node.MarbleID).MarbleID = null;
-                        currentlySelected.Pointer = N.Pointer;
+                        MoveMarble.move = true;
+                        MoveMarble.moveID = currentlySelected.Id;
+                        MoveMarble.target_X = N.Pointer.X;
+                        MoveMarble.target_Y = N.Pointer.Y;
+
                         N.MarbleID = currentlySelected.Id;
                         currentlySelected = null;
                         GameSession.Turn();
@@ -128,6 +131,9 @@ namespace ChineseCheckers
                             if (GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID).MarbleColor == GameSession.CurrentPlayer.ColorId)
                             {
                                 currentlySelected = GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID.Value);
+
+                                MoveMarble.current_X = currentlySelected.Pointer.X;
+                                MoveMarble.current_Y = currentlySelected.Pointer.Y;
                                 break;
                             }
                         }
@@ -137,7 +143,14 @@ namespace ChineseCheckers
                 }
             }
             //PlayerTurn.Text = GameSession.CurrentPlayer.ColorId.ToString();
-        }      
-       
+        }
+
+        private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
+        { 
+            if (MoveMarble.move)
+            {
+                MoveMarble.test(GameSession.Board.Marbles);
+            }
+        }
     }
 }
