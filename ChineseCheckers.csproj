@@ -168,6 +168,7 @@
     <Content Include="Assets\Images\Leafs\magenta.png" />
     <Content Include="Assets\Images\Leafs\purple.png" />
     <Content Include="Assets\Images\Leafs\red.png" />
+    <Content Include="Assets\Images\swamp-dark.jpg" />
     <Content Include="Assets\Images\swamp2.jpg" />
     <Content Include="Assets\Images\blabla.jpg" />
     <Content Include="Assets\Images\swamp.jpg" />

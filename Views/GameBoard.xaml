@@ -8,9 +8,13 @@
     mc:Ignorable="d">
     <Grid x:Name="ContentArea" >
         <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/Images/swamp.jpg" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="ms-appx:///Assets/Images/swamp-dark.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
-        <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4,5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
             <canvas:CanvasAnimatedControl x:Name="canvas" Draw="canvas_Draw" CreateResources="canvas_CreateResources" PointerPressed="canvas_Click" Update="canvas_Update"/>
         </Grid>
     </Grid>
