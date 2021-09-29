@@ -21,6 +21,7 @@ using ChineseCheckers.Classes.Tools;
 using ChineseCheckers.Classes;
 using Windows.UI.ViewManagement;
 using System.Diagnostics;
+using Windows.Media.Playback;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -31,6 +32,8 @@ namespace ChineseCheckers
     /// </summary>
     public sealed partial class GameBoard : Page
     {
+
+        MediaPlayer ClickSound;
         Moving MoveMarble;
         Session GameSession;
         Marble currentlySelected;
@@ -48,10 +51,13 @@ namespace ChineseCheckers
         CanvasBitmap MarbleImgPurple;
         CanvasBitmap MarbleImgYellow;
 
+        
+
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
         public GameBoard()
         {
+            ClickSound = new MediaPlayer();
             InitializeComponent();
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
@@ -117,6 +123,7 @@ namespace ChineseCheckers
                 if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY && MoveMarble.move == false)
                 {
                     if (currentlySelected != null && N.MarbleID == null)
+
                     { 
                         var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
                         foreach (var n in possibleJumps)
@@ -130,7 +137,7 @@ namespace ChineseCheckers
 
                             MoveMarble.SelectLocation(N);
                             N.MarbleID = currentlySelected.Id;
-
+                            Sound.PlaySound(ClickSound, "pop.mp3", 0.05f, false);
                             currentlySelected = null;
                         }
                         else
@@ -145,7 +152,7 @@ namespace ChineseCheckers
                         if (N.MarbleID != null)
                         {
                             if (GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID).MarbleColor == GameSession.CurrentPlayer.ColorId)
-                            {
+                            {                              
                                 currentlySelected = GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID.Value);
                                 MoveMarble.SelectMarble(currentlySelected);
                                 break;
