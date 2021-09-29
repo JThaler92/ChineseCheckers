@@ -56,7 +56,7 @@ namespace ChineseCheckers
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
             GameSession = new Session(nodes, 1);
-            MoveMarble = new Moving(25, false);
+            MoveMarble = new Moving(25);
         }
 
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
@@ -68,10 +68,11 @@ namespace ChineseCheckers
         {  
             DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
             DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
+            DrawTool.DrawPlayersTurn(sender, args, GameSession);
             if (currentlySelected != null)
             {
                 var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
-                //args.DrawingSession.DrawText(currentlySelected.Id.ToString(), 0, 40, Colors.Black);
+
                 DrawTool.DrawAvailableMoves(sender, args, availableMoves);
 
             }
@@ -100,8 +101,7 @@ namespace ChineseCheckers
         }
 
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
-        {
-            
+        {           
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
             {
@@ -126,15 +126,11 @@ namespace ChineseCheckers
                            
                         if (possibleJumps.Contains(N))
                         {
-                            // Removes piece(id) from old location
                             nodes.Find(Loc => currentlySelected.Id == Loc.MarbleID).MarbleID = null;
-                            currentlySelected.Pointer = N.Pointer;
-                            MoveMarble.move = true;
-                            MoveMarble.moveID = currentlySelected.Id;
-                            MoveMarble.target_X = N.Pointer.X;
-                            MoveMarble.target_Y = N.Pointer.Y;
 
-                            //N.MarbleID = currentlySelected.Id;
+                            MoveMarble.SelectLocation(N);
+                            N.MarbleID = currentlySelected.Id;
+
                             currentlySelected = null;
                         }
                         else
@@ -151,25 +147,21 @@ namespace ChineseCheckers
                             if (GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID).MarbleColor == GameSession.CurrentPlayer.ColorId)
                             {
                                 currentlySelected = GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID.Value);
-
-                                MoveMarble.current_X = currentlySelected.Pointer.X;
-                                MoveMarble.current_Y = currentlySelected.Pointer.Y;
+                                MoveMarble.SelectMarble(currentlySelected);
                                 break;
                             }
                         }
                         break;
                     }
-
                 }
             }
-            //PlayerTurn.Text = GameSession.CurrentPlayer.ColorId.ToString();
         }
 
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         { 
             if (MoveMarble.move)
             {
-                MoveMarble.test(GameSession.Board.Marbles);
+                MoveMarble.GraphicMovment(GameSession.Board.Marbles);
             }
         }
     }
