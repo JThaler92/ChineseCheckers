@@ -32,8 +32,9 @@ namespace ChineseCheckers
     /// </summary>
     public sealed partial class GameBoard : Page
     {
-        MediaPlayer ClickSound;
 
+        MediaPlayer ClickSound;
+        Moving MoveMarble;
         Session GameSession;
         Marble currentlySelected;
         CanvasBitmap NodeImgDefault;
@@ -61,8 +62,8 @@ namespace ChineseCheckers
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
             GameSession = new Session(nodes, 1);
+            MoveMarble = new Moving(25);
         }
-
 
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
@@ -70,11 +71,18 @@ namespace ChineseCheckers
         }
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
-        {
+        {  
             DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
             DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
-        }
+            DrawTool.DrawPlayersTurn(sender, args, GameSession);
+            if (currentlySelected != null)
+            {
+                var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
 
+                DrawTool.DrawAvailableMoves(sender, args, availableMoves);
+
+            }
+        }
 
         private void canvas_CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
         {
@@ -87,8 +95,8 @@ namespace ChineseCheckers
             NodeImgRed = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/red.png"));
             NodeImgGreen = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/green.png"));
             NodeImgBlue = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/blue.png"));
-            NodeImgPink = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/magenta.png"));
-            NodeImgPurple = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/purple.png"));
+            NodeImgPink = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/purple.png"));
+            NodeImgPurple = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/magenta.png"));
             NodeImgYellow = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/yellow.png"));
             MarbleImgGreen = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/grongrod.png"));
             MarbleImgBlue = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/blagrod.png"));
@@ -99,8 +107,7 @@ namespace ChineseCheckers
         }
 
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
-        {
-            //Debug.WriteLine(e.GetCurrentPoint(canvas).Position);
+        {           
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
             {
@@ -113,16 +120,30 @@ namespace ChineseCheckers
                 int clickX = (int)(xScale * 55);
                 int clickY = (int)(yScale * 55);
 
-                if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY)
+                if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY && MoveMarble.move == false)
                 {
-                    Debug.WriteLine(N.MarbleID);
                     if (currentlySelected != null && N.MarbleID == null)
-                    {
-                        nodes.Find(Node => currentlySelected.Id == Node.MarbleID).MarbleID = null;
-                        currentlySelected.Pointer = N.Pointer;
-                        N.MarbleID = currentlySelected.Id;
-                        Sound.PlaySound(ClickSound, "pop.mp3", 0.05f, false);
-                        currentlySelected = null;
+
+                    { 
+                        var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
+                        foreach (var n in possibleJumps)
+                        {
+                            Debug.WriteLine(n.Pointer);
+                        }
+                           
+                        if (possibleJumps.Contains(N))
+                        {
+                            nodes.Find(Loc => currentlySelected.Id == Loc.MarbleID).MarbleID = null;
+
+                            MoveMarble.SelectLocation(N);
+                            N.MarbleID = currentlySelected.Id;
+                            Sound.PlaySound(ClickSound, "pop.mp3", 0.05f, false);
+                            currentlySelected = null;
+                        }
+                        else
+                        {
+                            currentlySelected = null;
+                        }
                         GameSession.Turn();
                         break;
                     }
@@ -133,13 +154,21 @@ namespace ChineseCheckers
                             if (GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID).MarbleColor == GameSession.CurrentPlayer.ColorId)
                             {                              
                                 currentlySelected = GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID.Value);
+                                MoveMarble.SelectMarble(currentlySelected);
                                 break;
                             }
                         }
                         break;
                     }
-
                 }
+            }
+        }
+
+        private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
+        { 
+            if (MoveMarble.move)
+            {
+                MoveMarble.GraphicMovment(GameSession.Board.Marbles);
             }
         }
     }

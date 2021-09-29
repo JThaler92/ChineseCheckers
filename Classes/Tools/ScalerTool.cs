@@ -21,7 +21,6 @@ namespace ChineseCheckers.Classes
             scaleWidth = (float)(ApplicationView.GetForCurrentView().VisibleBounds.Width / DesignWidth);
             scaleHeight = (float)(ApplicationView.GetForCurrentView().VisibleBounds.Height / DesignHeight);
         }
-
         public static float[] GetScale()
         {
             float[] scaleVect = new float[2];
@@ -31,7 +30,6 @@ namespace ChineseCheckers.Classes
             
             return scaleVect;
         }
-
         public static Transform2DEffect Img(CanvasBitmap source)
         {
             Transform2DEffect image;
@@ -39,19 +37,16 @@ namespace ChineseCheckers.Classes
             image.TransformMatrix = Matrix3x2.CreateScale(scaleWidth, scaleHeight);
             return image;
         }
+      
+        public static double Xpos(double x)
 
-        
-        
-        public static float Xpos(float x)
         {
-            return (float)(x * scaleWidth);
+            return (double)(x * scaleWidth);
 
         }
-        public static float Ypos(float y)
+        public static double Ypos(double y)
         {
-            return (float)(y * scaleHeight);
-
+            return (double)(y * scaleHeight);
         }
-
     }
 }

@@ -32,7 +32,6 @@ namespace ChineseCheckers.Classes.Tools
                 { new Node( 7, 8, PlayerColor.Green )}, { new Node( 8, 7, PlayerColor.Green )},
                 { new Node( 8, 8, PlayerColor.Green )}
             };
-
             return nodeList;
         }
     }

@@ -16,8 +16,6 @@ namespace ChineseCheckers.Classes.Tools
 
         public static void DrawBoard(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, GameBoard board, CanvasBitmap nodeCommon, CanvasBitmap nodeRed, CanvasBitmap nodeGreen, CanvasBitmap nodeBlue, CanvasBitmap nodePink, CanvasBitmap nodePurple, CanvasBitmap nodeYellow)
         {
-            //temp
-
             foreach (var N in board.Nodes)
             {
                 int x = (int)Scaler.Xpos((float)(N.Pointer.X + 4) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2)));
@@ -46,12 +44,8 @@ namespace ChineseCheckers.Classes.Tools
                     default:
                         args.DrawingSession.DrawImage(Scaler.Img(nodeCommon), x, y);
                         break;
-
                 }
-
             }
-
-
         }
         public static void DrawMarbles(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, GameBoard board, CanvasBitmap marbleGreen, CanvasBitmap marblePurple, CanvasBitmap marbleRed, CanvasBitmap marbleBlue, CanvasBitmap marbleYellow, CanvasBitmap marblePink)
         {
@@ -59,7 +53,7 @@ namespace ChineseCheckers.Classes.Tools
             {
                 int x = (int)Scaler.Xpos((float)(M.Pointer.X + 4) * Scaler.ScalingValue + (M.Pointer.Y * (Scaler.ScalingValue / 2)));
                 int y = (int)Scaler.Ypos((float)(M.Pointer.Y + 4) * Scaler.ScalingValue);
-                
+
                 switch (M.MarbleColor)
                 {
                     case PlayerColor.Blue:
@@ -83,8 +77,21 @@ namespace ChineseCheckers.Classes.Tools
                     default:
                         break;
                 }
-                args.DrawingSession.DrawText(M.Id.ToString(), x, y, Colors.Black);
             }
+        }
+        public static void DrawAvailableMoves(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, List<Node> nodes)
+        {
+            foreach (var n in nodes)
+            {
+                int x = (int)Scaler.Xpos((float)(n.Pointer.X + 4) * Scaler.ScalingValue + (n.Pointer.Y * (Scaler.ScalingValue / 2)));
+                int y = (int)Scaler.Ypos((float)(n.Pointer.Y + 4) * Scaler.ScalingValue);
+                args.DrawingSession.FillRectangle(x + 19, y + 19, 10, 10, Colors.Azure);
+            }
+        }
+        public static void DrawPlayersTurn(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)
+        {
+            string text = $"Player {gameSession.CurrentPlayer.ColorId}'s turn";
+            args.DrawingSession.DrawText(text, (int)Scaler.Xpos(Scaler.DesignWidth / 2), 25, Colors.AliceBlue);
         }
     }
 }

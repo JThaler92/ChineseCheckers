@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Drawing;
+using Windows.Foundation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,9 +17,9 @@ namespace ChineseCheckers.Classes
 
         public Node(int x, int y, PlayerColor? campColorID = null, int? pieceId = null)
         {
-            this.Pointer = new Point(x, y);
-            this.CampColorId = campColorID;
-            this.MarbleID = pieceId;
+            Pointer = new Point(x, y);
+            CampColorId = campColorID;
+            MarbleID = pieceId;
         }
 
         public bool IsAvalible()
