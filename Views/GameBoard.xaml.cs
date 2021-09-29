@@ -21,6 +21,7 @@ using ChineseCheckers.Classes.Tools;
 using ChineseCheckers.Classes;
 using Windows.UI.ViewManagement;
 using System.Diagnostics;
+using Windows.Media.Playback;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -31,6 +32,7 @@ namespace ChineseCheckers
     /// </summary>
     public sealed partial class GameBoard : Page
     {
+        MediaPlayer ClickSound;
 
         Session GameSession;
         Marble currentlySelected;
@@ -48,10 +50,13 @@ namespace ChineseCheckers
         CanvasBitmap MarbleImgPurple;
         CanvasBitmap MarbleImgYellow;
 
+        
+
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
         public GameBoard()
         {
+            ClickSound = new MediaPlayer();
             InitializeComponent();
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
@@ -116,6 +121,7 @@ namespace ChineseCheckers
                         nodes.Find(Node => currentlySelected.Id == Node.MarbleID).MarbleID = null;
                         currentlySelected.Pointer = N.Pointer;
                         N.MarbleID = currentlySelected.Id;
+                        Sound.PlaySound(ClickSound, "pop.mp3", 0.05f, false);
                         currentlySelected = null;
                         GameSession.Turn();
                         break;
@@ -125,7 +131,7 @@ namespace ChineseCheckers
                         if (N.MarbleID != null)
                         {
                             if (GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID).MarbleColor == GameSession.CurrentPlayer.ColorId)
-                            {
+                            {                              
                                 currentlySelected = GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID.Value);
                                 break;
                             }
