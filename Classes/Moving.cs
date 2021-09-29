@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,6 @@ namespace ChineseCheckers.Classes
     public class Moving
     {
         public int moveID { get; set; }
-
         public double current_X { get; set; }
         public double current_Y { get; set; }
 
@@ -25,22 +25,52 @@ namespace ChineseCheckers.Classes
 
         public int divider { get; set; }
 
-        public bool move { get; set; }
+        public bool move = false;
+        //public bool move { get; set; }
 
-
-    public Moving(int Divider, bool Move) 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="Divider">Sets velocity (Higher value = slower movment)</param>
+        public Moving(int Divider) 
         {
             this.divider = Divider;
-            this.move = Move;
         }
 
-        public void test(List<Marble> test1) 
+        /// <summary>
+        /// Select a marble to move.
+        /// </summary>
+        /// <param name="currentlySelected">Instance of Marble class</param>
+        public void SelectMarble(Marble currentlySelected) 
         {
-            foreach (var marble in test1)
+            current_X = currentlySelected.Pointer.X;
+            current_Y = currentlySelected.Pointer.Y;
+
+            moveID = currentlySelected.Id;
+        }
+
+        /// <summary>
+        /// Select target location to move to.
+        /// </summary>
+        /// <param name="N"></param>
+        public void SelectLocation(Node N) 
+        {
+            move = true;
+            target_X = N.Pointer.X;
+            target_Y = N.Pointer.Y;
+        }
+
+        /// <summary>
+        /// Moves a marble from current location to target location visualy.
+        /// </summary>
+        /// <param name="MarbleList">List of all marbles on the board</param>
+        public void GraphicMovment(List<Marble> MarbleList) 
+        {
+            foreach (var marble in MarbleList)
             {
                 if (marble.Id == moveID)
                 {
-                    Point tester = new Point(current_X, current_Y);
+                    Point marblePlaceholder = new Point(current_X, current_Y);
 
                     current_X += velocity_x;
                     current_Y += velocity_y;
@@ -69,16 +99,19 @@ namespace ChineseCheckers.Classes
                         current_Y += velocity_y;
                     }
 
-                    marble.Pointer = tester;
+                    marble.Pointer = marblePlaceholder;
 
-                    if (Math.Abs(distance_y) < 0.05 && Math.Abs(distance_x) < 0.05)
+                    if (Math.Abs(distance_y) < 0.03 && Math.Abs(distance_x) < 0.03)
                     {
+                        marblePlaceholder.X = Math.Round(marble.Pointer.X); // If movment bugs, this can be error.
+                        marblePlaceholder.Y = Math.Round(marble.Pointer.Y);
+
+                        marble.Pointer = marblePlaceholder;
+
                         move = false;
                     }
                 }
             }
-
-
         }
     }
 }
