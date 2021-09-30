@@ -93,5 +93,18 @@ namespace ChineseCheckers.Classes.Tools
             string text = $"Player {gameSession.CurrentPlayer.ColorId}'s turn";
             args.DrawingSession.DrawText(text, (int)Scaler.Xpos(Scaler.DesignWidth / 2), 25, Colors.AliceBlue);
         }
+        public static void DrawScore(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)
+        {
+            int y = 45;
+            foreach (var p in gameSession.Players)
+            {
+
+                string text = $"{p.ColorId} : {p.Score}";
+                args.DrawingSession.DrawText(text, (int)Scaler.Xpos(Scaler.DesignWidth / 2), y, Colors.AliceBlue);
+                y += 20;
+
+            }
+
+        }
     }
 }
