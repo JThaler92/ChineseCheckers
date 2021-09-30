@@ -80,7 +80,6 @@ namespace ChineseCheckers
                 var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
 
                 DrawTool.DrawAvailableMoves(sender, args, availableMoves);
-
             }
         }
 
@@ -139,12 +138,15 @@ namespace ChineseCheckers
                             N.MarbleID = currentlySelected.Id;
                             Sound.PlaySound(ClickSound, "pop.mp3", 0.05f, false);
                             currentlySelected = null;
+
+                            GameSession.Turn();
                         }
                         else
                         {
+                            Sound.PlaySound(ClickSound, "ErrorFrog.mp3", 0.05f, false);
                             currentlySelected = null;
                         }
-                        GameSession.Turn();
+                        
                         break;
                     }
                     else
