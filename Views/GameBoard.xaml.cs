@@ -112,8 +112,8 @@ namespace ChineseCheckers
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
             {
-                int x = (int)Scaler.Xpos((float)(N.Pointer.X + 4) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2)));
-                int y = (int)Scaler.Ypos((float)(N.Pointer.Y + 4) * Scaler.ScalingValue);
+                int x = (int)Scaler.Xpos((float)(N.Pointer.X + 12) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2)));
+                int y = (int)Scaler.Ypos((float)(N.Pointer.Y + 6) * Scaler.ScalingValue);
 
                 float xScale = Scaler.GetScale()[0];
                 float yScale = Scaler.GetScale()[1];
