@@ -10,10 +10,10 @@
         <Grid.Background>
             <ImageBrush ImageSource="ms-appx:///Assets/Images/swamp-dark.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="4,5*"/>
-        </Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>-->
         <Grid Grid.Column="1">
             <canvas:CanvasAnimatedControl x:Name="canvas" Draw="canvas_Draw" CreateResources="canvas_CreateResources" PointerPressed="canvas_Click" Update="canvas_Update"/>
         </Grid>
