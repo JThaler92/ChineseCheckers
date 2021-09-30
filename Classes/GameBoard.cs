@@ -44,7 +44,7 @@ namespace ChineseCheckers.Classes
             availableMoves.RemoveAt(0);
             return availableMoves;
         }
-        private List<Node> FindLegalJumps(Point pointer, List<Node> availableMoves = null, bool alreadyMoved = false)
+        public List<Node> FindLegalJumps(Point pointer, List<Node> availableMoves = null, bool alreadyMoved = false)
         {
             List<(int, int)> legalMoves = new List<(int, int)>()
             {

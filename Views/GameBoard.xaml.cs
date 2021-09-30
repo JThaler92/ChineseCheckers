@@ -52,7 +52,7 @@ namespace ChineseCheckers
         CanvasBitmap MarbleImgYellow;
         CanvasBitmap Marker;
 
-        
+        List<Node> CurrentJumpPlaceholder = new List<Node>(); //////////////////////////////////////////////////////////////////////////////////////////
 
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
@@ -108,7 +108,10 @@ namespace ChineseCheckers
         }
 
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
-        {           
+        {
+            
+
+
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
             {
@@ -127,15 +130,106 @@ namespace ChineseCheckers
 
                     { 
                         var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
-                        foreach (var n in possibleJumps)
+                        /*foreach (var n in possibleJumps)
                         {
                             Debug.WriteLine(n.Pointer);
                         }
-                           
+                          */ 
                         if (possibleJumps.Contains(N))
                         {
                             nodes.Find(Loc => currentlySelected.Id == Loc.MarbleID).MarbleID = null;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            /////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            ///
+                            List<(int, int)> legalMoves = new List<(int, int)>()
+                            {
+                                (1, 0),
+                                (-1, 0),
+                                (0, 1),
+                                (0, -1),
+                                (1, -1),
+                                (-1, 1)
+                            };
+
+                            Point Target = N.Pointer;
+
+                            List<Node> graphicMoves = new List<Node>();
+
+                            List<Node> legal = new List<Node>();
+
+                            Debug.WriteLine($"Target: {N.Pointer}");
+                            Debug.WriteLine("Target jumps:");
+
+                            foreach (var n in nodes)
+                            {
+                                if (n.Pointer == Target)
+                                {
+                                    legal = GameSession.Board.FindLegalJumps(Target);
+                                    foreach (var ki in legal)
+                                    {
+                                        Debug.WriteLine(ki.Pointer);
+                                    }
+                                    break;
+                                }
+                            }
+
+                            Debug.WriteLine("Target jumps end");
+
+                            foreach (var ox in CurrentJumpPlaceholder)
+                            {
+                                foreach (var xo in legal)
+                                {
+                                    if (ox.Pointer.Equals(xo.Pointer))
+                                    {
+                                        graphicMoves.Add(ox);
+                                    }
+                                }
+                            }
+
+                            Debug.WriteLine("Gemensamma!");
+                            foreach (var test in graphicMoves)
+                            {
+                                Debug.WriteLine(test.Pointer);
+                            }
+
+
+                            ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            
                             MoveMarble.SelectLocation(N);
                             N.MarbleID = currentlySelected.Id;
                             Sound.PlaySound(ClickSound, "pop.mp3", 0.05f, false);
@@ -158,6 +252,31 @@ namespace ChineseCheckers
                             if (GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID).MarbleColor == GameSession.CurrentPlayer.ColorId)
                             {                              
                                 currentlySelected = GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID.Value);
+
+
+
+                                //////////////////////////////////////////////// Kod
+
+
+                                var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected); // test kod
+                                CurrentJumpPlaceholder = possibleJumps;
+
+
+                                Debug.WriteLine("//////////////////////////////////////////////////////////////////////////////////////////");
+                                Debug.WriteLine($"Start: {currentlySelected.Pointer}");
+                                
+                                Debug.WriteLine("Possible jumps");
+                                foreach (var n in possibleJumps)
+                                {
+                                    Debug.WriteLine(n.Pointer);
+                                }
+                                Debug.WriteLine("Possible jumps end\n");
+                                /////////////////////////////////////////////// End
+                                
+
+
+
+
                                 MoveMarble.SelectMarble(currentlySelected);
                                 break;
                             }
