@@ -79,13 +79,13 @@ namespace ChineseCheckers.Classes.Tools
                 }
             }
         }
-        public static void DrawAvailableMoves(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, List<Node> nodes)
+        public static void DrawAvailableMoves(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, List<Node> nodes, CanvasBitmap marker)
         {
             foreach (var n in nodes)
             {
                 int x = (int)Scaler.Xpos((float)(n.Pointer.X + 4) * Scaler.ScalingValue + (n.Pointer.Y * (Scaler.ScalingValue / 2)));
                 int y = (int)Scaler.Ypos((float)(n.Pointer.Y + 4) * Scaler.ScalingValue);
-                args.DrawingSession.FillRectangle(x + 19, y + 19, 10, 10, Colors.Azure);
+                args.DrawingSession.DrawImage(Scaler.Img(marker), x + 5, y + 5);
             }
         }
         public static void DrawPlayersTurn(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)

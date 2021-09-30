@@ -50,6 +50,7 @@ namespace ChineseCheckers
         CanvasBitmap MarbleImgPink;
         CanvasBitmap MarbleImgPurple;
         CanvasBitmap MarbleImgYellow;
+        CanvasBitmap Marker;
 
         
 
@@ -79,8 +80,7 @@ namespace ChineseCheckers
             {
                 var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
 
-                DrawTool.DrawAvailableMoves(sender, args, availableMoves);
-
+                DrawTool.DrawAvailableMoves(sender, args, availableMoves, Marker);
             }
         }
 
@@ -104,6 +104,7 @@ namespace ChineseCheckers
             MarbleImgPurple = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/lilagrod.png"));
             MarbleImgYellow = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/gulgrod.png"));
             MarbleImgRed = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Frogs/rodgrod.png"));
+            Marker = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/chalccircle.png"));
         }
 
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
@@ -139,12 +140,15 @@ namespace ChineseCheckers
                             N.MarbleID = currentlySelected.Id;
                             Sound.PlaySound(ClickSound, "pop.mp3", 0.05f, false);
                             currentlySelected = null;
+
+                            GameSession.Turn();
                         }
                         else
                         {
+                            Sound.PlaySound(ClickSound, "ErrorFrog.mp3", 0.05f, false);
                             currentlySelected = null;
                         }
-                        GameSession.Turn();
+                        
                         break;
                     }
                     else

@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\frog-logo.png" />
+    <Content Include="Assets\Images\chalccircle.png" />
     <Content Include="Assets\Images\Frogs\blagrod.png" />
     <Content Include="Assets\Images\Frogs\grongrod.png" />
     <Content Include="Assets\Images\Frogs\gulgrod.png" />
@@ -174,6 +175,7 @@
     <Content Include="Assets\Images\blabla.jpg" />
     <Content Include="Assets\Images\swamp.jpg" />
     <Content Include="Assets\Images\Leafs\yellow.png" />
+    <Content Include="Assets\Sound\ErrorFrog.mp3" />
     <Content Include="Assets\Sound\frog.mp3" />
     <Content Include="Assets\Sound\icecube.mp3" />
     <Content Include="Assets\Sound\pop.mp3" />
