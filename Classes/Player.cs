@@ -12,6 +12,7 @@ namespace ChineseCheckers.Classes
         public int Id { get; set; }
         public bool IsAI { get; set; }
         public PlayerColor ColorId;
+        public int? Score { get; set; }
 
         public Player(PlayerColor colorId)
         {

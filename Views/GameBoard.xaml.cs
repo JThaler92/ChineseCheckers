@@ -51,9 +51,7 @@ namespace ChineseCheckers
         CanvasBitmap MarbleImgPurple;
         CanvasBitmap MarbleImgYellow;
         CanvasBitmap Marker;
-
-        
-
+     
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
         public GameBoard()
@@ -76,12 +74,13 @@ namespace ChineseCheckers
             DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
             DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
             DrawTool.DrawPlayersTurn(sender, args, GameSession);
+            DrawTool.DrawScore(sender, args, GameSession);
             if (currentlySelected != null)
             {
                 var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
 
                 DrawTool.DrawAvailableMoves(sender, args, availableMoves, Marker);
-            }
+            }      
         }
 
         private void canvas_CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
@@ -122,40 +121,26 @@ namespace ChineseCheckers
                 int clickY = (int)(yScale * 55);
 
                 if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY && MoveMarble.move == false)
-                {
+                {          
                     if (currentlySelected != null && N.MarbleID == null)
 
-                    {
-                        Debug.WriteLine("Frog: " + currentlySelected.Pointer);
+                    {             
                         var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
-                        foreach (var n in possibleJumps)
-                        {
-                            
-                            Debug.WriteLine(n.Pointer);
-                        }
-                           
                         if (possibleJumps.Contains(N))
                         {
-                            nodes.Find(Loc => currentlySelected.Id == Loc.MarbleID).MarbleID = null;
-
-                            //Debug.WriteLine("Frog: " + currentlySelected.Pointer);
-                            Debug.WriteLine("Target: " + N.Pointer);
-
-                            // Draw new frog with rotation
-
+                            nodes.Find(Nod => currentlySelected.Id == Nod.MarbleID).MarbleID = null;
                             MoveMarble.SelectLocation(N);
                             N.MarbleID = currentlySelected.Id;
                             Sound.PlaySound(ClickSound, "pop.mp3", 0.05f, false);
-                            currentlySelected = null;
-
+                            currentlySelected = null;                           
                             GameSession.Turn();
+                            GameSession.WinCheck();
                         }
                         else
                         {
                             Sound.PlaySound(ClickSound, "ErrorFrog.mp3", 0.05f, false);
                             currentlySelected = null;
-                        }
-                        
+                        } 
                         break;
                     }
                     else
@@ -176,7 +161,7 @@ namespace ChineseCheckers
         }
 
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
-        { 
+        {       
             if (MoveMarble.move)
             {
                 MoveMarble.GraphicMovment(GameSession.Board.Marbles);
