@@ -12,11 +12,22 @@ namespace ChineseCheckers.Classes
 {
     public class Session
     {
+        public Dictionary<PlayerColor, PlayerColor> GoalTarget { get; set; }
         public GameBoard Board { get; set; }
         public List<Player> Players { get; set; }
         public Player CurrentPlayer { get; set; }
         public Session(List<Node> Nodes, int opponents)
         {
+            GoalTarget = new Dictionary<PlayerColor, PlayerColor>()
+            {
+                {PlayerColor.Blue, PlayerColor.Purple },
+                {PlayerColor.Purple, PlayerColor.Blue },
+                {PlayerColor.Green, PlayerColor.Pink },
+                {PlayerColor.Pink, PlayerColor.Green },
+                {PlayerColor.Yellow, PlayerColor.Red },
+                {PlayerColor.Red, PlayerColor.Yellow }
+            };
+            
             if (opponents == 3)
             {
                 Players = new List<Player>
@@ -67,6 +78,35 @@ namespace ChineseCheckers.Classes
                 nextPlayer = Players.First();
             }
             CurrentPlayer = nextPlayer;
+        }
+
+        public void WinCheck()
+        {
+            Debug.WriteLine("WINCHECK CALLED");
+            this.Players.ForEach(x => x.Score = 0);
+            foreach (var M in Board.Marbles)
+            {
+                var goal = GoalTarget[M.MarbleColor];
+                var marblePos = Board.Nodes.Find(x => x.Pointer == M.Pointer);
+
+                if (marblePos.CampColorId == goal)
+                {
+                    var player = Players.Find(x => x.ColorId == M.MarbleColor);
+                    player.Score++;
+                }
+                
+            }    
+            foreach (var P in Players)
+            {
+                Debug.WriteLine(P.Score);
+                if (P.Score == 10)
+                {
+                    //TODO: BREAK GAME;
+                    Debug.WriteLine(P.ColorId + " WINS");
+                }
+            }
+
+
         }
     }
 }

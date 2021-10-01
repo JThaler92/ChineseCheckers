@@ -25,7 +25,7 @@ namespace ChineseCheckers.Classes
             player.Play();
         }
 
-        public static async void StopSound(MediaPlayer player)
+        public static void StopSound(MediaPlayer player)
         {
             player.Pause();
         }
