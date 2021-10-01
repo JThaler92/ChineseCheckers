@@ -18,8 +18,8 @@ namespace ChineseCheckers.Classes.Tools
         {
             foreach (var N in board.Nodes)
             {
-                int x = (int)Scaler.Xpos((float)(N.Pointer.X + 12) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2)));
-                int y = (int)Scaler.Ypos((float)(N.Pointer.Y + 6) * Scaler.ScalingValue);                
+                int x = (int)Scaler.Xpos((float)((N.Pointer.X + 12) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2))));
+                int y = (int)Scaler.Ypos((float)(N.Pointer.Y + 6) * Scaler.ScalingValue);              
 
                 switch (N.CampColorId)
                 {
@@ -51,7 +51,7 @@ namespace ChineseCheckers.Classes.Tools
         {
             foreach (var M in board.Marbles)
             {
-                int x = (int)Scaler.Xpos((float)(M.Pointer.X + 12) * Scaler.ScalingValue + (M.Pointer.Y * (Scaler.ScalingValue / 2)));
+                int x = (int)Scaler.Xpos((float)((M.Pointer.X + 12) * Scaler.ScalingValue + (M.Pointer.Y * (Scaler.ScalingValue / 2))));
                 int y = (int)Scaler.Ypos((float)(M.Pointer.Y + 6) * Scaler.ScalingValue);
 
                 switch (M.MarbleColor)
@@ -83,7 +83,7 @@ namespace ChineseCheckers.Classes.Tools
         {
             foreach (var n in nodes)
             {
-                int x = (int)Scaler.Xpos((float)(n.Pointer.X + 12) * Scaler.ScalingValue + (n.Pointer.Y * (Scaler.ScalingValue / 2)));
+                int x = (int)Scaler.Xpos((float)((n.Pointer.X + 12) * Scaler.ScalingValue + (n.Pointer.Y * (Scaler.ScalingValue / 2))));
                 int y = (int)Scaler.Ypos((float)(n.Pointer.Y + 6) * Scaler.ScalingValue);
                 args.DrawingSession.DrawImage(Scaler.Img(marker), x + 5, y + 5);
             }
