@@ -127,9 +127,10 @@ namespace ChineseCheckers
                         var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
                         if (possibleJumps.Contains(N))
                         {
-                            nodes.Find(Nod => currentlySelected.Id == Nod.MarbleID).MarbleID = null;
-                            MoveMarble.SelectLocation(N);
-                            N.MarbleID = currentlySelected.Id;
+                            GameSession.Board.MarbleMove(N, currentlySelected, MoveMarble);
+                            //nodes.Find(Nod => currentlySelected.Id == Nod.MarbleID).MarbleID = null;
+                            //MoveMarble.SelectLocation(N);
+                            //N.MarbleID = currentlySelected.Id;
                             Sound.PlaySound(ClickSound, "pop.mp3", 0.05f, false);
                             currentlySelected = null;                           
                             GameSession.Turn();

@@ -44,9 +44,10 @@ namespace ChineseCheckers.Classes
         public void SelectMarble(Marble currentlySelected) 
         {
             current_X = currentlySelected.Pointer.X;
-            current_Y = currentlySelected.Pointer.Y;
-
+            current_Y = currentlySelected.Pointer.Y;        
             moveID = currentlySelected.Id;
+           
+            
         }
 
         /// <summary>
