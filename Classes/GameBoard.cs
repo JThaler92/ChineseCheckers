@@ -93,11 +93,11 @@ namespace ChineseCheckers.Classes
             }
             return availableMoves;
         }
-        public void MarbleMove(Node N, Marble selectedMarble, Moving moving)
+        public void MarbleMove(Node N, Marble selectedMarble)
         {
             this.Nodes.Find(Nod => selectedMarble.Id == Nod.MarbleID).MarbleID = null;
-            selectedMarble.Pointer = N.Pointer;
-            moving.SelectLocation(N);
+            //selectedMarble.Pointer = N.Pointer;
+            Moving.SelectLocation(N);
             N.MarbleID = selectedMarble.Id;
         }
     }

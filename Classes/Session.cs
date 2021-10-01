@@ -128,12 +128,13 @@ namespace ChineseCheckers.Classes
                     legalNodes.Add(M, moves);
                 }
             }
-            Moving animation = new Moving(25);
+            //Moving animation = new Moving(25);
             Random rnd = new Random();
             var randomMarble = legalNodes.ElementAt(rnd.Next(0, legalNodes.Count));
             var marble = randomMarble.Key;
+            Moving.SelectMarble(marble); // Set AI Marble to move
             var targetNode = randomMarble.Value.ElementAt(rnd.Next(0, randomMarble.Value.Count));
-            Board.MarbleMove(targetNode, marble, animation);
+            Board.MarbleMove(targetNode, marble);
             Turn();
         }
     }

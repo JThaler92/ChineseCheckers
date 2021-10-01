@@ -8,26 +8,27 @@ using Windows.Foundation;
 
 namespace ChineseCheckers.Classes
 {
-    public class Moving
+    public static class Moving
     {
-        public int moveID { get; set; }
-        public double current_X { get; set; }
-        public double current_Y { get; set; }
+        public static int moveID { get; set; }
+        public static double current_X { get; set; }
+        public static double current_Y { get; set; }
 
-        public double target_X { get; set; }
-        public double target_Y { get; set; }
+        public static double target_X { get; set; }
+        public static double target_Y { get; set; }
 
-        public double velocity_x { get; set; }
-        public double velocity_y { get; set; }
+        public static double velocity_x { get; set; }
+        public static double velocity_y { get; set; }
 
-        public double distance_x { get; set; }
-        public double distance_y { get; set; }
+        public static double distance_x { get; set; }
+        public static double distance_y { get; set; }
 
-        public int divider { get; set; }
+        public static int divider = 25; //{ get; set; }
 
-        public bool move = false;
+        public static bool move = false;
         //public bool move { get; set; }
 
+        /*
         /// <summary>
         /// Constructor
         /// </summary>
@@ -36,12 +37,12 @@ namespace ChineseCheckers.Classes
         {
             this.divider = Divider;
         }
-
+        */
         /// <summary>
         /// Select a marble to move.
         /// </summary>
         /// <param name="currentlySelected">Instance of Marble class</param>
-        public void SelectMarble(Marble currentlySelected) 
+        public static void SelectMarble(Marble currentlySelected) 
         {
             current_X = currentlySelected.Pointer.X;
             current_Y = currentlySelected.Pointer.Y;        
@@ -54,7 +55,7 @@ namespace ChineseCheckers.Classes
         /// Select target location to move to.
         /// </summary>
         /// <param name="N"></param>
-        public void SelectLocation(Node N) 
+        public static void SelectLocation(Node N) 
         {
             move = true;
             target_X = N.Pointer.X;
@@ -65,7 +66,7 @@ namespace ChineseCheckers.Classes
         /// Moves a marble from current location to target location visualy.
         /// </summary>
         /// <param name="MarbleList">List of all marbles on the board</param>
-        public void GraphicMovment(List<Marble> MarbleList) 
+        public static void GraphicMovment(List<Marble> MarbleList) 
         {
             foreach (var marble in MarbleList)
             {

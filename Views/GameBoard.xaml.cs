@@ -34,7 +34,7 @@ namespace ChineseCheckers
     {
 
         MediaPlayer ClickSound;
-        Moving MoveMarble;
+        //Moving MoveMarble;
         Session GameSession;
         Marble currentlySelected;
         CanvasBitmap NodeImgDefault;
@@ -61,7 +61,7 @@ namespace ChineseCheckers
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
             GameSession = new Session(nodes, 1);
-            MoveMarble = new Moving(25);
+            //MoveMarble = new Moving(25);
         }
 
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
@@ -120,14 +120,14 @@ namespace ChineseCheckers
                 int clickX = (int)(xScale * 55);
                 int clickY = (int)(yScale * 55);
 
-                if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY && MoveMarble.move == false)
+                if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY && Moving.move == false)
                 {          
                     if (currentlySelected != null && N.MarbleID == null)
                     {             
                         var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
                         if (possibleJumps.Contains(N))
                         {
-                            GameSession.Board.MarbleMove(N, currentlySelected, MoveMarble);
+                            GameSession.Board.MarbleMove(N, currentlySelected);
                             //nodes.Find(Nod => currentlySelected.Id == Nod.MarbleID).MarbleID = null;
                             //MoveMarble.SelectLocation(N);
                             //N.MarbleID = currentlySelected.Id;
@@ -150,7 +150,7 @@ namespace ChineseCheckers
                             if (GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID).MarbleColor == GameSession.CurrentPlayer.ColorId)
                             {                              
                                 currentlySelected = GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID.Value);
-                                MoveMarble.SelectMarble(currentlySelected);
+                                Moving.SelectMarble(currentlySelected);
                                 break;
                             }
                         }
@@ -162,9 +162,9 @@ namespace ChineseCheckers
 
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {       
-            if (MoveMarble.move)
+            if (Moving.move)
             {
-                MoveMarble.GraphicMovment(GameSession.Board.Marbles);
+                Moving.GraphicMovment(GameSession.Board.Marbles);
             }
         }
     }
