@@ -125,16 +125,23 @@ namespace ChineseCheckers
                 {
                     if (currentlySelected != null && N.MarbleID == null)
 
-                    { 
+                    {
+                        Debug.WriteLine("Frog: " + currentlySelected.Pointer);
                         var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
                         foreach (var n in possibleJumps)
                         {
+                            
                             Debug.WriteLine(n.Pointer);
                         }
                            
                         if (possibleJumps.Contains(N))
                         {
                             nodes.Find(Loc => currentlySelected.Id == Loc.MarbleID).MarbleID = null;
+
+                            //Debug.WriteLine("Frog: " + currentlySelected.Pointer);
+                            Debug.WriteLine("Target: " + N.Pointer);
+
+                            // Draw new frog with rotation
 
                             MoveMarble.SelectLocation(N);
                             N.MarbleID = currentlySelected.Id;

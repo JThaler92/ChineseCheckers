@@ -57,22 +57,22 @@ namespace ChineseCheckers.Classes.Tools
                 switch (M.MarbleColor)
                 {
                     case PlayerColor.Blue:
-                        args.DrawingSession.DrawImage(Scaler.Img(marbleBlue), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marbleBlue, M.Angle_theta), x + 3, y + 3);
                         break;
                     case PlayerColor.Green:
-                        args.DrawingSession.DrawImage(Scaler.Img(marbleGreen), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marbleGreen, M.Angle_theta), x + 3, y + 3);
                         break;
                     case PlayerColor.Yellow:
-                        args.DrawingSession.DrawImage(Scaler.Img(marbleYellow), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marbleYellow, M.Angle_theta), x + 3, y + 3);
                         break;
                     case PlayerColor.Pink:
-                        args.DrawingSession.DrawImage(Scaler.Img(marblePink), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marblePink, M.Angle_theta), x + 3, y + 3);
                         break;
                     case PlayerColor.Purple:
-                        args.DrawingSession.DrawImage(Scaler.Img(marblePurple), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marblePurple,M.Angle_theta), x + 3, y + 3);
                         break;
                     case PlayerColor.Red:
-                        args.DrawingSession.DrawImage(Scaler.Img(marbleRed), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marbleRed, M.Angle_theta), x + 3, y + 3);
                         break;
                     default:
                         break;

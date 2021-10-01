@@ -41,16 +41,17 @@ namespace ChineseCheckers.Classes
             return image;
         }
 
-        public static Transform2DEffect RotImg(CanvasBitmap source, float angle)
+        public static Transform2DEffect RotImg(CanvasBitmap source, int angleD)
         {
             Transform2DEffect image;
-            angle = angle*(float)Math.PI/180;
+            float angleR;
+            angleR = (float)(angleD*(float)Math.PI/180);
             image = new Transform2DEffect() { Source = source };
             Rect bds = image.GetBounds(source);
             Vector2 center;
             center.X = (int)((float)bds.Width / 2);
             center.Y = (int)((float)bds.Height / 2);
-            image.TransformMatrix = Matrix3x2.CreateRotation(angle, center);
+            image.TransformMatrix = Matrix3x2.CreateRotation(angleR, center) * Matrix3x2.CreateScale(scaleWidth, scaleHeight);
             return image;
         }
 
