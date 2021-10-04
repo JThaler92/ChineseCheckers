@@ -32,7 +32,7 @@ namespace ChineseCheckers
     /// </summary>
     public sealed partial class GameBoard : Page
     {
-
+        BoardBackground StarBackground = new BoardBackground();
         MediaPlayer ClickSound;
         //Moving MoveMarble;
         Session GameSession;
@@ -60,7 +60,7 @@ namespace ChineseCheckers
             InitializeComponent();
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
-            GameSession = new Session(nodes, 1);
+            GameSession = new Session(nodes, 5);
             //MoveMarble = new Moving(25);
         }
 
@@ -70,11 +70,13 @@ namespace ChineseCheckers
         }
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
-        {  
+        {
+            StarBackground.CreateStar(canvas, args);
             DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
             DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
             DrawTool.DrawPlayersTurn(sender, args, GameSession);
             DrawTool.DrawScore(sender, args, GameSession);
+            
             if (currentlySelected != null)
             {
                 var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
@@ -131,10 +133,9 @@ namespace ChineseCheckers
                             //nodes.Find(Nod => currentlySelected.Id == Nod.MarbleID).MarbleID = null;
                             //MoveMarble.SelectLocation(N);
                             //N.MarbleID = currentlySelected.Id;
-                            Sound.PlaySound(ClickSound, "pop.mp3", 0.05f, false);
                             currentlySelected = null;                           
                             GameSession.Turn();
-                            GameSession.WinCheck();
+                            //GameSession.WinCheck();
                         }
                         else
                         {

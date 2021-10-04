@@ -83,6 +83,11 @@ namespace ChineseCheckers.Classes
             CurrentPlayer = nextPlayer;
             if (CurrentPlayer.IsAI)
             {
+                while (Moving.move)
+                {
+                    Thread.Sleep(500);
+                }
+                WinCheck();
                 MoveAI();
             }
         }
@@ -115,7 +120,7 @@ namespace ChineseCheckers.Classes
         }
         private void MoveAI()
         {
-            Thread.Sleep(1500);
+            //Thread.Sleep(1500);
             var marbles = Board.Marbles.Where(x => x.MarbleColor == this.CurrentPlayer.ColorId);
 
             Dictionary<Marble, List<Node>> legalNodes = new Dictionary<Marble, List<Node>>();

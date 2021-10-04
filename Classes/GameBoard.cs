@@ -96,7 +96,7 @@ namespace ChineseCheckers.Classes
         public void MarbleMove(Node N, Marble selectedMarble)
         {
             this.Nodes.Find(Nod => selectedMarble.Id == Nod.MarbleID).MarbleID = null;
-            //selectedMarble.Pointer = N.Pointer;
+            Sound.TaskSound("pop.mp3", 0.05f, false);
             Moving.SelectLocation(N);
             N.MarbleID = selectedMarble.Id;
         }
