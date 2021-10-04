@@ -6,18 +6,21 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ChineseCheckers.Classes
 {
     public class Session
     {
+        //public Moving moving { get; set; }
         public Dictionary<PlayerColor, PlayerColor> GoalTarget { get; set; }
         public GameBoard Board { get; set; }
         public List<Player> Players { get; set; }
         public Player CurrentPlayer { get; set; }
         public Session(List<Node> Nodes, int opponents)
         {
+            //moving = new Moving(25);
             GoalTarget = new Dictionary<PlayerColor, PlayerColor>()
             {
                 {PlayerColor.Blue, PlayerColor.Purple },
@@ -78,6 +81,15 @@ namespace ChineseCheckers.Classes
                 nextPlayer = Players.First();
             }
             CurrentPlayer = nextPlayer;
+            if (CurrentPlayer.IsAI)
+            {
+                while (Moving.move)
+                {
+                    Thread.Sleep(500);
+                }
+                WinCheck();
+                MoveAI();
+            }
         }
 
         public void WinCheck()
@@ -105,8 +117,30 @@ namespace ChineseCheckers.Classes
                     Debug.WriteLine(P.ColorId + " WINS");
                 }
             }
+        }
+        private void MoveAI()
+        {
+            //Thread.Sleep(1500);
+            var marbles = Board.Marbles.Where(x => x.MarbleColor == this.CurrentPlayer.ColorId);
 
+            Dictionary<Marble, List<Node>> legalNodes = new Dictionary<Marble, List<Node>>();
 
+            foreach (var M in marbles)
+            {
+                var moves = Board.GetLegalJumps(M);
+                if (moves.Count > 0)
+                {
+                    legalNodes.Add(M, moves);
+                }
+            }
+            //Moving animation = new Moving(25);
+            Random rnd = new Random();
+            var randomMarble = legalNodes.ElementAt(rnd.Next(0, legalNodes.Count));
+            var marble = randomMarble.Key;
+            Moving.SelectMarble(marble); // Set AI Marble to move
+            var targetNode = randomMarble.Value.ElementAt(rnd.Next(0, randomMarble.Value.Count));
+            Board.MarbleMove(targetNode, marble);
+            Turn();
         }
     }
 }

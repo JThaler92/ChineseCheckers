@@ -30,6 +30,15 @@ namespace ChineseCheckers.Classes
             player.Pause();
         }
 
+        public static void TaskSound(string source, float volume, bool loop)
+        {
+            MediaPlayer Click = new MediaPlayer();
+
+            Task sound = Task.Run(() =>
+            {
+                Sound.PlaySound(Click, source, volume, loop);
+            });
+        }
 
     }
 }
