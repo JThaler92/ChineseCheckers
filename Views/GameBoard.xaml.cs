@@ -111,7 +111,7 @@ namespace ChineseCheckers
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
             {
-                int x = (int)Scaler.Xpos((float)(N.Pointer.X + 12) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2)));
+                int x = (int)Scaler.Xpos((float)((N.Pointer.X + 12) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2))));
                 int y = (int)Scaler.Ypos((float)(N.Pointer.Y + 6) * Scaler.ScalingValue);
 
                 float xScale = Scaler.GetScale()[0];
@@ -123,6 +123,7 @@ namespace ChineseCheckers
                 if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY && MoveMarble.move == false)
                 {          
                     if (currentlySelected != null && N.MarbleID == null)
+
                     {             
                         var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
                         if (possibleJumps.Contains(N))

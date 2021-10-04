@@ -17,6 +17,8 @@ namespace ChineseCheckers.Classes
         public double target_X { get; set; }
         public double target_Y { get; set; }
 
+        public int target_theta { get; set; }
+
         public double velocity_x { get; set; }
         public double velocity_y { get; set; }
 
@@ -50,14 +52,42 @@ namespace ChineseCheckers.Classes
         }
 
         /// <summary>
-        /// Select target location to move to.
+        /// Select target location to move to, and add a rotation angle.
         /// </summary>
         /// <param name="N"></param>
-        public void SelectLocation(Node N) 
+        public void SelectLocation(Node N)
         {
             move = true;
             target_X = N.Pointer.X;
             target_Y = N.Pointer.Y;
+
+            current_X = Math.Round(current_X);
+            current_Y = Math.Round(current_Y);
+
+            if (target_X > current_X && target_Y == current_Y)
+            {
+                target_theta = 0;
+            }
+            else if (target_X > current_X && target_Y < current_Y)
+            {
+                target_theta = -60;
+            }
+            else if (target_X == current_X && target_Y < current_Y)
+            {
+                target_theta = -120;
+            }
+            else if (target_X < current_X && target_Y == current_Y)
+            {
+                target_theta = -180;
+            }
+            else if (target_X < current_X && target_Y > current_Y)
+            {
+                target_theta = -240;
+            }
+            else if (target_X == current_X && target_Y > current_Y)
+            {
+                target_theta = -300;
+            }
         }
 
         /// <summary>
@@ -100,6 +130,7 @@ namespace ChineseCheckers.Classes
                     }
 
                     marble.Pointer = marblePlaceholder;
+                    marble.Angle_theta = target_theta;
 
                     if (Math.Abs(distance_y) < 0.03 && Math.Abs(distance_x) < 0.03)
                     {
