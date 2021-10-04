@@ -30,7 +30,7 @@ namespace ChineseCheckers.Classes
             {
                 if (L.CampColorId != null && players.Contains(players.Find(x => x.ColorId == L.CampColorId)))
                 {
-                    var P = new Marble(Marbles.Count, L.Pointer, L.CampColorId.Value);
+                    var P = new Marble(Marbles.Count, L.Pointer, L.CampColorId.Value, 0);
                     Marbles.Add(P);
                     L.MarbleID = P.Id;
                 }

@@ -18,8 +18,8 @@ namespace ChineseCheckers.Classes.Tools
         {
             foreach (var N in board.Nodes)
             {
-                int x = (int)Scaler.Xpos((float)(N.Pointer.X + 12) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2)));
-                int y = (int)Scaler.Ypos((float)(N.Pointer.Y + 6) * Scaler.ScalingValue);                
+                int x = (int)Scaler.Xpos((float)((N.Pointer.X + 12) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2))));
+                int y = (int)Scaler.Ypos((float)(N.Pointer.Y + 6) * Scaler.ScalingValue);              
 
                 switch (N.CampColorId)
                 {
@@ -51,28 +51,28 @@ namespace ChineseCheckers.Classes.Tools
         {
             foreach (var M in board.Marbles)
             {
-                int x = (int)Scaler.Xpos((float)(M.Pointer.X + 12) * Scaler.ScalingValue + (M.Pointer.Y * (Scaler.ScalingValue / 2)));
+                int x = (int)Scaler.Xpos((float)((M.Pointer.X + 12) * Scaler.ScalingValue + (M.Pointer.Y * (Scaler.ScalingValue / 2))));
                 int y = (int)Scaler.Ypos((float)(M.Pointer.Y + 6) * Scaler.ScalingValue);
 
                 switch (M.MarbleColor)
                 {
                     case PlayerColor.Blue:
-                        args.DrawingSession.DrawImage(Scaler.Img(marbleBlue), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marbleBlue, M.Angle_theta), x + 3, y + 3);
                         break;
                     case PlayerColor.Green:
-                        args.DrawingSession.DrawImage(Scaler.Img(marbleGreen), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marbleGreen, M.Angle_theta), x + 3, y + 3);
                         break;
                     case PlayerColor.Yellow:
-                        args.DrawingSession.DrawImage(Scaler.Img(marbleYellow), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marbleYellow, M.Angle_theta), x + 3, y + 3);
                         break;
                     case PlayerColor.Pink:
-                        args.DrawingSession.DrawImage(Scaler.Img(marblePink), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marblePink, M.Angle_theta), x + 3, y + 3);
                         break;
                     case PlayerColor.Purple:
-                        args.DrawingSession.DrawImage(Scaler.Img(marblePurple), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marblePurple,M.Angle_theta), x + 3, y + 3);
                         break;
                     case PlayerColor.Red:
-                        args.DrawingSession.DrawImage(Scaler.Img(marbleRed), x + 3, y + 3);
+                        args.DrawingSession.DrawImage(Scaler.RotImg(marbleRed, M.Angle_theta), x + 3, y + 3);
                         break;
                     default:
                         break;
@@ -83,7 +83,7 @@ namespace ChineseCheckers.Classes.Tools
         {
             foreach (var n in nodes)
             {
-                int x = (int)Scaler.Xpos((float)(n.Pointer.X + 12) * Scaler.ScalingValue + (n.Pointer.Y * (Scaler.ScalingValue / 2)));
+                int x = (int)Scaler.Xpos((float)((n.Pointer.X + 12) * Scaler.ScalingValue + (n.Pointer.Y * (Scaler.ScalingValue / 2))));
                 int y = (int)Scaler.Ypos((float)(n.Pointer.Y + 6) * Scaler.ScalingValue);
                 args.DrawingSession.DrawImage(Scaler.Img(marker), x + 5, y + 5);
             }
