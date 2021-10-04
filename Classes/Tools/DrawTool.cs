@@ -90,7 +90,7 @@ namespace ChineseCheckers.Classes.Tools
         }
         public static void DrawPlayersTurn(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)
         {
-            string text = $"Player {gameSession.CurrentPlayer.ColorId}'s turn";
+            string text = $"Player {gameSession.CurrentPlayer.Name}'s turn";
             args.DrawingSession.DrawText(text, (int)Scaler.Xpos(50), (int)Scaler.Ypos(25), Colors.AliceBlue);
         }
         public static void DrawScore(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)
@@ -99,7 +99,7 @@ namespace ChineseCheckers.Classes.Tools
             foreach (var p in gameSession.Players)
             {
 
-                string text = $"{p.ColorId} : {p.Score}";
+                string text = $"{p.Name} : {p.Score}";
                 args.DrawingSession.DrawText(text, (int)Scaler.Xpos(Scaler.DesignWidth / 2), y, Colors.AliceBlue);
                 y += 20;
 

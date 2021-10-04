@@ -19,6 +19,8 @@ namespace ChineseCheckers.Classes
 
         public static int target_theta { get; set; }
 
+        public static double velocity_x { get; set; }
+        public static double velocity_y { get; set; }
 
         public static double distance_x { get; set; }
         public static double distance_y { get; set; }
