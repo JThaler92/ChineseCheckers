@@ -20,6 +20,8 @@ namespace ChineseCheckers
         MediaPlayer BGsound;
         MediaPlayer ClickSound;
 
+        int players;
+
         public static CanvasBitmap MenuScreen;
         public MainMenu()
         {
@@ -43,9 +45,6 @@ namespace ChineseCheckers
         /// </summary>
         public void ReverseButtons()
         {
-            //Button_Play.IsEnabled = !Button_Play.IsEnabled;    /// LÅT STÅ!!!!!
-            //Button_Rules.IsEnabled = !Button_Rules.IsEnabled;
-            //Button_Quit.IsEnabled = !Button_Quit.IsEnabled;
 
             if (Button_Play.Visibility == Visibility.Collapsed)
             {
@@ -77,6 +76,37 @@ namespace ChineseCheckers
             }
         }
 
+        public void ShowPlay() 
+        {
+            PlayWindow.Text = "\t\t\tChoose amount of players:";
+            PlayWindow.IsHitTestVisible = false;
+
+            if (PlayWindow.Visibility != Visibility.Visible)
+            {
+                PlayWindow.Visibility = Visibility.Visible;
+                PlayWindowClose.Visibility = Visibility.Visible;
+
+                TwoPlayers.Visibility = Visibility.Visible;
+                ThreePlayers.Visibility = Visibility.Visible;
+                FourPlayers.Visibility = Visibility.Visible;
+                SixPlayers.Visibility = Visibility.Visible;
+
+                StartGame.Visibility = Visibility.Visible;
+            }
+            else if (PlayWindow.Visibility == Visibility.Visible)
+            {
+                PlayWindow.Visibility = Visibility.Collapsed;
+                PlayWindowClose.Visibility = Visibility.Collapsed;
+
+                TwoPlayers.Visibility = Visibility.Collapsed;
+                ThreePlayers.Visibility = Visibility.Collapsed;
+                FourPlayers.Visibility = Visibility.Collapsed;
+                SixPlayers.Visibility = Visibility.Collapsed;
+
+                StartGame.Visibility = Visibility.Collapsed;
+            }      
+        }
+
         /// <summary>
         /// Settings for RulesWindow
         /// </summary>
@@ -84,6 +114,28 @@ namespace ChineseCheckers
         {
             RulesWindow.IsHitTestVisible = false;
             RulesWindow.Text = Rule.RuleText;
+        }
+
+        public void SetNames()
+        {
+            StartSettings.players = players - 1;
+
+            StartSettings.playerOne = PlayerOneName.Text;
+            StartSettings.playerTwo = PlayerTwoName.Text;
+            StartSettings.playerThree = PlayerThreeName.Text;
+            StartSettings.playerFour = PlayerFourName.Text;
+            StartSettings.playerFive = PlayerFiveName.Text;
+            StartSettings.playerSix = PlayerSixName.Text;
+        }
+
+        private void HideAllNames()
+        {
+            PlayerOneName.Visibility = Visibility.Collapsed;
+            PlayerTwoName.Visibility = Visibility.Collapsed;
+            PlayerThreeName.Visibility = Visibility.Collapsed;
+            PlayerFourName.Visibility = Visibility.Collapsed;
+            PlayerFiveName.Visibility = Visibility.Collapsed;
+            PlayerSixName.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -111,15 +163,28 @@ namespace ChineseCheckers
         }
 
         /// <summary>
-        /// Send player to gaming board when play is pressed
+        /// Send player Play window when pressed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Button_Play_Click(object sender, RoutedEventArgs e)
         {
             ClickingSound();
-            Sound.StopSound(BGsound);
-            this.Frame.Navigate(typeof(GameBoard));
+            ReverseButtons();
+            ShowPlay();
+        }
+
+        /// <summary>
+        /// Close the Play window when pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlayWindowClose_Click(object sender, RoutedEventArgs e)
+        {
+            ClickingSound();
+            ShowPlay();
+            ReverseButtons();
+            HideAllNames();
         }
 
         /// <summary>
@@ -130,6 +195,223 @@ namespace ChineseCheckers
         private void Button_Quit_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// Starts the game with choosen settings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StartGame_Click(object sender, RoutedEventArgs e)
+        {
+            if (players != null && players > 0)
+            {
+                SetNames();
+
+                Sound.StopSound(BGsound);
+                this.Frame.Navigate(typeof(GameBoard));
+            }
+        }
+
+        /// <summary>
+        /// Set options for two players
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TwoPlayers_Click(object sender, RoutedEventArgs e)
+        {
+            players = 2;
+
+            HideAllNames();
+            PlayerOneName.Visibility = Visibility.Visible;
+            PlayerTwoName.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Set options for three players
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ThreePlayers_Click(object sender, RoutedEventArgs e)
+        {
+            players = 3;
+
+            HideAllNames();
+            PlayerOneName.Visibility = Visibility.Visible;
+            PlayerTwoName.Visibility = Visibility.Visible;
+            PlayerThreeName.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Set options for four players
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FourPlayers_Click(object sender, RoutedEventArgs e)
+        {
+            players = 4;
+
+            HideAllNames();
+            PlayerOneName.Visibility = Visibility.Visible;
+            PlayerTwoName.Visibility = Visibility.Visible;
+            PlayerThreeName.Visibility = Visibility.Visible;
+            PlayerFourName.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Set options for six players
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SixPlayers_Click(object sender, RoutedEventArgs e)
+        {
+            players = 6;
+
+            HideAllNames();
+            PlayerOneName.Visibility = Visibility.Visible;
+            PlayerTwoName.Visibility = Visibility.Visible;
+            PlayerThreeName.Visibility = Visibility.Visible;
+            PlayerFourName.Visibility = Visibility.Visible;
+            PlayerFiveName.Visibility = Visibility.Visible;
+            PlayerSixName.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Set current text as empty when Textbox is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerOneName_GettingFocus(UIElement sender, Windows.UI.Xaml.Input.GettingFocusEventArgs args)
+        {
+            PlayerOneName.Text = "";
+        }
+
+        /// <summary>
+        /// If Textbox is empty when unselected, puts back default value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerOneName_LosingFocus(UIElement sender, Windows.UI.Xaml.Input.LosingFocusEventArgs args)
+        {
+            if (PlayerOneName.Text.Trim() == "")
+            {
+                PlayerOneName.Text = "Player One";
+            }
+        }
+
+        /// <summary>
+        /// Set current text as empty when Textbox is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerTwoName_GettingFocus(UIElement sender, Windows.UI.Xaml.Input.GettingFocusEventArgs args)
+        {
+            PlayerTwoName.Text = "";
+        }
+
+        /// <summary>
+        /// If Textbox is empty when unselected, puts back default value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerTwoName_LosingFocus(UIElement sender, Windows.UI.Xaml.Input.LosingFocusEventArgs args)
+        {
+            if (PlayerTwoName.Text.Trim() == "")
+            {
+                PlayerTwoName.Text = "Player Two";
+            }
+        }
+
+        /// <summary>
+        /// Set current text as empty when Textbox is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerThreeName_GettingFocus(UIElement sender, Windows.UI.Xaml.Input.GettingFocusEventArgs args)
+        {
+            PlayerThreeName.Text = "";
+        }
+
+        /// <summary>
+        /// If Textbox is empty when unselected, puts back default value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerThreeName_LosingFocus(UIElement sender, Windows.UI.Xaml.Input.LosingFocusEventArgs args)
+        {
+            if (PlayerThreeName.Text.Trim() == "")
+            {
+                PlayerThreeName.Text = "Player Three";
+            }
+        }
+
+        /// <summary>
+        /// Set current text as empty when Textbox is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerFourName_GettingFocus(UIElement sender, Windows.UI.Xaml.Input.GettingFocusEventArgs args)
+        {
+            PlayerFourName.Text = "";
+        }
+
+        /// <summary>
+        /// If Textbox is empty when unselected, puts back default value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerFourName_LosingFocus(UIElement sender, Windows.UI.Xaml.Input.LosingFocusEventArgs args)
+        {
+            if (PlayerFourName.Text.Trim() == "")
+            {
+                PlayerFourName.Text = "Player Four";
+            }
+        }
+
+        /// <summary>
+        /// Set current text as empty when Textbox is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerFiveName_GettingFocus(UIElement sender, Windows.UI.Xaml.Input.GettingFocusEventArgs args)
+        {
+            PlayerFiveName.Text = "";
+        }
+
+        /// <summary>
+        /// If Textbox is empty when unselected, puts back default value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerFiveName_LosingFocus(UIElement sender, Windows.UI.Xaml.Input.LosingFocusEventArgs args)
+        {
+            if (PlayerFiveName.Text.Trim() == "")
+            {
+                PlayerFiveName.Text = "Player Five";
+            }
+        }
+
+        /// <summary>
+        /// Set current text as empty when Textbox is selected
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerSixName_GettingFocus(UIElement sender, Windows.UI.Xaml.Input.GettingFocusEventArgs args)
+        {
+            PlayerSixName.Text = "";
+        }
+
+        /// <summary>
+        /// If Textbox is empty when unselected, puts back default value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void PlayerSixName_LosingFocus(UIElement sender, Windows.UI.Xaml.Input.LosingFocusEventArgs args)
+        {
+            if (PlayerSixName.Text.Trim() == "")
+            {
+                PlayerSixName.Text = "Player Six";
+            }
         }
     }
 }

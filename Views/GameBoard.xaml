@@ -16,6 +16,8 @@
         </Grid.ColumnDefinitions>-->
         <Grid Grid.Column="1">
             <canvas:CanvasAnimatedControl x:Name="canvas" Draw="canvas_Draw" CreateResources="canvas_CreateResources" PointerPressed="canvas_Click" Update="canvas_Update"/>
+            <Button x:Name="MainMenu" Content="Main Menu" Margin="850,700,0,0" HorizontalAlignment="Center" Height="60" Width="250" FontFamily="Algerian" FontSize="40" FontWeight="Bold" CornerRadius="10" Click="MainMenu_Click" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="4" />
+
         </Grid>
     </Grid>
 </Page>

@@ -127,6 +127,7 @@
     <Compile Include="Classes\Marble.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Rule.cs" />
+    <Compile Include="Classes\StartSettings.cs" />
     <Compile Include="Classes\Tools\ScalerTool.cs" />
     <Compile Include="Classes\Session.cs" />
     <Compile Include="Classes\Tools\DrawTool.cs" />

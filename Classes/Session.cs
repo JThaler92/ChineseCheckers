@@ -35,39 +35,39 @@ namespace ChineseCheckers.Classes
             {
                 Players = new List<Player>
                 {
-                new Player(PlayerColor.Green)
+                new Player(PlayerColor.Green, StartSettings.playerOne)
                 };
             }
             else
             {
                 Players = new List<Player>
                 {
-                new Player(PlayerColor.Blue)
+                new Player(PlayerColor.Blue, StartSettings.playerOne)
                 };
             }
 
             if (opponents == 1)
             {
-                Players.Add(new Player(1, PlayerColor.Purple));
+                Players.Add(new Player(1, PlayerColor.Purple, StartSettings.playerTwo));
             }
             if (opponents == 2)
             {
-                Players.Add(new Player(1, PlayerColor.Pink));
-                Players.Add(new Player(2, PlayerColor.Yellow));
+                Players.Add(new Player(1, PlayerColor.Pink, StartSettings.playerTwo));
+                Players.Add(new Player(2, PlayerColor.Yellow, StartSettings.playerThree));
             }
             if (opponents == 3)
             {
-                Players.Add(new Player(1, PlayerColor.Red));
-                Players.Add(new Player(2, PlayerColor.Pink));
-                Players.Add(new Player(3, PlayerColor.Yellow));
+                Players.Add(new Player(1, PlayerColor.Red, StartSettings.playerTwo));
+                Players.Add(new Player(2, PlayerColor.Pink, StartSettings.playerThree));
+                Players.Add(new Player(3, PlayerColor.Yellow, StartSettings.playerFour));
             }
             if (opponents == 5)
             {
-                Players.Add(new Player(1, PlayerColor.Red));
-                Players.Add(new Player(2, PlayerColor.Pink));
-                Players.Add(new Player(3, PlayerColor.Purple));
-                Players.Add(new Player(4, PlayerColor.Yellow));
-                Players.Add(new Player(5, PlayerColor.Green));
+                Players.Add(new Player(1, PlayerColor.Red, StartSettings.playerTwo));
+                Players.Add(new Player(2, PlayerColor.Pink, StartSettings.playerThree));
+                Players.Add(new Player(3, PlayerColor.Purple, StartSettings.playerFour));
+                Players.Add(new Player(4, PlayerColor.Yellow, StartSettings.playerFive));
+                Players.Add(new Player(5, PlayerColor.Green, StartSettings.playerSix));
             }
             Board = new GameBoard(Nodes, Players);
             CurrentPlayer = Players.First();

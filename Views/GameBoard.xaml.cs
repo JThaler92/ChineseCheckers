@@ -51,6 +51,7 @@ namespace ChineseCheckers
         CanvasBitmap MarbleImgPurple;
         CanvasBitmap MarbleImgYellow;
         CanvasBitmap Marker;
+
      
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
@@ -60,7 +61,7 @@ namespace ChineseCheckers
             InitializeComponent();
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
-            GameSession = new Session(nodes, 5);
+            GameSession = new Session(nodes, StartSettings.players);
             //MoveMarble = new Moving(25);
         }
 
@@ -168,6 +169,11 @@ namespace ChineseCheckers
             {
                 Moving.GraphicMovment(GameSession.Board.Marbles);
             }
+        }
+
+        private void MainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainMenu));
         }
     }
 }
