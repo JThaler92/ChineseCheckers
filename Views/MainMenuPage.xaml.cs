@@ -3,10 +3,12 @@ using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
+using System.Drawing;
 using System.Threading.Tasks;
 using Windows.Media.Playback;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -60,6 +62,9 @@ namespace ChineseCheckers
             }
         }
 
+        /// <summary>
+        /// Open or close the rules window depending on current status
+        /// </summary>
         public void ShowRules()
         {
             if (RulesWindow.Visibility != Visibility.Visible)
@@ -76,6 +81,9 @@ namespace ChineseCheckers
             }
         }
 
+        /// <summary>
+        /// Open or close the play window depending on current status
+        /// </summary>
         public void ShowPlay() 
         {
             PlayWindow.Text = "\t\t\tChoose amount of players:";
@@ -116,6 +124,9 @@ namespace ChineseCheckers
             RulesWindow.Text = Rule.RuleText;
         }
 
+        /// <summary>
+        /// Saves the name and player input
+        /// </summary>
         public void SetNames()
         {
             StartSettings.players = players - 1;
@@ -128,6 +139,9 @@ namespace ChineseCheckers
             StartSettings.playerSix = PlayerSixName.Text;
         }
 
+        /// <summary>
+        /// Change all Textboxed to collapsed
+        /// </summary>
         private void HideAllNames()
         {
             PlayerOneName.Visibility = Visibility.Collapsed;
@@ -136,6 +150,19 @@ namespace ChineseCheckers
             PlayerFourName.Visibility = Visibility.Collapsed;
             PlayerFiveName.Visibility = Visibility.Collapsed;
             PlayerSixName.Visibility = Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Change all frog images to collapsed
+        /// </summary>
+        private void HideAllImages() 
+        {
+            PlayerOneImage.Visibility = Visibility.Collapsed;
+            PlayerTwoImage.Visibility = Visibility.Collapsed;
+            PlayerThreeImage.Visibility = Visibility.Collapsed;
+            PlayerFourImage.Visibility = Visibility.Collapsed;
+            PlayerFiveImage.Visibility = Visibility.Collapsed;
+            PlayerSixImage.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -185,6 +212,7 @@ namespace ChineseCheckers
             ShowPlay();
             ReverseButtons();
             HideAllNames();
+            HideAllImages();
         }
 
         /// <summary>
@@ -223,6 +251,14 @@ namespace ChineseCheckers
             players = 2;
 
             HideAllNames();
+            HideAllImages();
+
+            PlayerOneImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/blagrod.png"));
+            PlayerTwoImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/lilagrod.png"));
+
+            PlayerOneImage.Visibility = Visibility.Visible;
+            PlayerTwoImage.Visibility = Visibility.Visible;
+
             PlayerOneName.Visibility = Visibility.Visible;
             PlayerTwoName.Visibility = Visibility.Visible;
         }
@@ -237,6 +273,16 @@ namespace ChineseCheckers
             players = 3;
 
             HideAllNames();
+            HideAllImages();
+
+            PlayerOneImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/blagrod.png"));
+            PlayerTwoImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/rosagrod.png"));
+            PlayerThreeImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/gulgrod.png"));
+
+            PlayerOneImage.Visibility = Visibility.Visible;
+            PlayerTwoImage.Visibility = Visibility.Visible;
+            PlayerThreeImage.Visibility = Visibility.Visible;
+
             PlayerOneName.Visibility = Visibility.Visible;
             PlayerTwoName.Visibility = Visibility.Visible;
             PlayerThreeName.Visibility = Visibility.Visible;
@@ -252,6 +298,18 @@ namespace ChineseCheckers
             players = 4;
 
             HideAllNames();
+            HideAllImages();
+
+            PlayerOneImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/grongrod.png"));
+            PlayerTwoImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/rodgrod.png"));
+            PlayerThreeImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/rosagrod.png"));
+            PlayerFourImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/gulgrod.png"));
+
+            PlayerOneImage.Visibility = Visibility.Visible;
+            PlayerTwoImage.Visibility = Visibility.Visible;
+            PlayerThreeImage.Visibility = Visibility.Visible;
+            PlayerFourImage.Visibility = Visibility.Visible;
+
             PlayerOneName.Visibility = Visibility.Visible;
             PlayerTwoName.Visibility = Visibility.Visible;
             PlayerThreeName.Visibility = Visibility.Visible;
@@ -268,6 +326,22 @@ namespace ChineseCheckers
             players = 6;
 
             HideAllNames();
+            HideAllImages();
+
+            PlayerOneImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/blagrod.png"));
+            PlayerTwoImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/rodgrod.png"));
+            PlayerThreeImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/rosagrod.png"));
+            PlayerFourImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/lilagrod.png"));
+            PlayerFiveImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/gulgrod.png"));
+            PlayerSixImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/Frogs/grongrod.png"));
+
+            PlayerOneImage.Visibility = Visibility.Visible;
+            PlayerTwoImage.Visibility = Visibility.Visible;
+            PlayerThreeImage.Visibility = Visibility.Visible;
+            PlayerFourImage.Visibility = Visibility.Visible;
+            PlayerFiveImage.Visibility = Visibility.Visible;
+            PlayerSixImage.Visibility = Visibility.Visible;
+
             PlayerOneName.Visibility = Visibility.Visible;
             PlayerTwoName.Visibility = Visibility.Visible;
             PlayerThreeName.Visibility = Visibility.Visible;
