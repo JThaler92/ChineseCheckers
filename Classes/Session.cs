@@ -8,11 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Media.Playback;
 
 namespace ChineseCheckers.Classes
 {
     public class Session
     {
+        MediaPlayer WinSound;
+        
+
         //public Moving moving { get; set; }
         public Dictionary<PlayerColor, PlayerColor> GoalTarget { get; set; }
         public GameBoard Board { get; set; }
@@ -113,6 +117,8 @@ namespace ChineseCheckers.Classes
                 Debug.WriteLine(P.Score);
                 if (P.Score == 10)
                 {
+                    WinSound = new MediaPlayer();
+                    Sound.PlaySound(WinSound, "WinBell.mp3", 0.05f, false);
                     //TODO: BREAK GAME;
                     Debug.WriteLine(P.ColorId + " WINS");
                 }
