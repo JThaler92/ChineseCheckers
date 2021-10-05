@@ -9,6 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+
     <Border>
         <Border.Background>
             <ImageBrush ImageSource="ms-appx:///Assets/Images/swamp.jpg" Stretch="UniformToFill"/>
@@ -19,29 +20,84 @@
                     <Image Source="ms-appx:///Assets/Images/frog-logo.png" Margin="0,0,0,60"/>
                     <Button x:Name="Button_Play" Content="Play" Margin="0,25,0,25" Height="80" Width="300" HorizontalAlignment="Center" FontSize="40" FontFamily="Algerian" FontWeight="Black" CornerRadius="10" Click="Button_Play_Click" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="7"/>
                     <Button x:Name="Button_Rules" Content="Rules" Margin="0,25,0,25" HorizontalAlignment="Center" Height="80" Width="300" FontFamily="Algerian" FontSize="40" FontWeight="Bold" CornerRadius="10" Click="Button_Rules_Click" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="4"/>
-                    <Button x:Name="Button_Quit" Content="Quit" Margin="0,25,0,25" HorizontalAlignment="Center" Height="80" Width="300" FontFamily="Algerian" FontSize="40" FontWeight="Bold" CornerRadius="10" Click="Button_Quit_Click" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="4"/>
+                    <Button x:Name="Button_Quit" Content="Quit" Margin="0,25,0,25" HorizontalAlignment="Center" Height="80" Width="300" FontFamily="Algerian" FontSize="40" FontWeight="Bold" CornerRadius="10" Click="Button_Quit_Click" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="4"/>   
                 </StackPanel>
                 
                 <TextBox x:Name="RulesWindow" HorizontalAlignment="Center" Margin="100,100,100,100" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Height="1186" Width="2070" Visibility="Collapsed" IsReadOnly="True" Opacity="0.90" Background="BurlyWood" BorderBrush="Black" BorderThickness="5" FontSize="40" Padding="80,100,50,100" AllowFocusOnInteraction="False" />
                 <Button x:Name="RulesWindowClose" Content="X" Margin="2090,120,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.292,0.572" FontWeight="Bold" FontSize="30" Height="60" Width="60" Visibility="Collapsed" Click="RulesWindowClose_Click"/>
                 <Image x:Name="RulesPicture" Source="ms-appx:///Assets/Images/GameRules.png" Width="500" Height="500" Margin="1400,-100,0,0" Visibility="Collapsed"></Image>
 
-                <TextBox x:Name="PlayWindow" HorizontalAlignment="Center" Margin="100,100,100,100" Text="Test" TextWrapping="Wrap" VerticalAlignment="Top" Height="1186" Width="1070" Visibility="Collapsed" IsReadOnly="True" Opacity="0.9" Background="BurlyWood" BorderBrush="Black" BorderThickness="5" FontSize="50" FontWeight="Bold" Padding="80,100,50,100" AllowFocusOnInteraction="False"/>
-                <Button x:Name="PlayWindowClose" Content="X" Margin="1090,120,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.292,0.572" FontWeight="Bold" FontSize="30" Height="60" Width="60" Visibility="Collapsed" Click="PlayWindowClose_Click"/>
+                <TextBox x:Name="PlayWindow" HorizontalAlignment="Center" Margin="100,100,100,100" Text="Test" TextWrapping="Wrap" VerticalAlignment="Top" Height="1186" Width="1070" Visibility="Collapsed" IsReadOnly="True" Opacity="0.9" Background="BurlyWood" BorderBrush="Black" BorderThickness="5" CornerRadius="100" FontSize="50" FontWeight="Bold" Padding="80,75,50,100" AllowFocusOnInteraction="False"/>
+                <Button x:Name="PlayWindowClose" Content="X" Margin="1060,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.292,0.572" FontWeight="Bold" FontSize="30" Height="60" Width="60" Visibility="Collapsed" Click="PlayWindowClose_Click" CornerRadius="50"/>
 
-                
-                <Button x:Name="TwoPlayers" Content="Two Players"  Margin="180,325,0,0" VerticalAlignment="Top" Width="180" Height="65" FontSize="25" FontWeight="SemiBold" Click="TwoPlayers_Click" Visibility="Collapsed"/>
-                <Button x:Name="ThreePlayers" Content="Three Players" Margin="430,325,0,0" VerticalAlignment="Top" Width="180" Height="65" FontSize="25" FontWeight="SemiBold" Click="ThreePlayers_Click" Visibility="Collapsed"/>
-                <Button x:Name="FourPlayers" Content="Four Players" Margin="670,325,0,0" VerticalAlignment="Top" Width="180" Height="65" FontSize="25" FontWeight="SemiBold" Click="FourPlayers_Click" Visibility="Collapsed"/>
-                <Button x:Name="SixPlayers" Content="Six Players" Margin="920,325,0,0" VerticalAlignment="Top" Width="180" Height="65" FontSize="25" FontWeight="SemiBold" Click="SixPlayers_Click" Visibility="Collapsed"/>
-                
-                
-                <TextBox x:Name="PlayerOneName" HorizontalAlignment="Left" Margin="175,450,0,0" Text="Player One" Header="Player One:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="350" Height="85" FontSize="25" MaxLength="16" GettingFocus="PlayerOneName_GettingFocus" LosingFocus="PlayerOneName_LosingFocus" Visibility="Collapsed"/>
-                <TextBox x:Name="PlayerTwoName" HorizontalAlignment="Left" Margin="175,550,0,0" Text="Player Two" Header="Player Two:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="350" Height="85" FontSize="25" MaxLength="16" GettingFocus="PlayerTwoName_GettingFocus" LosingFocus="PlayerTwoName_LosingFocus" Visibility="Collapsed"/>
-                <TextBox x:Name="PlayerThreeName" HorizontalAlignment="Left" Margin="175,650,0,0" Text="Player Three" Header="Player Three:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="350" Height="85" FontSize="25" MaxLength="16" GettingFocus="PlayerThreeName_GettingFocus" LosingFocus="PlayerThreeName_LosingFocus" Visibility="Collapsed"/>
-                <TextBox x:Name="PlayerFourName" HorizontalAlignment="Left" Margin="175,750,0,0" Text="Player Four" Header="Player Four:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="350" Height="85" FontSize="25" MaxLength="16" GettingFocus="PlayerFourName_GettingFocus" LosingFocus="PlayerFourName_LosingFocus" Visibility="Collapsed"/>
-                <TextBox x:Name="PlayerFiveName" HorizontalAlignment="Left" Margin="175,850,0,0" Text="Player Five" Header="Player Five:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="350" Height="85" FontSize="25" MaxLength="16" GettingFocus="PlayerFiveName_GettingFocus" LosingFocus="PlayerFiveName_LosingFocus" Visibility="Collapsed"/>
-                <TextBox x:Name="PlayerSixName" HorizontalAlignment="Left" Margin="175,950,0,0" Text="Player Six" Header="Player Six:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="350" Height="85" FontSize="25" MaxLength="16" GettingFocus="PlayerSixName_GettingFocus" LosingFocus="PlayerSixName_LosingFocus" Visibility="Collapsed"/>
+                <!-- Buttons to choose amount of players -->
+                <Button x:Name="TwoPlayers" Content="Two Players"  Margin="160,325,0,0" VerticalAlignment="Top" Width="220" Height="90" FontSize="30" FontWeight="SemiBold" Click="TwoPlayers_Click" Visibility="Collapsed" CornerRadius="10" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="7"/>
+                <Button x:Name="ThreePlayers" Content="Three Players" Margin="410,325,0,0" VerticalAlignment="Top" Width="220" Height="90" FontSize="30" FontWeight="SemiBold" Click="ThreePlayers_Click" Visibility="Collapsed" CornerRadius="10" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="7"/>
+                <Button x:Name="FourPlayers" Content="Four Players" Margin="650,325,0,0" VerticalAlignment="Top" Width="220" Height="90" FontSize="30" FontWeight="SemiBold" Click="FourPlayers_Click" Visibility="Collapsed" CornerRadius="10" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="7"/>
+                <Button x:Name="SixPlayers" Content="Six Players" Margin="900,325,0,0" VerticalAlignment="Top" Width="220" Height="90" FontSize="30" FontWeight="SemiBold" Click="SixPlayers_Click" Visibility="Collapsed" CornerRadius="10" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="7"/>
+
+                <!-- Texboxes with images to write player names-->
+                <TextBox x:Name="PlayerOneName" HorizontalAlignment="Left" Margin="350,440,0,0" Text="Player One" Header="Player One:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="390" Height="100" FontSize="30" MaxLength="16" GettingFocus="PlayerOneName_GettingFocus" LosingFocus="PlayerOneName_LosingFocus" Visibility="Collapsed" CornerRadius="20" Opacity ="0.7">
+                    <TextBox.Resources>
+                        <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Black" Opacity="0.2"/>
+                        <SolidColorBrush x:Key="TextControlForegroundFocused" Color="Black"/>
+                        <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="Black" Opacity="0.2"/>
+                    </TextBox.Resources>
+                </TextBox>
+                <Image x:Name="PlayerOneImage" Source="ms-appx:///Assets/Images/Frogs/blagrod.png" Margin="0,0,700,400" Width="75" Height="75" Visibility="Collapsed"/>
+
+                <!--            ////////// Placeholder for future AI checkbox /////////////////////
+                <CheckBox x:Name="IsAIOne" Content="AI" Margin="900,0,0,395" FontSize="17" FontWeight="SemiBold" >
+                    <CheckBox.RenderTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2"/>
+                    </CheckBox.RenderTransform>
+                </CheckBox>
+                -->
+
+                <TextBox x:Name="PlayerTwoName" HorizontalAlignment="Left" Margin="350,550,0,0" Text="Player Two" Header="Player Two:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="390" Height="100" FontSize="30" MaxLength="16" GettingFocus="PlayerTwoName_GettingFocus" LosingFocus="PlayerTwoName_LosingFocus" Visibility="Collapsed" CornerRadius="20" Opacity ="0.7">
+                    <TextBox.Resources>
+                        <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Black" Opacity="0.2"/>
+                        <SolidColorBrush x:Key="TextControlForegroundFocused" Color="Black"/>
+                        <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="Black" Opacity="0.2"/>
+                    </TextBox.Resources>
+                </TextBox>
+                <Image x:Name="PlayerTwoImage" Margin="0,0,700,180" Width="75" Height="75" Visibility="Collapsed"/>
+
+                <TextBox x:Name="PlayerThreeName" HorizontalAlignment="Left" Margin="350,660,0,0" Text="Player Three" Header="Player Three:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="390" Height="100" FontSize="30" MaxLength="16" GettingFocus="PlayerThreeName_GettingFocus" LosingFocus="PlayerThreeName_LosingFocus" Visibility="Collapsed" CornerRadius="20" Opacity ="0.7">
+                    <TextBox.Resources>
+                        <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Black" Opacity="0.2"/>
+                        <SolidColorBrush x:Key="TextControlForegroundFocused" Color="Black"/>
+                        <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="Black" Opacity="0.2"/>
+                    </TextBox.Resources>
+                </TextBox>
+                <Image x:Name="PlayerThreeImage" Margin="0,0,700,-40" Width="75" Height="75" Visibility="Collapsed"/>
+
+                <TextBox x:Name="PlayerFourName" HorizontalAlignment="Left" Margin="350,770,0,0" Text="Player Four" Header="Player Four:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="390" Height="100" FontSize="30" MaxLength="16" GettingFocus="PlayerFourName_GettingFocus" LosingFocus="PlayerFourName_LosingFocus" Visibility="Collapsed" CornerRadius="20" Opacity ="0.7">
+                    <TextBox.Resources>
+                        <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Black" Opacity="0.2"/>
+                        <SolidColorBrush x:Key="TextControlForegroundFocused" Color="Black"/>
+                        <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="Black" Opacity="0.2"/>
+                    </TextBox.Resources>
+                </TextBox>
+                <Image x:Name="PlayerFourImage" Margin="0,0,700,-260" Width="75" Height="75" Visibility="Collapsed"/>
+
+                <TextBox x:Name="PlayerFiveName" HorizontalAlignment="Left" Margin="350,880,0,0" Text="Player Five" Header="Player Five:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="390" Height="100" FontSize="30" MaxLength="16" GettingFocus="PlayerFiveName_GettingFocus" LosingFocus="PlayerFiveName_LosingFocus" Visibility="Collapsed" CornerRadius="20" Opacity ="0.7">
+                    <TextBox.Resources>
+                        <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Black" Opacity="0.2"/>
+                        <SolidColorBrush x:Key="TextControlForegroundFocused" Color="Black"/>
+                        <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="Black" Opacity="0.2"/>
+                    </TextBox.Resources>
+                </TextBox>
+                <Image x:Name="PlayerFiveImage" Margin="0,0,700,-480" Width="75" Height="75" Visibility="Collapsed"/>
+
+                <TextBox x:Name="PlayerSixName" HorizontalAlignment="Left" Margin="350,990,0,0" Text="Player Six" Header="Player Six:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="390" Height="100" FontSize="30" MaxLength="16" GettingFocus="PlayerSixName_GettingFocus" LosingFocus="PlayerSixName_LosingFocus" Visibility="Collapsed" CornerRadius="20" Opacity ="0.7">
+                    <TextBox.Resources>
+                        <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Black" Opacity="0.2"/>
+                        <SolidColorBrush x:Key="TextControlForegroundFocused" Color="Black"/>
+                        <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="Black" Opacity="0.2"/>
+                    </TextBox.Resources>
+                </TextBox>
+                <Image x:Name="PlayerSixImage" Margin="0,0,700,-700" Width="75" Height="75" Visibility="Collapsed"/>
 
                 <Button x:Name="StartGame" Content="Start Game" Margin="0,1150,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="300" Height="65" FontSize="40" FontFamily="Algerian" FontWeight="Black" CornerRadius="10" Visibility="Collapsed" Click="StartGame_Click" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="7"/>
 
