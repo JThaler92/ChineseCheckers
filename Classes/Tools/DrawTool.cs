@@ -109,17 +109,17 @@ namespace ChineseCheckers.Classes.Tools
 
         }
 
-        public static void DrawWinnerText(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        public static void DrawWinnerText(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, float x, float y)
         {            
             CanvasTextFormat textFormat = new CanvasTextFormat()
             {
-                FontSize = 72,
+                FontSize = 56,
                 FontWeight = FontWeights.Bold,
                 HorizontalAlignment = CanvasHorizontalAlignment.Center,
                 VerticalAlignment = CanvasVerticalAlignment.Center,                                      
             };
             
-            args.DrawingSession.DrawText("PLAYER 1 WINS!", (int)Scaler.Xpos(Scaler.DesignWidth / 2), Scaler.Ypos(Scaler.DesignHeight / 2 - textFormat.FontSize), Colors.AliceBlue, textFormat);
+            args.DrawingSession.DrawText("PLAYER 1 WINS!", (int)Scaler.Xpos(Scaler.DesignWidth / 2 + x), Scaler.Ypos(Scaler.DesignHeight / 2 + y - textFormat.FontSize), Colors.AliceBlue, textFormat);
         }
 
     }
