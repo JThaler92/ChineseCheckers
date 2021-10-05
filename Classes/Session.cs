@@ -18,6 +18,8 @@ namespace ChineseCheckers.Classes
         public GameBoard Board { get; set; }
         public List<Player> Players { get; set; }
         public Player CurrentPlayer { get; set; }
+        public bool HasWinner { get; set; }
+
         public Session(List<Node> Nodes, int opponents)
         {
             //moving = new Moving(25);
@@ -70,6 +72,7 @@ namespace ChineseCheckers.Classes
                 Players.Add(new Player(5, PlayerColor.Green, StartSettings.playerSix));
             }
             Board = new GameBoard(Nodes, Players);
+            HasWinner = false;
             CurrentPlayer = Players.First();
         }
 
@@ -111,9 +114,10 @@ namespace ChineseCheckers.Classes
             foreach (var P in Players)
             {
                 Debug.WriteLine(P.Score);
-                if (P.Score == 10)
+                if (P.Score == 1)
                 {
                     //TODO: BREAK GAME;
+                    HasWinner = true;
                     Debug.WriteLine(P.ColorId + " WINS");
                 }
             }

@@ -72,18 +72,25 @@ namespace ChineseCheckers
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            StarBackground.CreateStar(canvas, args);
-            DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
-            DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
-            DrawTool.DrawPlayersTurn(sender, args, GameSession);
-            DrawTool.DrawScore(sender, args, GameSession);
-            
-            if (currentlySelected != null)
+            if (GameSession.HasWinner)
             {
-                var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
+                DrawTool.DrawWinnerText(sender, args);
+            }
+            else
+            {
+                StarBackground.CreateStar(canvas, args);
+                DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
+                DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
+                DrawTool.DrawPlayersTurn(sender, args, GameSession);
+                DrawTool.DrawScore(sender, args, GameSession);
 
-                DrawTool.DrawAvailableMoves(sender, args, availableMoves, Marker);
-            }      
+                if (currentlySelected != null)
+                {
+                    var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
+
+                    DrawTool.DrawAvailableMoves(sender, args, availableMoves, Marker);
+                }
+            }
         }
 
         private void canvas_CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
@@ -126,7 +133,6 @@ namespace ChineseCheckers
                 if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY && Moving.move == false)
                 {          
                     if (currentlySelected != null && N.MarbleID == null)
-
                     {             
                         var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
                         if (possibleJumps.Contains(N))

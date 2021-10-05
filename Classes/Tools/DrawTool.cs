@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using ChineseCheckers.Enums;
 using ChineseCheckers.Classes;
 using Windows.UI;
+using Microsoft.Graphics.Canvas.Text;
+using Windows.UI.Text;
 
 namespace ChineseCheckers.Classes.Tools
 {
@@ -106,5 +108,19 @@ namespace ChineseCheckers.Classes.Tools
             }
 
         }
+
+        public static void DrawWinnerText(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {            
+            CanvasTextFormat textFormat = new CanvasTextFormat()
+            {
+                FontSize = 72,
+                FontWeight = FontWeights.Bold,
+                HorizontalAlignment = CanvasHorizontalAlignment.Center,
+                VerticalAlignment = CanvasVerticalAlignment.Center,                                      
+            };
+            
+            args.DrawingSession.DrawText("PLAYER 1 WINS!", (int)Scaler.Xpos(Scaler.DesignWidth / 2), Scaler.Ypos(Scaler.DesignHeight / 2 - textFormat.FontSize), Colors.AliceBlue, textFormat);
+        }
+
     }
 }
