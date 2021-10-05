@@ -15,6 +15,8 @@ namespace ChineseCheckers.Classes
         public List<Marble> Marbles { get; private set; }
         public Point Pointer { get; set; }
 
+        public string GameWinner;
+
         public GameBoard(List<Node> nodes, List<Player> players)
         {
             Nodes = nodes;

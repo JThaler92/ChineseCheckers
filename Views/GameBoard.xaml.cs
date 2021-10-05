@@ -61,6 +61,7 @@ namespace ChineseCheckers
         }
         Direction dirX = Direction.Right;
         Direction dirY = Direction.Up;
+        public string winnerName = "";
         float winnerX = 0;
         float winnerY = 0;
 
@@ -81,24 +82,25 @@ namespace ChineseCheckers
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            //if (GameSession.HasWinner)
-            //{
-            DrawTool.DrawWinnerText(sender, args, winnerX, winnerY);            
-            //else
-            //{
-            //    StarBackground.CreateStar(canvas, args);
-            //    DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
-            //    DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
-            //    DrawTool.DrawPlayersTurn(sender, args, GameSession);
-            //    DrawTool.DrawScore(sender, args, GameSession);
+            if (GameSession.HasWinner)
+            {
+                DrawTool.DrawWinnerText(sender, args, GameSession.Board, winnerX, winnerY);
+            }
+            else
+            {
+                StarBackground.CreateStar(canvas, args);
+                DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
+                DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
+                DrawTool.DrawPlayersTurn(sender, args, GameSession);
+                DrawTool.DrawScore(sender, args, GameSession);
+                if (currentlySelected != null)
+                {
+                    var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
 
-            //    if (currentlySelected != null)
-            //    {
-            //        var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
+                    DrawTool.DrawAvailableMoves(sender, args, availableMoves, Marker);
+                }
 
-            //        DrawTool.DrawAvailableMoves(sender, args, availableMoves, Marker);
-            //    }
-            //}
+            }
         }
 
         private void canvas_CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
@@ -125,8 +127,7 @@ namespace ChineseCheckers
         }
 
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
-        {
-            
+        {                       
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
             {
@@ -185,8 +186,10 @@ namespace ChineseCheckers
                 Moving.GraphicMovment(GameSession.Board.Marbles);
             }
 
-            MoveWinnerText();
-
+            if (GameSession.HasWinner)
+            {
+                MoveWinnerText();
+            }           
         }
 
         private void MoveWinnerText()

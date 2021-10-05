@@ -118,6 +118,7 @@ namespace ChineseCheckers.Classes
                 {
                     //TODO: BREAK GAME;
                     HasWinner = true;
+                    Board.GameWinner = P.Name;
                     Debug.WriteLine(P.ColorId + " WINS");
                 }
             }

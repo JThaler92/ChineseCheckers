@@ -109,7 +109,7 @@ namespace ChineseCheckers.Classes.Tools
 
         }
 
-        public static void DrawWinnerText(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, float x, float y)
+        public static void DrawWinnerText(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, GameBoard board, float x, float y)
         {            
             CanvasTextFormat textFormat = new CanvasTextFormat()
             {
@@ -118,8 +118,8 @@ namespace ChineseCheckers.Classes.Tools
                 HorizontalAlignment = CanvasHorizontalAlignment.Center,
                 VerticalAlignment = CanvasVerticalAlignment.Center,                                      
             };
-            
-            args.DrawingSession.DrawText("PLAYER 1 WINS!", (int)Scaler.Xpos(Scaler.DesignWidth / 2 + x), Scaler.Ypos(Scaler.DesignHeight / 2 + y - textFormat.FontSize), Colors.AliceBlue, textFormat);
+                        
+            args.DrawingSession.DrawText($"{board.GameWinner} WINS!", (int)Scaler.Xpos(Scaler.DesignWidth / 2 + x), Scaler.Ypos(Scaler.DesignHeight / 2 + y - textFormat.FontSize), Colors.AliceBlue, textFormat);
         }
 
     }
