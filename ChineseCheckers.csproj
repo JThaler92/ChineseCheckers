@@ -177,6 +177,7 @@
     <Content Include="Assets\Images\blabla.jpg" />
     <Content Include="Assets\Images\swamp.jpg" />
     <Content Include="Assets\Images\Leafs\yellow.png" />
+    <Content Include="Assets\Images\waterDark.jpg" />
     <Content Include="Assets\Sound\ErrorFrog.mp3" />
     <Content Include="Assets\Sound\frog.mp3" />
     <Content Include="Assets\Sound\icecube.mp3" />
