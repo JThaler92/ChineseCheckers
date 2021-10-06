@@ -15,8 +15,19 @@
             <ColumnDefinition Width="4,5*"/>
         </Grid.ColumnDefinitions>-->
         <Grid Grid.Column="1">
-            <canvas:CanvasAnimatedControl x:Name="canvas" Draw="canvas_Draw" CreateResources="canvas_CreateResources" PointerPressed="canvas_Click" Update="canvas_Update"/>
+            <Polygon x:Name="Star" Stroke="DarkGreen" StrokeThickness="4" Grid.RowSpan="2" >
+                <Polygon.Fill>
+                    <ImageBrush>
+                        <ImageBrush.ImageSource>
+                            <BitmapImage x:Name="StarBG" UriSource="ms-appx:///Assets/Images/waterDark.jpg">
+                            </BitmapImage>
+                        </ImageBrush.ImageSource>
+                    </ImageBrush>
+                </Polygon.Fill>
+            </Polygon>
             <Button x:Name="MainMenu" Content="Main Menu" Margin="700,500,0,0" HorizontalAlignment="Center" Height="60" Width="250" FontFamily="Algerian" FontSize="40" FontWeight="Bold" CornerRadius="10" Click="MainMenu_Click" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="4" />
+            <canvas:CanvasAnimatedControl x:Name="canvas" Draw="canvas_Draw" CreateResources="canvas_CreateResources" PointerPressed="canvas_Click" Update="canvas_Update"/>
+            
 
         </Grid>
     </Grid>

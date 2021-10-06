@@ -9,7 +9,13 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
+using Windows.Graphics.Display;
 using Windows.UI;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace ChineseCheckers.Classes
 {
@@ -45,9 +51,10 @@ namespace ChineseCheckers.Classes
                 int x = (int)Scaler.Xpos((float)(b.X + 12) * Scaler.ScalingValue + (b.Y * (Scaler.ScalingValue / 2)));
                 int y = (int)Scaler.Ypos((float)(b.Y + 6) * Scaler.ScalingValue);
 
-                int testx = (int)Scaler.Xpos((float)(xMovement) * Scaler.ScalingValue + ((Scaler.ScalingValue / 2)));
+                int paddingX = (int)Scaler.Xpos((float)(xMovement) * Scaler.ScalingValue + ((Scaler.ScalingValue / 2)));
+                int paddingY = (int)Scaler.Ypos((float)(yMovement) * Scaler.ScalingValue);
 
-                targetPoints[arrayCount] = new Vector2(testx + x, y);
+                targetPoints[arrayCount] = new Vector2(paddingX + x, paddingY + y);
                 arrayCount += 1;
             }
 
@@ -56,11 +63,21 @@ namespace ChineseCheckers.Classes
             return targetPoints;
         }
 
-        public void CreateStar(ICanvasResourceCreator window, CanvasAnimatedDrawEventArgs args)
+        public void CreateStar(Windows.UI.Xaml.Shapes.Polygon star) 
         {
-            var test = CanvasGeometry.CreatePolygon(window, SetTargetPoints().ToArray());
-            args.DrawingSession.FillGeometry(test, Colors.LightBlue);
-            args.DrawingSession.DrawGeometry(test, Colors.DarkGreen);
+            PointCollection polyPoints = new PointCollection();
+            Vector2[] test1 = SetTargetPoints();
+            Point P = new Point();
+
+            foreach (var item in test1)
+            {   
+                P.X = (int)item.X;
+                P.Y = (int)item.Y;
+
+                polyPoints.Add(P);
+            }
+
+            star.Points = polyPoints;
         }
     }
 }

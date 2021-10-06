@@ -52,7 +52,7 @@ namespace ChineseCheckers
         CanvasBitmap MarbleImgYellow;
         CanvasBitmap Marker;
 
-     
+
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
         public GameBoard()
@@ -63,16 +63,17 @@ namespace ChineseCheckers
             Window.Current.SizeChanged += Current_SizeChanged;
             GameSession = new Session(nodes, StartSettings.players);
             //MoveMarble = new Moving(25);
+            StarBackground.CreateStar(Star);
         }
 
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             Scaler.SetScale();
+            StarBackground.CreateStar(Star);
         }
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            StarBackground.CreateStar(canvas, args);
             DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
             DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
             DrawTool.DrawPlayersTurn(sender, args, GameSession);
