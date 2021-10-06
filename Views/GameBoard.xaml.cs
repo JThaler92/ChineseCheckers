@@ -52,9 +52,19 @@ namespace ChineseCheckers
         CanvasBitmap MarbleImgYellow;
         CanvasBitmap Marker;
 
-     
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
+     
+        enum Direction
+        {
+            Left, Right, Up, Down
+        }
+        Direction dirX = Direction.Right;
+        Direction dirY = Direction.Up;
+        public string winnerName = "";
+        float winnerX = 0;
+        float winnerY = 0;
+
         public GameBoard()
         {
             ClickSound = new MediaPlayer();
@@ -72,18 +82,25 @@ namespace ChineseCheckers
 
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            StarBackground.CreateStar(canvas, args);
-            DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
-            DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
-            DrawTool.DrawPlayersTurn(sender, args, GameSession);
-            DrawTool.DrawScore(sender, args, GameSession);
-            
-            if (currentlySelected != null)
+            if (GameSession.HasWinner)
             {
-                var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
+                DrawTool.DrawWinnerText(sender, args, GameSession.Board, winnerX, winnerY);
+            }
+            else
+            {
+                StarBackground.CreateStar(canvas, args);
+                DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
+                DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
+                DrawTool.DrawPlayersTurn(sender, args, GameSession);
+                DrawTool.DrawScore(sender, args, GameSession);
+                if (currentlySelected != null)
+                {
+                    var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
 
-                DrawTool.DrawAvailableMoves(sender, args, availableMoves, Marker);
-            }      
+                    DrawTool.DrawAvailableMoves(sender, args, availableMoves, Marker);
+                }
+
+            }
         }
 
         private void canvas_CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
@@ -110,7 +127,7 @@ namespace ChineseCheckers
         }
 
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
-        {           
+        {                       
             var currentpos = e.GetCurrentPoint(canvas).Position;
             foreach (var N in nodes)
             {
@@ -126,7 +143,6 @@ namespace ChineseCheckers
                 if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY && Moving.move == false)
                 {          
                     if (currentlySelected != null && N.MarbleID == null)
-
                     {             
                         var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
                         if (possibleJumps.Contains(N))
@@ -164,10 +180,56 @@ namespace ChineseCheckers
         }
 
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
-        {       
+        {
             if (Moving.move)
             {
                 Moving.GraphicMovment(GameSession.Board.Marbles);
+            }
+
+            if (GameSession.HasWinner)
+            {
+                MoveWinnerText();
+            }           
+        }
+
+        private void MoveWinnerText()
+        {
+            //Horizontal movement
+            if (winnerX <= -150)
+            {
+                dirX = Direction.Right;
+            }
+            if (winnerX >= 150)
+            {
+                dirX = Direction.Left;
+            }
+
+            if (dirX == Direction.Right)
+            {
+                winnerX += 2;
+            }
+            else if (dirX == Direction.Left)
+            {
+                winnerX -= 2;
+            }
+
+            //Vertical movement
+            if (winnerY <= -20)
+            {
+                dirY = Direction.Down;
+            }
+            if (winnerY >= 20)
+            {
+                dirY = Direction.Up;
+            }
+
+            if (dirY == Direction.Down)
+            {
+                winnerY += 2;
+            }
+            else if (dirY == Direction.Up)
+            {
+                winnerY -= 2;
             }
         }
 
