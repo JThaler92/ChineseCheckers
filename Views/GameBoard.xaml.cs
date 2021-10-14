@@ -94,7 +94,7 @@ namespace ChineseCheckers
                 DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
                 DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
                 DrawTool.DrawPlayersTurn(sender, args, GameSession);
-                DrawTool.DrawScore(sender, args, GameSession);
+                //DrawTool.DrawScore(sender, args, GameSession);
                 if (currentlySelected != null)
                 {
                     var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);

@@ -95,19 +95,19 @@ namespace ChineseCheckers.Classes.Tools
             string text = $"Player {gameSession.CurrentPlayer.Name}'s turn";
             args.DrawingSession.DrawText(text, (int)Scaler.Xpos(50), (int)Scaler.Ypos(25), Colors.AliceBlue);
         }
-        public static void DrawScore(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)
-        {
-            int y = 45;
-            foreach (var p in gameSession.Players)
-            {
+        //public static void DrawScore(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)
+        //{
+        //    int y = 45;
+        //    foreach (var p in gameSession.Players)
+        //    {
 
-                string text = $"{p.Name} : {p.Score}";
-                args.DrawingSession.DrawText(text, (int)Scaler.Xpos(Scaler.DesignWidth / 2), y, Colors.AliceBlue);
-                y += 20;
+        //        string text = $"{p.Name} : {p.Score}";
+        //        args.DrawingSession.DrawText(text, (int)Scaler.Xpos(Scaler.DesignWidth / 2), y, Colors.AliceBlue);
+        //        y += 20;
 
-            }
+        //    }
 
-        }
+        //}
 
         public static void DrawWinnerText(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, GameBoard board, float x, float y)
         {            

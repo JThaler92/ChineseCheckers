@@ -25,9 +25,13 @@
                     </ImageBrush>
                 </Polygon.Fill>
             </Polygon>
-            <Button x:Name="MainMenu" Content="Main Menu" Margin="700,500,0,0" HorizontalAlignment="Center" Height="60" Width="250" FontFamily="Algerian" FontSize="40" FontWeight="Bold" CornerRadius="10" Click="MainMenu_Click" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="4" />
+            <!--<Button x:Name="MainMenu" Content="Main Menu" Margin="700,500,0,0" HorizontalAlignment="Center" Height="60" Width="250" FontFamily="Algerian" FontSize="40" FontWeight="Bold" CornerRadius="10" Click="MainMenu_Click" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="4" />-->
             <canvas:CanvasAnimatedControl x:Name="canvas" Draw="canvas_Draw" CreateResources="canvas_CreateResources" PointerPressed="canvas_Click" Update="canvas_Update"/>
-            
+            <Viewbox>
+                <StackPanel Margin="1500,1000,100,100" Height="65" Width="265">
+                    <Button x:Name="MainMenu" Content="Main Menu" Height="63" Width="264" FontFamily="Algerian" FontSize="40" FontWeight="Bold" CornerRadius="10" Click="MainMenu_Click" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="4" />
+                </StackPanel>
+            </Viewbox>
 
         </Grid>
     </Grid>
