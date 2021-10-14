@@ -39,13 +39,25 @@ namespace ChineseCheckers.Classes
             }
         }
 
-
+        /// <summary>
+        /// Return legal jumps from current position.
+        /// </summary>
+        /// <param name="marble"></param>
+        /// <returns></returns>
         public List<Node> GetLegalJumps(Marble marble)
         {
             var availableMoves = FindLegalJumps(marble.Pointer);
             availableMoves.RemoveAt(0);
             return availableMoves;
         }
+
+        /// <summary>
+        /// Create a list with all jumps.
+        /// </summary>
+        /// <param name="pointer"></param>
+        /// <param name="availableMoves"></param>
+        /// <param name="alreadyMoved"></param>
+        /// <returns></returns>
         private List<Node> FindLegalJumps(Point pointer, List<Node> availableMoves = null, bool alreadyMoved = false)
         {
             List<(int, int)> legalMoves = new List<(int, int)>()
@@ -95,6 +107,12 @@ namespace ChineseCheckers.Classes
             }
             return availableMoves;
         }
+
+        /// <summary>
+        /// Changes to apply when marble is moved
+        /// </summary>
+        /// <param name="N">Node to jump to</param>
+        /// <param name="selectedMarble">Marble to move</param>
         public void MarbleMove(Node N, Marble selectedMarble)
         {
             this.Nodes.Find(Nod => selectedMarble.Id == Nod.MarbleID).MarbleID = null;

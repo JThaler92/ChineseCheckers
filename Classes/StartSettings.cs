@@ -16,6 +16,16 @@ namespace ChineseCheckers.Classes
         public static string playerFive { get; set; }
         public static string playerSix { get; set; }
 
+        /// <summary>
+        /// Set player names
+        /// </summary>
+        /// <param name="Players">amount of players</param>
+        /// <param name="PlayerOne"></param>
+        /// <param name="PlayerTwo"></param>
+        /// <param name="PlayerThree"></param>
+        /// <param name="PlayerFour"></param>
+        /// <param name="PlayerFive"></param>
+        /// <param name="PlayerSix"></param>
         public static void PlayerSettings(int Players, string PlayerOne, string PlayerTwo, string PlayerThree, string PlayerFour, string PlayerFive, string PlayerSix)
         {
             players = Players;
@@ -27,7 +37,4 @@ namespace ChineseCheckers.Classes
             playerSix = PlayerSix;
         }
     }
-
-
-
 }

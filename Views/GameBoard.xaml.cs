@@ -55,6 +55,9 @@ namespace ChineseCheckers
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
      
+        /// <summary>
+        /// Manage the player win text
+        /// </summary>
         enum Direction
         {
             Left, Right, Up, Down
@@ -65,6 +68,9 @@ namespace ChineseCheckers
         float winnerX = 0;
         float winnerY = 0;
 
+        /// <summary>
+        /// Initate GameBoard settings.
+        /// </summary>
         public GameBoard()
         {
             ClickSound = new MediaPlayer();
@@ -72,10 +78,14 @@ namespace ChineseCheckers
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
             GameSession = new Session(nodes, StartSettings.players);
-            //MoveMarble = new Moving(25);
             StarBackground.CreateStar(Star);
         }
 
+        /// <summary>
+        /// Change visual settings when window size is changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             Scaler.SetScale();
@@ -94,7 +104,6 @@ namespace ChineseCheckers
                 DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
                 DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
                 DrawTool.DrawPlayersTurn(sender, args, GameSession);
-                //DrawTool.DrawScore(sender, args, GameSession);
                 if (currentlySelected != null)
                 {
                     var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
@@ -150,12 +159,8 @@ namespace ChineseCheckers
                         if (possibleJumps.Contains(N))
                         {
                             GameSession.Board.MarbleMove(N, currentlySelected);
-                            //nodes.Find(Nod => currentlySelected.Id == Nod.MarbleID).MarbleID = null;
-                            //MoveMarble.SelectLocation(N);
-                            //N.MarbleID = currentlySelected.Id;
                             currentlySelected = null;                           
                             GameSession.Turn();
-                            //GameSession.WinCheck();
                         }
                         else
                         {
@@ -194,6 +199,9 @@ namespace ChineseCheckers
             }           
         }
 
+        /// <summary>
+        /// Change varibles to move winner text
+        /// </summary>
         private void MoveWinnerText()
         {
             //Horizontal movement

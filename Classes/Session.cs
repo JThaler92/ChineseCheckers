@@ -26,7 +26,6 @@ namespace ChineseCheckers.Classes
 
         public Session(List<Node> Nodes, int opponents)
         {
-            //moving = new Moving(25);
             GoalTarget = new Dictionary<PlayerColor, PlayerColor>()
             {
                 {PlayerColor.Blue, PlayerColor.Purple },
@@ -80,6 +79,9 @@ namespace ChineseCheckers.Classes
             CurrentPlayer = Players.First();
         }
 
+        /// <summary>
+        /// Change turn after move
+        /// </summary>
         public void Turn()
         {
             var nextPlayer = Players.FirstOrDefault(x => x.Id == CurrentPlayer.Id + 1);
@@ -99,6 +101,9 @@ namespace ChineseCheckers.Classes
             }
         }
 
+        /// <summary>
+        /// Checks if there is a winner, if so display winner name
+        /// </summary>
         public void WinCheck()
         {
             Debug.WriteLine("WINCHECK CALLED");
@@ -129,9 +134,12 @@ namespace ChineseCheckers.Classes
                 }
             }
         }
+
+        /// <summary>
+        /// Moves AI to random possible jump
+        /// </summary>
         private void MoveAI()
         {
-            //Thread.Sleep(1500);
             var marbles = Board.Marbles.Where(x => x.MarbleColor == this.CurrentPlayer.ColorId);
 
             Dictionary<Marble, List<Node>> legalNodes = new Dictionary<Marble, List<Node>>();
@@ -144,7 +152,6 @@ namespace ChineseCheckers.Classes
                     legalNodes.Add(M, moves);
                 }
             }
-            //Moving animation = new Moving(25);
             Random rnd = new Random();
             var randomMarble = legalNodes.ElementAt(rnd.Next(0, legalNodes.Count));
             var marble = randomMarble.Key;
