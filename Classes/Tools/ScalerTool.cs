@@ -17,12 +17,20 @@ namespace ChineseCheckers.Classes
         public static float DesignHeight = 1080;
         public static float scaleWidth, scaleHeight;
         public static int ScalingValue { get; } = 50;
+
+        /// <summary>
+        /// sets scale according to desígn dimensions
+        /// </summary>
         public static void SetScale()
         {
             scaleWidth = (float)(ApplicationView.GetForCurrentView().VisibleBounds.Width / DesignWidth);
             scaleHeight = (float)(ApplicationView.GetForCurrentView().VisibleBounds.Height / DesignHeight);
         }
 
+        /// <summary>
+        /// Get current scale on window
+        /// </summary>
+        /// <returns> list with scale values </returns>
         public static float[] GetScale()
         {
             float[] scaleVect = new float[2];
@@ -33,6 +41,11 @@ namespace ChineseCheckers.Classes
             return scaleVect;
         }
 
+        /// <summary>
+        /// Scale the pictures after current window size
+        /// </summary>
+        /// <param name="source">Picture to scale</param>
+        /// <returns>Scaled picture to fit window</returns>
         public static Transform2DEffect Img(CanvasBitmap source)
         {
             Transform2DEffect image;
@@ -41,6 +54,12 @@ namespace ChineseCheckers.Classes
             return image;
         }
 
+        /// <summary>
+        /// Rotate picture after jump to face jump direction
+        /// </summary>
+        /// <param name="source">Picture to rotate</param>
+        /// <param name="angleD">Direction and amount to turn</param>
+        /// <returns>Rotated image</returns>
         public static Transform2DEffect RotImg(CanvasBitmap source, int angleD)
         {
             Transform2DEffect image;
@@ -55,17 +74,23 @@ namespace ChineseCheckers.Classes
             return image;
         }
 
-
+        /// <summary>
+        /// Scales the X position according to window dimensions
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns>scaled X value</returns>
         public static float Xpos(float x)
         {
             return (float)(x * scaleWidth);
-
         }
+        /// <summary>
+        /// Scales the Y position according to window dimensions
+        /// </summary>
+        /// <param name="y"></param>
+        /// <returns>scaled Y value</returns>
         public static float Ypos(float y)
         {
             return (float)(y * scaleHeight);
-
         }
-
     }
 }

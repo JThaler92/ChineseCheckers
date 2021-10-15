@@ -16,17 +16,16 @@ namespace ChineseCheckers.Classes
     {
         MediaPlayer WinSound;
         
-
-        //public Moving moving { get; set; }
         public Dictionary<PlayerColor, PlayerColor> GoalTarget { get; set; }
         public GameBoard Board { get; set; }
         public List<Player> Players { get; set; }
         public Player CurrentPlayer { get; set; }
         public bool HasWinner { get; set; }
 
+        /// <param name="Nodes">List of the nodes for the board</param>
+        /// <param name="opponents">amount of opponents for the game session</param>
         public Session(List<Node> Nodes, int opponents)
         {
-            //moving = new Moving(25);
             GoalTarget = new Dictionary<PlayerColor, PlayerColor>()
             {
                 {PlayerColor.Blue, PlayerColor.Purple },
@@ -80,6 +79,9 @@ namespace ChineseCheckers.Classes
             CurrentPlayer = Players.First();
         }
 
+        /// <summary>
+        /// Change turn after move
+        /// </summary>
         public void Turn()
         {
             var nextPlayer = Players.FirstOrDefault(x => x.Id == CurrentPlayer.Id + 1);
@@ -99,6 +101,9 @@ namespace ChineseCheckers.Classes
             }
         }
 
+        /// <summary>
+        /// Checks if there is a winner, if so display winner name
+        /// </summary>
         public void WinCheck()
         {
             Debug.WriteLine("WINCHECK CALLED");
@@ -122,16 +127,18 @@ namespace ChineseCheckers.Classes
                 {
                     WinSound = new MediaPlayer();
                     Sound.PlaySound(WinSound, "WinBell.mp3", 0.05f, false);
-                    //TODO: BREAK GAME;
                     HasWinner = true;
                     Board.GameWinner = P.Name;
                     Debug.WriteLine(P.ColorId + " WINS");
                 }
             }
         }
+
+        /// <summary>
+        /// Moves AI to random possible jump
+        /// </summary>
         private void MoveAI()
         {
-            //Thread.Sleep(1500);
             var marbles = Board.Marbles.Where(x => x.MarbleColor == this.CurrentPlayer.ColorId);
 
             Dictionary<Marble, List<Node>> legalNodes = new Dictionary<Marble, List<Node>>();
@@ -144,7 +151,6 @@ namespace ChineseCheckers.Classes
                     legalNodes.Add(M, moves);
                 }
             }
-            //Moving animation = new Moving(25);
             Random rnd = new Random();
             var randomMarble = legalNodes.ElementAt(rnd.Next(0, legalNodes.Count));
             var marble = randomMarble.Key;

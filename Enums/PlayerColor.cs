@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChineseCheckers.Enums
 {
+    /// <summary>
+    /// colors available for players
+    /// </summary>
     public enum PlayerColor
     {
         Green,

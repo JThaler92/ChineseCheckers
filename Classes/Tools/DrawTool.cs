@@ -15,13 +15,25 @@ namespace ChineseCheckers.Classes.Tools
 {
     class DrawTool
     {
-
+        /// <summary>
+        /// Draws the game board
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <param name="board">Current gameboard instance</param>
+        /// <param name="nodeCommon">Neutral picture</param>
+        /// <param name="nodeRed">Red home picture</param>
+        /// <param name="nodeGreen">Green home picture</param>
+        /// <param name="nodeBlue">Blue home picture</param>
+        /// <param name="nodePink">Pink home picture</param>
+        /// <param name="nodePurple">Purple home picture</param>
+        /// <param name="nodeYellow">Yellow home picture</param>
         public static void DrawBoard(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, GameBoard board, CanvasBitmap nodeCommon, CanvasBitmap nodeRed, CanvasBitmap nodeGreen, CanvasBitmap nodeBlue, CanvasBitmap nodePink, CanvasBitmap nodePurple, CanvasBitmap nodeYellow)
         {
             foreach (var N in board.Nodes)
             {
-                int x = (int)Scaler.Xpos((float)((N.Pointer.X + 12) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2))));
-                int y = (int)Scaler.Ypos((float)(N.Pointer.Y + 6) * Scaler.ScalingValue);              
+                int x = (int)Scaler.Xpos((float)((N.Pointer.X + 12) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2)))); // Set x value to make star shape
+                int y = (int)Scaler.Ypos((float)(N.Pointer.Y + 6) * Scaler.ScalingValue);   // Set y value to make star shape           
 
                 switch (N.CampColorId)
                 {
@@ -49,6 +61,19 @@ namespace ChineseCheckers.Classes.Tools
                 }
             }
         }
+
+        /// <summary>
+        /// Draws all marble on board
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <param name="board">Current gameboard instance</param>
+        /// <param name="marbleGreen">Green marble picture</param>
+        /// <param name="marblePurple">Purple marble picture</param>
+        /// <param name="marbleRed">Red marble picture</param>
+        /// <param name="marbleBlue">Blue marble picture</param>
+        /// <param name="marbleYellow">Yellow marble picture</param>
+        /// <param name="marblePink">Pink marble picture</param>
         public static void DrawMarbles(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, GameBoard board, CanvasBitmap marbleGreen, CanvasBitmap marblePurple, CanvasBitmap marbleRed, CanvasBitmap marbleBlue, CanvasBitmap marbleYellow, CanvasBitmap marblePink)
         {
             foreach (var M in board.Marbles)
@@ -81,6 +106,14 @@ namespace ChineseCheckers.Classes.Tools
                 }
             }
         }
+
+        /// <summary>
+        /// Draws circle to show available moves.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <param name="nodes">Available nodes to jump to</param>
+        /// <param name="marker">Picture to show locations</param>
         public static void DrawAvailableMoves(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, List<Node> nodes, CanvasBitmap marker)
         {
             foreach (var n in nodes)
@@ -90,25 +123,27 @@ namespace ChineseCheckers.Classes.Tools
                 args.DrawingSession.DrawImage(Scaler.Img(marker), x + 5, y + 5);
             }
         }
+
+        /// <summary>
+        /// Display whos turn it is
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <param name="gameSession">Current gameboard instance</param>
         public static void DrawPlayersTurn(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)
         {
             string text = $"Player {gameSession.CurrentPlayer.Name}'s turn";
             args.DrawingSession.DrawText(text, (int)Scaler.Xpos(50), (int)Scaler.Ypos(25), Colors.AliceBlue);
         }
-        public static void DrawScore(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Session gameSession)
-        {
-            int y = 45;
-            foreach (var p in gameSession.Players)
-            {
 
-                string text = $"{p.Name} : {p.Score}";
-                args.DrawingSession.DrawText(text, (int)Scaler.Xpos(Scaler.DesignWidth / 2), y, Colors.AliceBlue);
-                y += 20;
-
-            }
-
-        }
-
+        /// <summary>
+        /// Draws a winner text on the board
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <param name="board">Current gameboard instance</param>
+        /// <param name="x">x value for text</param>
+        /// <param name="y">y value for text</param>
         public static void DrawWinnerText(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, GameBoard board, float x, float y)
         {            
             CanvasTextFormat textFormat = new CanvasTextFormat()

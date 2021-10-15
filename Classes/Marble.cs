@@ -13,11 +13,13 @@ namespace ChineseCheckers.Classes
     {
         public int Id { get; set; }
         public Point Pointer { get; set; }
-
         public int Angle_theta { get; set; }
         public PlayerColor MarbleColor { get; set; }
-        //public CanvasBitmap Image { get; set; }
-
+        
+        /// <param name="id">Id of the marble</param>
+        /// <param name="pointer">Point value representing X and Y coordinates on the board</param>
+        /// <param name="marblecolor">The color which the marble will have</param>
+        /// <param name="angle_theta">Sets the angle of the marble head</param>
         public Marble(int id, Point pointer, PlayerColor marblecolor, int angle_theta)
         {
             Id = id;

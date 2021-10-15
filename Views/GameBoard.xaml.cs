@@ -34,7 +34,6 @@ namespace ChineseCheckers
     {
         BoardBackground StarBackground = new BoardBackground();
         MediaPlayer ClickSound;
-        //Moving MoveMarble;
         Session GameSession;
         Marble currentlySelected;
         CanvasBitmap NodeImgDefault;
@@ -55,6 +54,9 @@ namespace ChineseCheckers
         public static Rect bounds = ApplicationView.GetForCurrentView().VisibleBounds;
         List<Node> nodes = NodeTool.InitiateNodes();
      
+        /// <summary>
+        /// Makes player win text to move
+        /// </summary>
         enum Direction
         {
             Left, Right, Up, Down
@@ -65,6 +67,9 @@ namespace ChineseCheckers
         float winnerX = 0;
         float winnerY = 0;
 
+        /// <summary>
+        /// Initate GameBoard settings.
+        /// </summary>
         public GameBoard()
         {
             ClickSound = new MediaPlayer();
@@ -72,16 +77,25 @@ namespace ChineseCheckers
             Scaler.SetScale();
             Window.Current.SizeChanged += Current_SizeChanged;
             GameSession = new Session(nodes, StartSettings.players);
-            //MoveMarble = new Moving(25);
-            StarBackground.CreateStar(Star);
+            StarBackground.CreateStar(Star); 
         }
 
+        /// <summary>
+        /// Change visual settings when window size is changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             Scaler.SetScale();
             StarBackground.CreateStar(Star);
         }
 
+        /// <summary>
+        /// Draws all images on the canvas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
 
@@ -94,7 +108,6 @@ namespace ChineseCheckers
                 DrawTool.DrawBoard(sender, args, GameSession.Board, NodeImgDefault, NodeImgRed, NodeImgGreen, NodeImgBlue, NodeImgPurple, NodeImgPink, NodeImgYellow);
                 DrawTool.DrawMarbles(sender, args, GameSession.Board, MarbleImgGreen, MarbleImgPurple, MarbleImgRed, MarbleImgBlue, MarbleImgYellow, MarbleImgPink);
                 DrawTool.DrawPlayersTurn(sender, args, GameSession);
-                DrawTool.DrawScore(sender, args, GameSession);
                 if (currentlySelected != null)
                 {
                     var availableMoves = GameSession.Board.GetLegalJumps(currentlySelected);
@@ -105,11 +118,21 @@ namespace ChineseCheckers
             }
         }
 
+        /// <summary>
+        /// function that creates resources for the canvas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void canvas_CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
         {
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
         }
 
+        /// <summary>
+        /// Import images to be used 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <returns></returns>
         async Task CreateResourcesAsync(CanvasAnimatedControl sender)
         {
             NodeImgDefault = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/Leafs/50x50/Default.png"));
@@ -128,9 +151,14 @@ namespace ChineseCheckers
             Marker = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/chalccircle.png"));
         }
 
+        /// <summary>
+        /// click event from CanvasAnimatedControl
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
         {                       
-            var currentpos = e.GetCurrentPoint(canvas).Position;
+            var currentpos = e.GetCurrentPoint(canvas).Position; // Pointer where user clicks
             foreach (var N in nodes)
             {
                 int x = (int)Scaler.Xpos((float)((N.Pointer.X + 12) * Scaler.ScalingValue + (N.Pointer.Y * (Scaler.ScalingValue / 2))));
@@ -142,22 +170,18 @@ namespace ChineseCheckers
                 int clickX = (int)(xScale * 55);
                 int clickY = (int)(yScale * 55);
 
-                if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY && Moving.move == false)
+                if (currentpos.X >= x && currentpos.X <= x + clickX && currentpos.Y >= y && currentpos.Y <= y + clickY && Moving.move == false) 
                 {          
-                    if (currentlySelected != null && N.MarbleID == null)
+                    if (currentlySelected != null && N.MarbleID == null) 
                     {             
                         var possibleJumps = GameSession.Board.GetLegalJumps(currentlySelected);
-                        if (possibleJumps.Contains(N))
+                        if (possibleJumps.Contains(N)) // If a marble is selected and place is available, move it
                         {
                             GameSession.Board.MarbleMove(N, currentlySelected);
-                            //nodes.Find(Nod => currentlySelected.Id == Nod.MarbleID).MarbleID = null;
-                            //MoveMarble.SelectLocation(N);
-                            //N.MarbleID = currentlySelected.Id;
                             currentlySelected = null;                           
                             GameSession.Turn();
-                            //GameSession.WinCheck();
                         }
-                        else
+                        else 
                         {
                             Sound.PlaySound(ClickSound, "ErrorFrog.mp3", 0.05f, false);
                             currentlySelected = null;
@@ -166,7 +190,7 @@ namespace ChineseCheckers
                     }
                     else
                     {
-                        if (N.MarbleID != null)
+                        if (N.MarbleID != null) // If no marble selected, select a marble
                         {
                             if (GameSession.Board.Marbles.Find(marble => marble.Id == N.MarbleID).MarbleColor == GameSession.CurrentPlayer.ColorId)
                             {                              
@@ -181,6 +205,11 @@ namespace ChineseCheckers
             }
         }
 
+        /// <summary>
+        /// update function from CanvasAnimatedControl
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
             if (Moving.move)
@@ -194,6 +223,9 @@ namespace ChineseCheckers
             }           
         }
 
+        /// <summary>
+        /// Change varibles to move winner text
+        /// </summary>
         private void MoveWinnerText()
         {
             //Horizontal movement
@@ -235,6 +267,11 @@ namespace ChineseCheckers
             }
         }
 
+        /// <summary>
+        /// return user to main menu page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainMenu_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainMenu));

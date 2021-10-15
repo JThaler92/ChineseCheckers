@@ -25,21 +25,10 @@ namespace ChineseCheckers.Classes
         public static double distance_x { get; set; }
         public static double distance_y { get; set; }
 
-        public static int divider = 25; //{ get; set; }
+        public static int divider = 25;
 
         public static bool move = false;
-        //public bool move { get; set; }
 
-        /*
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="Divider">Sets velocity (Higher value = slower movment)</param>
-        public Moving(int Divider) 
-        {
-            this.divider = Divider;
-        }
-        */
         /// <summary>
         /// Select a marble to move.
         /// </summary>
@@ -48,9 +37,7 @@ namespace ChineseCheckers.Classes
         {
             current_X = currentlySelected.Pointer.X;
             current_Y = currentlySelected.Pointer.Y;        
-            moveID = currentlySelected.Id;
-           
-            
+            moveID = currentlySelected.Id;           
         }
 
         /// <summary>

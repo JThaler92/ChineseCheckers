@@ -21,20 +21,23 @@ namespace ChineseCheckers.Classes
 {
     public class BoardBackground
     {
+        /// <summary>
+        /// each value is a point on the star background
+        /// </summary>
         Vector2[] points =
         {
-                new Vector2(-6f,9.5f), // Röd spets
-                new Vector2(-1,4.5f), //Rosa/röd
-                new Vector2(-1,-0.5f), // Rosa spets
-                new Vector2(4f,-0.5f), // rosa/lila
-                new Vector2(8.55f,-4.7f), // lila spets
-                new Vector2(9f,-0.5f), // lila / gul
-                new Vector2(14,-0.5f), // gul spets
-                new Vector2(9,4.5f), // gul/ grön
-                new Vector2(9,9.5f), //grön spets
-                new Vector2(4,9.5f), // grön/blå
-                new Vector2(-0.7f,14), // blå spets
-                new Vector2(-1,9.5f), // blå / röd
+                new Vector2(-6f,9.5f), 
+                new Vector2(-1,4.5f), 
+                new Vector2(-1,-0.5f),
+                new Vector2(4f,-0.5f), 
+                new Vector2(8.55f,-4.7f),
+                new Vector2(9f,-0.5f), 
+                new Vector2(14,-0.5f), 
+                new Vector2(9,4.5f), 
+                new Vector2(9,9.5f), 
+                new Vector2(4,9.5f), 
+                new Vector2(-0.7f,14), 
+                new Vector2(-1,9.5f), 
         };
 
         Vector2[] targetPoints = new Vector2[12];
@@ -44,6 +47,10 @@ namespace ChineseCheckers.Classes
 
         int arrayCount;
 
+        /// <summary>
+        /// Help scaling on star
+        /// </summary>
+        /// <returns>scaled star</returns>
         public Vector2[] SetTargetPoints()
         {
             foreach (var b in points)
@@ -63,6 +70,10 @@ namespace ChineseCheckers.Classes
             return targetPoints;
         }
 
+        /// <summary>
+        /// Creating star shape for the UI
+        /// </summary>
+        /// <param name="star">UI shape of star</param>
         public void CreateStar(Windows.UI.Xaml.Shapes.Polygon star) 
         {
             PointCollection polyPoints = new PointCollection();
