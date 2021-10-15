@@ -10,6 +10,10 @@ namespace ChineseCheckers.Classes.Tools
 {
     class NodeTool
     {
+        /// <summary>
+        /// Create all required nodes
+        /// </summary>
+        /// <returns>List with all nodes</returns>
         public static List<Node> InitiateNodes()
         {
             List<Node> nodeList = new List<Node>()
