@@ -26,7 +26,6 @@ namespace ChineseCheckers.Classes
 
         private void PopulateNodes(List<Player> players)
         {
-            //Sets marbles in all colored nodes
 
             foreach (var L in Nodes)
             {

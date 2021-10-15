@@ -16,7 +16,6 @@ namespace ChineseCheckers.Classes
 
         public int Angle_theta { get; set; }
         public PlayerColor MarbleColor { get; set; }
-        //public CanvasBitmap Image { get; set; }
 
         public Marble(int id, Point pointer, PlayerColor marblecolor, int angle_theta)
         {
