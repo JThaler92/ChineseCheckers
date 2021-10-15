@@ -17,6 +17,9 @@ namespace ChineseCheckers.Classes
 
         public string GameWinner;
 
+
+        /// <param name="nodes">list of nodes for the board</param>
+        /// <param name="players">list of players for the board</param>
         public GameBoard(List<Node> nodes, List<Player> players)
         {
             Nodes = nodes;

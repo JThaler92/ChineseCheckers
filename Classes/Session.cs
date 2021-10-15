@@ -16,8 +16,6 @@ namespace ChineseCheckers.Classes
     {
         MediaPlayer WinSound;
         
-
-        //public Moving moving { get; set; }
         public Dictionary<PlayerColor, PlayerColor> GoalTarget { get; set; }
         public GameBoard Board { get; set; }
         public List<Player> Players { get; set; }
@@ -129,7 +127,6 @@ namespace ChineseCheckers.Classes
                 {
                     WinSound = new MediaPlayer();
                     Sound.PlaySound(WinSound, "WinBell.mp3", 0.05f, false);
-                    //TODO: BREAK GAME;
                     HasWinner = true;
                     Board.GameWinner = P.Name;
                     Debug.WriteLine(P.ColorId + " WINS");

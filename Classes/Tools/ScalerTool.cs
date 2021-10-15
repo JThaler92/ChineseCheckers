@@ -19,7 +19,7 @@ namespace ChineseCheckers.Classes
         public static int ScalingValue { get; } = 50;
 
         /// <summary>
-        /// 
+        /// sets scale according to desígn dimensions
         /// </summary>
         public static void SetScale()
         {
@@ -75,19 +75,19 @@ namespace ChineseCheckers.Classes
         }
 
         /// <summary>
-        /// 
+        /// Scales the X position according to window dimensions
         /// </summary>
         /// <param name="x"></param>
-        /// <returns></returns>
+        /// <returns>scaled X value</returns>
         public static float Xpos(float x)
         {
             return (float)(x * scaleWidth);
         }
         /// <summary>
-        /// 
+        /// Scales the Y position according to window dimensions
         /// </summary>
         /// <param name="y"></param>
-        /// <returns></returns>
+        /// <returns>scaled Y value</returns>
         public static float Ypos(float y)
         {
             return (float)(y * scaleHeight);

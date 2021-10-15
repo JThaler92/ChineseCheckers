@@ -21,6 +21,9 @@ namespace ChineseCheckers.Classes
 {
     public class BoardBackground
     {
+        /// <summary>
+        /// each value is a point on the star background
+        /// </summary>
         Vector2[] points =
         {
                 new Vector2(-6f,9.5f), 
@@ -44,6 +47,10 @@ namespace ChineseCheckers.Classes
 
         int arrayCount;
 
+        /// <summary>
+        /// Help scaling on star
+        /// </summary>
+        /// <returns>scaled star</returns>
         public Vector2[] SetTargetPoints()
         {
             foreach (var b in points)
@@ -63,6 +70,10 @@ namespace ChineseCheckers.Classes
             return targetPoints;
         }
 
+        /// <summary>
+        /// Creating star shape for the UI
+        /// </summary>
+        /// <param name="star">UI shape of star</param>
         public void CreateStar(Windows.UI.Xaml.Shapes.Polygon star) 
         {
             PointCollection polyPoints = new PointCollection();

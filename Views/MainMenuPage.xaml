@@ -8,8 +8,6 @@
     xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-
     <Border>
         <Border.Background>
             <ImageBrush ImageSource="ms-appx:///Assets/Images/swamp.jpg" Stretch="UniformToFill"/>
@@ -45,14 +43,6 @@
                     </TextBox.Resources>
                 </TextBox>
                 <Image x:Name="PlayerOneImage" Source="ms-appx:///Assets/Images/Frogs/blagrod.png" Margin="0,0,700,400" Width="75" Height="75" Visibility="Collapsed"/>
-
-                <!--            ////////// Placeholder for future AI checkbox /////////////////////
-                <CheckBox x:Name="IsAIOne" Content="AI" Margin="900,0,0,395" FontSize="17" FontWeight="SemiBold" >
-                    <CheckBox.RenderTransform>
-                        <ScaleTransform ScaleX="2" ScaleY="2"/>
-                    </CheckBox.RenderTransform>
-                </CheckBox>
-                -->
 
                 <TextBox x:Name="PlayerTwoName" HorizontalAlignment="Left" Margin="350,550,0,0" Text="Player Two" Header="Player Two:" TextWrapping="Wrap" VerticalAlignment="Top" Background="BurlyWood" Width="390" Height="100" FontSize="30" MaxLength="16" GettingFocus="PlayerTwoName_GettingFocus" LosingFocus="PlayerTwoName_LosingFocus" Visibility="Collapsed" CornerRadius="20" Opacity ="0.7">
                     <TextBox.Resources>
@@ -100,7 +90,6 @@
                 <Image x:Name="PlayerSixImage" Margin="0,0,700,-700" Width="75" Height="75" Visibility="Collapsed"/>
 
                 <Button x:Name="StartGame" Content="Start Game" Margin="0,1150,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="300" Height="65" FontSize="40" FontFamily="Algerian" FontWeight="Black" CornerRadius="10" Visibility="Collapsed" Click="StartGame_Click" Background="ForestGreen" BorderBrush="#FFF" BorderThickness="7"/>
-
             </Grid>
         </Viewbox>
     </Border>

@@ -92,7 +92,7 @@ namespace ChineseCheckers
         }
 
         /// <summary>
-        /// Draws all images on the window
+        /// Draws all images on the canvas
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
@@ -118,6 +118,11 @@ namespace ChineseCheckers
             }
         }
 
+        /// <summary>
+        /// function that creates resources for the canvas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void canvas_CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
         {
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
@@ -146,6 +151,11 @@ namespace ChineseCheckers
             Marker = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/chalccircle.png"));
         }
 
+        /// <summary>
+        /// click event from CanvasAnimatedControl
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void canvas_Click(object sender, PointerRoutedEventArgs e)
         {                       
             var currentpos = e.GetCurrentPoint(canvas).Position; // Pointer where user clicks
@@ -195,6 +205,11 @@ namespace ChineseCheckers
             }
         }
 
+        /// <summary>
+        /// update function from CanvasAnimatedControl
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
             if (Moving.move)
@@ -252,6 +267,11 @@ namespace ChineseCheckers
             }
         }
 
+        /// <summary>
+        /// return user to main menu page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainMenu_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainMenu));
