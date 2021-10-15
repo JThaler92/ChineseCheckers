@@ -25,7 +25,7 @@ namespace ChineseCheckers.Classes
         public static double distance_x { get; set; }
         public static double distance_y { get; set; }
 
-        public static int divider = 25; //{ get; set; }
+        public static int divider = 25;
 
         public static bool move = false;
 

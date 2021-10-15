@@ -20,12 +20,12 @@ namespace ChineseCheckers.Classes
         /// Set player names
         /// </summary>
         /// <param name="Players">amount of players</param>
-        /// <param name="PlayerOne"></param>
-        /// <param name="PlayerTwo"></param>
-        /// <param name="PlayerThree"></param>
-        /// <param name="PlayerFour"></param>
-        /// <param name="PlayerFive"></param>
-        /// <param name="PlayerSix"></param>
+        /// <param name="PlayerOne">name of player one</param>
+        /// <param name="PlayerTwo">name of player two</param>
+        /// <param name="PlayerThree">name of player three</param>
+        /// <param name="PlayerFour">name of player four</param>
+        /// <param name="PlayerFive">name of player five</param>
+        /// <param name="PlayerSix">name of player six</param>
         public static void PlayerSettings(int Players, string PlayerOne, string PlayerTwo, string PlayerThree, string PlayerFour, string PlayerFive, string PlayerSix)
         {
             players = Players;

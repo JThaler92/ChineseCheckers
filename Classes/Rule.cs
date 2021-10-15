@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChineseCheckers.Classes
 {
+    /// <summary>
+    /// A class containing string of rules for Frog Checkers
+    /// </summary>
     class Rule
     {
         public static string RuleText = "The aim is to race all one's frogs into the star corner on the opposite side of the board before the opponents do the same. " +

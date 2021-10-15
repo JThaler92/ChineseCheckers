@@ -32,6 +32,7 @@ namespace ChineseCheckers.Classes
             player.Play();
         }
 
+        /// <param name="player">mediaplayer managing sounds</param>
         public static void StopSound(MediaPlayer player)
         {
             player.Pause();

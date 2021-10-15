@@ -24,6 +24,8 @@ namespace ChineseCheckers.Classes
         public Player CurrentPlayer { get; set; }
         public bool HasWinner { get; set; }
 
+        /// <param name="Nodes">List of the nodes for the board</param>
+        /// <param name="opponents">amount of opponents for the game session</param>
         public Session(List<Node> Nodes, int opponents)
         {
             GoalTarget = new Dictionary<PlayerColor, PlayerColor>()
