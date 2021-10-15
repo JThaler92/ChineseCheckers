@@ -1,5 +1,9 @@
 # ChineseCheckers
 
+![image](https://user-images.githubusercontent.com/70524344/137464145-897601ab-38aa-4c8a-a71d-0276562b0f95.png)
+![image](https://user-images.githubusercontent.com/70524344/137464216-f949db48-53f2-4fcf-9d1f-bfa66d30cf98.png)
+
+
 Background image 
 https://www.freepik.com/vectors/tree 
 Tree vector created by upklyak
